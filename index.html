@@ -49,11 +49,7 @@
     </div>
     <hr><br><br>
     <label id="labelPrevalence" for="prevalence" hidden>Enter expected prevalence: </label> <input hidden id="prevalence"
-      name="Prevalence" placeholder="12" required="" type="tel"><br>
-    <label hidden for="SD">Enter expected Standad Deviation: </label> <input hidden id="prevalence"
-      name="Prevalence" placeholder="SD" required="" type="tel"><br>
-    <br>
-    
+      name="Prevalence" placeholder="12" required="" type="tel">    
     <label id="labelSD" hidden for="SD">Enter expected Standard Deviation: </label> <input hidden id="SD"
       name="Prevalence" placeholder="SD" required="" type="tel"><br><br>
     
@@ -70,8 +66,7 @@
     <br><br>
    
     <label id="labelAbsPrecision" hidden for="AbsPrecision">Enter absolute precision: </label> <input hidden id="AbsPrecision"
-      name="d" placeholder="Absolute Precision" required="" type="tel"><br>
-    <br>
+      name="d" placeholder="Absolute Precision" required="" type="tel">
     <label hidden id="labelRelPrecision" for="RelPrecision">Enter relative precision: </label> <input hidden id="RelPrecision"
       name="e" placeholder="Relative Precision" required="" type="tel"><br><br>
    
@@ -83,6 +78,7 @@
     <br><div id= "resultDiv">Result:
     <span id="result"> Result will appear here once you enter parameters. </span><hr>
     </div>
+    <button onfocus="window.location.reload()">Start Again</button><hr><br>
   </body>
 <footer> Developer contact: Dr. Vinoth Kumar Kalidoss, Abhishek Das G H</footer>
 <script>
@@ -153,6 +149,10 @@ function MRelPShow(){
 }
 
 function calculate(){
+  if (document.getElementById('prevalence').value>100 || document.getElementById('AbsPrecision').value>100 || document.getElementById('RelPrecision').value>100 || document.getElementById('SD').value>100||document.getElementById('prevalence').value<0 || document.getElementById('AbsPrecision').value<0 || document.getElementById('RelPrecision').value<0 || document.getElementById('SD').value<0){
+    document.getElementById('result').innerHTML= "Please enter valid parameters"
+  }
+  else{  
   switch(typeOfCalculation){
     case 0:
       document.getElementById('result').innerHTML= "Please Select Type of Calculation"
@@ -171,6 +171,7 @@ function calculate(){
       break;
     default:
       document.getElementById('result').innerHTML= "Please report this error to developer"
+  }
   }
 }
 function PrAbsPCalculate(){
