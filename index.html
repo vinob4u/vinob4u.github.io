@@ -9,6 +9,7 @@
     html{background-image: linear-gradient(120deg, #2a2e86, #444444, #366d21); color: white; text-align: center; border: 1px; border-color: cyan;font-weight:bold;}
     #resultDiv{background-color:white; color:black; font-weight:bold;}
     #typeOfCalculationDiv{ background-image: linear-gradient(120deg, #366d21, #444444, #2a2e86);}
+    select{max-width:100%}
     footer{ float:left;
       left: 0; right: 0;
       display:block;
@@ -48,10 +49,12 @@
       </table>
     </div>
     <hr><br><br>
-    <label id="labelPrevalence" for="prevalence" hidden>Enter expected prevalence: </label> <input hidden id="prevalence"
-      name="Prevalence" placeholder="12" required="" type="tel">    
-    <label id="labelSD" hidden for="SD">Enter expected Standard Deviation: </label> <input hidden id="SD"
-      name="Prevalence" placeholder="SD" required="" type="tel"><br><br>
+    <div id="labelPrevalence" hidden>
+    <label for="prevalence">Enter expected prevalence: </label> <input hidden id="prevalence"
+      name="Prevalence" placeholder="12" required="" type="tel"> %</div>   
+    <div id="labelSD" hidden>
+    <label for="SD">Enter expected Standard Deviation: </label> <input hidden id="SD"
+      name="Prevalence" placeholder="SD" required="" type="tel">%</div><br><br>
     
     <label id="labelCF" for="CF" hidden> Confidence Interval: </label>
     <select id="CF" hidden>
@@ -64,11 +67,12 @@
       <option>99.9%</option>
     </select>
     <br><br>
-   
-    <label id="labelAbsPrecision" hidden for="AbsPrecision">Enter absolute precision: </label> <input hidden id="AbsPrecision"
-      name="d" placeholder="Absolute Precision" required="" type="tel">
-    <label hidden id="labelRelPrecision" for="RelPrecision">Enter relative precision: </label> <input hidden id="RelPrecision"
-      name="e" placeholder="Relative Precision" required="" type="tel"><br><br>
+   <div  id="labelAbsPrecision" hidden>
+    <label for="AbsPrecision">Enter absolute precision: </label> <input hidden id="AbsPrecision"
+      name="d" placeholder="Absolute Precision" required="" type="tel">%</div>
+    <div hidden id="labelRelPrecision">
+    <label for="RelPrecision">Enter relative precision: </label> <input hidden id="RelPrecision"
+      name="e" placeholder="Relative Precision" required="" type="tel">%</div><br><br>
    
     <label id="labelMean" hidden for="mean">Enter expected mean: </label> <input hidden id="mean"
       name="Mean" placeholder="Mean" required="" type="tel"><br>
@@ -83,7 +87,8 @@
 <footer> Developer contact: Dr. Vinoth Kumar Kalidoss, Abhishek Das G H</footer>
 <script>
 let typeOfCalculation = 0;
-function PrAbsPShow(){
+function PrAbsPShow(){document.getElementById("labelCF").setAttribute("hidden", "");
+  document.getElementById("CF").setAttribute("hidden", "");
   document.getElementById("labelPrevalence").removeAttribute("hidden");
   document.getElementById("prevalence").removeAttribute("hidden");
   document.getElementById("labelCF").removeAttribute("hidden");
@@ -357,6 +362,9 @@ function startAgain(){
   document.getElementById("CF").setAttribute("hidden", "");
   document.getElementById('result').innerHTML= " Result will appear here once you enter parameters. ";
   document.getElementById("CF").selectedIndex = 3;
+  document.getElementById("labelMean").setAttribute("hidden", "");
+  document.getElementById("mean").setAttribute("hidden", "");
+  document.getElementById("mean").value="";
 }
 </script>
 </html>
