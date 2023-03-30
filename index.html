@@ -153,6 +153,7 @@ function calculate(){
     document.getElementById('result').innerHTML= "Please enter valid parameters"
   }
   else{  
+  let z= document.getElementById("CF");
   switch(typeOfCalculation){
     case 0:
       document.getElementById('result').innerHTML= "Please Select Type of Calculation"
@@ -176,7 +177,7 @@ function calculate(){
 }
 function PrAbsPCalculate(){
   let p1= document.getElementById('prevalence').value;
-  let z= document.getElementById("CF");
+  z= document.getElementById("CF");
   var z01 = z.options[z.selectedIndex].text;
   let z1= 1.96;
   switch(z01){
@@ -216,7 +217,7 @@ function PrAbsPCalculate(){
 }
 function PrRelPCalculate(){
   let p2= document.getElementById('prevalence').value;
-  let z= document.getElementById("CF");
+  z= document.getElementById("CF");
   var z02 = z.options[z.selectedIndex].text;
   let z2= 1.96;
   switch(z02){
@@ -256,7 +257,7 @@ function PrRelPCalculate(){
 }
 function MAbsPCalculate(){
   let p3= document.getElementById('SD').value;
-  let z= document.getElementById("CF");
+  z= document.getElementById("CF");
   var z03 = z.options[z.selectedIndex].text;
   let z3= 1.96;
   switch(z03){
@@ -296,7 +297,7 @@ function MAbsPCalculate(){
 }
 function MRelPCalculate(){
   let p4= document.getElementById('SD').value;
-  let z= document.getElementById("CF");
+  z= document.getElementById("CF");
   var z04 = z.options[z.selectedIndex].text;
   let z4= 1.96;
   switch(z04){
@@ -342,15 +343,20 @@ function startAgain(){
   document.getElementById("MeanAbsPrecision").checked = false;
   document.getElementById("labelPrevalence").setAttribute("hidden", "");
   document.getElementById("prevalence").setAttribute("hidden", "");
+  document.getElementById("prevalence").value="";
   document.getElementById("labelSD").setAttribute("hidden", "");
   document.getElementById("SD").setAttribute("hidden", "");
+  document.getElementById("SD").value="";
   document.getElementById("labelAbsPrecision").setAttribute("hidden", "");
   document.getElementById("AbsPrecision").setAttribute("hidden", "");
+  document.getElementById("AbsPrecision").value="";
   document.getElementById("labelRelPrecision").setAttribute("hidden", "");
   document.getElementById("RelPrecision").setAttribute("hidden", "");
+  document.getElementById("RelPrecision").value="";
   document.getElementById("labelCF").setAttribute("hidden", "");
   document.getElementById("CF").setAttribute("hidden", "");
   document.getElementById('result').innerHTML= " Result will appear here once you enter parameters. ";
+  document.getElementById("CF").selectedIndex = 3;
 }
 </script>
 </html>
