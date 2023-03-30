@@ -78,7 +78,7 @@
     <br><div id= "resultDiv">Result:
     <span id="result"> Result will appear here once you enter parameters. </span><hr>
     </div>
-    <button onfocus="window.location.reload()">Start Again</button><hr><br>
+    <button onfocus="startAgain()">Start Again</button><hr><br>
   </body>
 <footer> Developer contact: Dr. Vinoth Kumar Kalidoss, Abhishek Das G H</footer>
 <script>
@@ -334,6 +334,23 @@ function MRelPCalculate(){
   if (isNaN(r40)){document.getElementById('result').innerHTML= "Please enter valid parameters";}
   else{
   document.getElementById('result').innerHTML= r40;}
+}
+function startAgain(){
+  document.getElementById("ProportionAbsPrecision").checked = false;
+  document.getElementById("ProportionRelPrecision").checked = false;
+  document.getElementById("MeanAbsPrecision").checked = false;
+  document.getElementById("MeanAbsPrecision").checked = false;
+  document.getElementById("labelPrevalence").setAttribute("hidden", "");
+  document.getElementById("prevalence").setAttribute("hidden", "");
+  document.getElementById("labelSD").setAttribute("hidden", "");
+  document.getElementById("SD").setAttribute("hidden", "");
+  document.getElementById("labelAbsPrecision").setAttribute("hidden", "");
+  document.getElementById("AbsPrecision").setAttribute("hidden", "");
+  document.getElementById("labelRelPrecision").setAttribute("hidden", "");
+  document.getElementById("RelPrecision").setAttribute("hidden", "");
+  document.getElementById("labelCF").setAttribute("hidden", "");
+  document.getElementById("CF").setAttribute("hidden", "");
+  document.getElementById('result').innerHTML= " Result will appear here once you enter parameters. ";
 }
 </script>
 </html>
