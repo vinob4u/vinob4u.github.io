@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>Formula Hypothesis testing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    *{font-size:20px; font-family: Verdana; text-align: center; vertical-align: middle;}
+    html{background-image: linear-gradient(120deg, #2a2e86, #444444, #366d21); color: white; text-align: center; font-weight:bold;}
+    body{min-height: 150vh !important; margin:0; display: grid; grid-template-rows: auto 1fr auto;}
+    article{flex:1;}
+    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
+    hr {
+      border-top: 3px dashed red;
+    }
+    footer{ float:left;
+      left: 0; right: 0;
+      display:block;
+      background-color: black; color: white;
+      font-size:12px;     
+      text-align: center;    
+      bottom: 0; 
+      width: 100%;}
+    body {
+        position: relative;
+      }
+
+     body::after {
+        content: '';
+      }
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+      }
+      button {
+        background-image:linear-gradient(240deg, #2a2e86, #444444, #366d21);
+        padding: 8px 20px;
+        border:3px solid yellow;
+        border-color: yellow;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+        color: white;
+      }
+      button:hover {
+        color: #222222;
+        box-shadow: 0 5px 25px rgba(145, 102, 182, .4);
+      }
+      input{
+        width: 55vw;
+        background-image:linear-gradient(#f9ffff, #e3e6e8, #fdfcfb, #ffffff) ;
+        padding: 8px 20px;
+        border:3px solid yellow;
+        border-color: yellow;
+        border-radius: 16px;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+        color: black;
+      }
+      .noneSelected{background-image:linear-gradient(180deg, #dddddd, #999999, #dddddd); color: white;}
+      option{
+        background-color: black; color: white;}
+      select{
+        width: 80vw;
+        background-image:linear-gradient(#191f22, #131618, #0d0c0b, #000000) ;
+        padding: 8px 20px;
+        border:3px solid yellow;
+        border-color: yellow;
+        border-radius: 16px;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+        color: white;
+      }
+    </style>
+  </head>
+  <body ><article>
+    <h1>Formula hypothesis testing using two population proportions. </h1>
+    <hr>
+    <div style="text-align: center;">Select type of study:
+      <select id="TypeOfStudy" required="required" width="85%" onchange="typeOfStudy()">
+        <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+        <option value="CrossSectional">Cross Sectional Study</option>
+        <option value="CaseControl">Case Control Study</option>
+        <option value="Cohort">Cohort Study</option>
+      </select>
+    </div>
+    <hr>
+    <p hidden id="z1aby2p">Ζ<sub>1-(α/2) </sub>=&nbsp; <input id="z1aby2" placeholder="Please enter value" required="required" type="tel"></p>
+    <p hidden id="z1-bp">Z<sub>1-β </sub>= <input id="z1-b" placeholder="Please enter value" type="tel"></p>
+    <p hidden id="ORP1P2p">Please select parameters you have:
+    <select id="ORP1P2Select" width="85%" onchange="ORP1P2Selected()">
+        <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+        <option value="ODP1">Odds ratio and P2*</option>
+        <option value="P1P2">P1* and P2*</option>
+      </select>
+    </p>
+    <p hidden id="p1*p">P<sub>1</sub>* = <input id="P1*" placeholder="Please enter value" type="tel"></p>
+    <p hidden id="p2*p">P<sub>2</sub>* = <input id="P2*" placeholder="Please enter value" type="tel"></p>
+    <p hidden id="RRP1P2p">Please select parameters you have:
+    <select id="RRP1P2Select" width="85%" onchange="RRP1P2Selected()">
+        <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+        <option value="ODP1">Relative Risk and P2</option>
+        <option value="P1P2">P1 and P2</option>
+      </select>
+    </p>
+    <p hidden id="ORp">Odds Ratio = <input id="OR" placeholder="Odds Ratio" type="tel"></p>
+    <p hidden id="p1p">P<sub>1 </sub>= <input id="P1" placeholder="Please enter value" required="required" type="tel"> </p>
+    <p hidden id="p2p">P<sub>2 </sub>= <input id="P2" placeholder="Please enter value" required="required" type="tel"></p>
+    <p hidden id="RRp">Relative Risk = <input id="RR" placeholder="Relative Risk" type="tel"></p>
+    <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
+    <div id= "resultDiv"><span>Result:</span>
+    <span id="result"> Result will appear here once you enter parameters. </span>
+    </div><br><br>
+    <button onfocus="startAgain()" id="strtagn">Start Again</button><br><br><button onclick="location.replace('./index.html')"> Back to home </button><br><br><hr>
+  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H</footer>
+  </article>
+  </body>
+<script>
+let s="NotYetSelected";
+let s1="NotYetSelected";
+function typeOfStudy(){
+  s= document.getElementById("TypeOfStudy");
+  s1= s.options[s.selectedIndex].text;
+  switch(s1){
+    case "Cross Sectional Study":
+      CrossSectionalShow()
+      break;
+    case "Case Control Study":
+      CaseControlShow()
+      break;
+    case "Cohort Study":
+      CohortShow()
+      break;
+    default:
+      document.getElementById("result").innerHTML="Please report this error to developer"
+      break;
+  }
+}
+function CrossSectionalShow(){
+  document.getElementById("z1aby2p").removeAttribute("hidden");
+  document.getElementById("z1-bp").removeAttribute("hidden");
+  document.getElementById("p1p").removeAttribute("hidden");
+  document.getElementById("p2p").removeAttribute("hidden");
+  document.getElementById("ORP1P2p").setAttribute("hidden", "");
+  document.getElementById("RRP1P2p").setAttribute("hidden","");
+  document.getElementById("p2*p").setAttribute("hidden","");
+  document.getElementById("p1*p").setAttribute("hidden","");
+  document.getElementById("RRp").setAttribute("hidden","");
+  document.getElementById("ORp").setAttribute("hidden","")
+}
+function CaseControlShow(){
+  document.getElementById("z1aby2p").removeAttribute("hidden");
+  document.getElementById("z1-bp").removeAttribute("hidden");
+  document.getElementById("ORP1P2p").removeAttribute("hidden");
+  document.getElementById("p1p").setAttribute("hidden","");
+  document.getElementById("p2p").setAttribute("hidden","");
+  document.getElementById("RRP1P2p").setAttribute("hidden","");
+  document.getElementById("p2*p").setAttribute("hidden","");
+  document.getElementById("p1*p").setAttribute("hidden","");
+  document.getElementById("RRp").setAttribute("hidden","");
+  document.getElementById("ORp").setAttribute("hidden","");
+}
+function CohortShow(){
+  document.getElementById("z1aby2p").removeAttribute("hidden");
+  document.getElementById("z1-bp").removeAttribute("hidden");
+  document.getElementById("RRP1P2p").removeAttribute("hidden");
+  document.getElementById("p1p").setAttribute("hidden","");
+  document.getElementById("p2p").setAttribute("hidden","");
+  document.getElementById("ORP1P2p").setAttribute("hidden", "");
+  document.getElementById("p2*p").setAttribute("hidden","");
+  document.getElementById("p1*p").setAttribute("hidden","");
+  document.getElementById("RRp").setAttribute("hidden","");
+  document.getElementById("ORp").setAttribute("hidden","");
+}
+function ORP1P2Selected(){
+  let s2=document.getElementById("ORP1P2Select");
+  let s3= s2.options[s2.selectedIndex].text;
+  switch(s3){
+    case "Odds ratio and P2*":
+      document.getElementById("ORp").removeAttribute("hidden")
+      document.getElementById("p2*p").removeAttribute("hidden")
+      document.getElementById("p1*p").setAttribute("hidden", "")
+      break;
+    case "P1* and P2*":
+      document.getElementById("p1*p").removeAttribute("hidden")
+      document.getElementById("p2*p").removeAttribute("hidden")
+      document.getElementById("ORp").setAttribute("hidden", "")
+      break;
+    default:
+      document.getElementById("result").innerHTML="Please report this error to developer"
+      break;
+  }
+}
+function RRP1P2Selected(){
+  let s4=document.getElementById("RRP1P2Select");
+  let s5= s4.options[s4.selectedIndex].text;
+  switch(s5){
+    case "Relative Risk and P2":
+      document.getElementById("RRp").removeAttribute("hidden")
+      document.getElementById("p2p").removeAttribute("hidden")
+      document.getElementById("p1p").setAttribute("hidden", "")
+      break;
+    case "P1 and P2":
+      document.getElementById("p1p").removeAttribute("hidden")
+      document.getElementById("p2p").removeAttribute("hidden")
+      document.getElementById("RRp").setAttribute("hidden","")
+      break;
+    default:
+      document.getElementById("result").innerHTML="Please report this error to developer"
+      break;
+  }
+}
+function calculate(){
+  s= document.getElementById("TypeOfStudy");
+  s1= s.options[s.selectedIndex].text;
+  switch(s1){
+    case "Cross Sectional Study":
+      CrossSectionalCalculate()
+      break;
+    case "Case Control Study":
+      CaseControlCalculate()
+      break;
+    case "Cohort Study":
+      CohortCalculate()
+      break;
+    case "Please select an option":
+      document.getElementById("result").innerHTML="Please select type of study";
+      break;
+    default:
+      document.getElementById("result").innerHTML="Please report this error to developer"
+      break;
+  }
+}
+function CrossSectionalCalculate(){
+  let Za = parseFloat(document.getElementById("z1aby2").value);
+  let Zb = parseFloat(document.getElementById("z1-b").value);
+  let P1 = parseFloat(document.getElementById("P1").value);
+  let P2 = parseFloat(document.getElementById("P2").value);
+  let P0 = (P1+P2)/2;
+  let e1 = Za*(Math.sqrt(2*P0*(1-P0)));
+  let e2 = Zb*(Math.sqrt((P1*(1-P1))+(P2*(1-P2))));
+  let e3 = (e1+e2)*(e1+e2);
+  let e4 = (P1-P2)*(P1-P2);
+  let  n = e3/e4;
+  if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
+  else{document.getElementById("result").innerHTML= n;}
+}
+function CaseControlCalculate(){
+  let t  = document.getElementById("ORP1P2Select")
+  let t1 = t.options[t.selectedIndex].text;
+  let P1;
+  switch(t1){
+    case "Odds ratio and P2*":
+      let P2 = parseFloat(document.getElementById("P2*").value);
+      let OR = parseFloat(document.getElementById("OR").value);
+      P1 = (OR*P2)/((OR*P2)+(1-P2));
+      break;document.getElementById("OR").value="";
+    case "P1* and P2*":
+      P1 = parseFloat(document.getElementById("P1*").value);
+      break;
+    default:
+      document.getElementById("result").innerHTML="Please report this error to developer"
+      break;
+  }
+  let P2 = parseFloat(document.getElementById("P2*").value);
+  let P0 = (P1+P2)/2;
+  let Za = parseFloat(document.getElementById("z1aby2").value);
+  let Zb = parseFloat(document.getElementById("z1-b").value);
+  let e1 = Za*(Math.sqrt(2*P0*(1-P0)));
+  let e2 = Zb*(Math.sqrt((P1*(1-P1))+(P2*(1-P2))));
+  let e3 = (e1+e2)*(e1+e2);
+  let e4 = (P1-P2)*(P1-P2);
+  let  n = e3/e4;
+  if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
+  else{document.getElementById("result").innerHTML= n;}
+}
+
+function CohortCalculate(){
+  let u  = document.getElementById("RRP1P2Select")
+  let u1 = u.options[u.selectedIndex].text;
+  let P1;
+  switch(u1){
+    case "Relative Risk and P2":
+      let P2 = parseFloat(document.getElementById("P2").value);
+      let RR = parseFloat(document.getElementById("RR").value);
+      P1 = RR*P2;
+      break;
+    case "P1 and P2":
+      P1 = parseFloat(document.getElementById("P1").value);
+      break;
+    default:
+      document.getElementById("result").innerHTML="Please report this error to developer"
+      break;
+  }
+  let P2 = parseFloat(document.getElementById("P2").value);
+  let P0 = (P1+P2)/2;
+  let Za = parseFloat(document.getElementById("z1aby2").value);
+  let Zb = parseFloat(document.getElementById("z1-b").value);
+  let e1 = Za*(Math.sqrt(2*P0*(1-P0)));
+  let e2 = Zb*(Math.sqrt((P1*(1-P1))+(P2*(1-P2))));
+  let e3 = (e1+e2)*(e1+e2);
+  let e4 = (P1-P2)*(P1-P2);
+  let  n = e3/e4;
+  if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
+  else{document.getElementById("result").innerHTML= n;}
+}
+function startAgain(){
+  document.getElementById("z1aby2p").setAttribute("hidden", "");
+  document.getElementById("z1-bp").setAttribute("hidden", "");
+  document.getElementById("P1").value="";
+  document.getElementById("p1p").setAttribute("hidden", "");
+  document.getElementById("p2p").setAttribute("hidden", "");
+  document.getElementById("P2").value="";
+  document.getElementById("p1*p").setAttribute("hidden", "");
+  document.getElementById("p2*p").setAttribute("hidden", "");
+  document.getElementById("P1*").value="";
+  document.getElementById("ORP1P2p").setAttribute("hidden", "");
+  document.getElementById("RRP1P2p").setAttribute("hidden", "");
+  document.getElementById("P2*").value="";
+  document.getElementById("ORp").setAttribute("hidden", "");
+  document.getElementById("RRp").setAttribute("hidden", "");
+  document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";
+  document.getElementById("OR").value="";
+  document.getElementById("RR").value="";
+  document.getElementById("z1aby2").value="";
+  document.getElementById("z1-b").value="";
+  document.getElementById("TypeOfStudy").selectedIndex = 0;
+  document.getElementById("ORP1P2Select").selectedIndex = 0;
+  document.getElementById("RRP1P2Select").selectedIndex = 0;
+}
+startAgain();
+</script>
+</html>
