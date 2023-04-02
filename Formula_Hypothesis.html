@@ -76,10 +76,62 @@
         transition: all 0.2s ease-in-out;
         color: white;
       }
+      h1{font-size:48px}
+      a {font-size:inherit}
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+      .slider.round {
+        border-radius: 34px;
+      }
+      .slider.round:before {
+        border-radius: 50%;
+      }
     </style>
   </head>
   <body ><article>
-    <h1>Formula hypothesis testing using two population proportions. </h1>
+    <h1>Formula hypothesis testing</h1>
     <hr>
     <div style="text-align: center;">Select type of study:
       <select id="TypeOfStudy" required="required" width="85%" onchange="typeOfStudy()">
@@ -90,7 +142,7 @@
       </select>
     </div>
     <hr>
-    <p hidden id="z1aby2p">Ζ<sub>1-(α/2) </sub>=&nbsp; <input id="z1aby2" placeholder="Please enter value" required="required" type="tel"></p>
+    <p hidden id="z1aby2p">Ζ<sub>1-(α/2) </sub>= <input id="z1aby2" placeholder="Please enter value" required="required" type="tel"></p>
     <p hidden id="z1-bp">Z<sub>1-β </sub>= <input id="z1-b" placeholder="Please enter value" type="tel"></p>
     <p hidden id="ORP1P2p">Please select parameters you have:
     <select id="ORP1P2Select" width="85%" onchange="ORP1P2Selected()">
@@ -115,14 +167,51 @@
     <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
     <div id= "resultDiv"><span>Result:</span>
     <span id="result"> Result will appear here once you enter parameters. </span>
-    </div><br><br>
+    </div><br>
+    <div hidden id="variableshower">
+    <label class="switch">
+      <input type="checkbox" onfocus="toggled()">
+      <span class="slider round"></span>
+    </label>&nbsp;&nbsp;Know what the parameters stand for
+    <div hidden id="variables">
+     <ul hidden id="CrossSectionalVariables">
+     <li> P<sub>1</sub> = Proportion in the first group</li>
+     <li> P<sub>2</sub> = Proportion in the second group</li>
+     <li> α = Significance level </li>
+     <li> 1-β = Power</li>
+     </ul>
+    <ul hidden id="CaseControlVariables">
+     <li> P<sub>2</sub>* = Probability of the exposure given disease is absent</li>
+     <li> P<sub>1</sub>* = Probability of the exposure given disease is present</li>
+     <li> α = Significance level </li>
+     <li> 1-β = Power</li>
+     </ul>
+    <ul hidden id="CohortVariables">
+     <li> P<sub>2</sub> = Proportion(incidence) of disease present in the unexposed group</li>
+     <li> P<sub>2</sub> = Proportion(incidence) of disease present in the exposed group</li>
+     <li> α = Significance level </li>
+     <li> 1-β = Power</li>
+     </ul>
+    </div>
+    </div>
+    <br>
     <button onfocus="startAgain()" id="strtagn">Start Again</button><br><br><button onclick="location.replace('./index.html')"> Back to home </button><br><br><hr>
-  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H</footer>
+  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at <a href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
   </article>
   </body>
 <script>
 let s="NotYetSelected";
 let s1="NotYetSelected";
+
+function toggled(){
+  let c = document.getElementById("variables");
+  if (c.hasAttribute("hidden")){
+    document.getElementById('variables').removeAttribute('hidden');
+  }
+  else{
+    document.getElementById('variables').setAttribute('hidden', "");}
+}
+
 function typeOfStudy(){
   s= document.getElementById("TypeOfStudy");
   s1= s.options[s.selectedIndex].text;
@@ -140,6 +229,7 @@ function typeOfStudy(){
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
   }
+  document.getElementById("variableshower").removeAttribute("hidden");
 }
 function CrossSectionalShow(){
   document.getElementById("z1aby2p").removeAttribute("hidden");
@@ -151,7 +241,10 @@ function CrossSectionalShow(){
   document.getElementById("p2*p").setAttribute("hidden","");
   document.getElementById("p1*p").setAttribute("hidden","");
   document.getElementById("RRp").setAttribute("hidden","");
-  document.getElementById("ORp").setAttribute("hidden","")
+  document.getElementById("ORp").setAttribute("hidden","");
+  document.getElementById("CrossSectionalVariables").removeAttribute("hidden");
+  document.getElementById("CaseControlVariables").setAttribute("hidden", "");
+  document.getElementById("CohortVariables").setAttribute("hidden", "");
 }
 function CaseControlShow(){
   document.getElementById("z1aby2p").removeAttribute("hidden");
@@ -164,6 +257,9 @@ function CaseControlShow(){
   document.getElementById("p1*p").setAttribute("hidden","");
   document.getElementById("RRp").setAttribute("hidden","");
   document.getElementById("ORp").setAttribute("hidden","");
+  document.getElementById("CaseControlVariables").removeAttribute("hidden");
+  document.getElementById("CrossSectionalVariables").setAttribute("hidden", "");
+  document.getElementById("CohortVariables").setAttribute("hidden", "");
 }
 function CohortShow(){
   document.getElementById("z1aby2p").removeAttribute("hidden");
@@ -176,6 +272,9 @@ function CohortShow(){
   document.getElementById("p1*p").setAttribute("hidden","");
   document.getElementById("RRp").setAttribute("hidden","");
   document.getElementById("ORp").setAttribute("hidden","");
+  document.getElementById("CohortVariables").removeAttribute("hidden");
+  document.getElementById("CrossSectionalVariables").setAttribute("hidden", "");
+  document.getElementById("CaseControlVariables").setAttribute("hidden", "");
 }
 function ORP1P2Selected(){
   let s2=document.getElementById("ORP1P2Select");
@@ -332,6 +431,7 @@ function startAgain(){
   document.getElementById("TypeOfStudy").selectedIndex = 0;
   document.getElementById("ORP1P2Select").selectedIndex = 0;
   document.getElementById("RRP1P2Select").selectedIndex = 0;
+  document.getElementById("variableshower").setAttribute("hidden", "");
 }
 startAgain();
 </script>
