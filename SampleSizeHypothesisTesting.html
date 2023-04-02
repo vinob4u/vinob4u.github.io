@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>Sample Size for Hypothesis testing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    *{font-size:24px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
+    html{background-image: linear-gradient(120deg, #2a2e86, #444444, #366d21); color: white; text-align: center; font-weight:bold;}
+    body{min-height: 150vh !important; margin:0; display: grid; grid-template-rows: auto 1fr auto;}
+    article{flex:1;}
+    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
+    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
+    hr {
+      border-top: 3px dashed red;
+    }
+    footer{ float:left;
+      left: 0; right: 0;
+      display:block;
+      background-color: black; color: white;
+      font-size:18px;     
+      text-align: center;    
+      bottom: 0; 
+      width: 100%;}
+    body {
+        position: relative;
+      }
+
+     body::after {
+        content: '';
+      }
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+      }
+      button {
+        background-image:linear-gradient(240deg, #2a2e86, #444444, #366d21);
+        padding: 8px 20px;
+        border:3px solid yellow;
+        border-color: yellow;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+        color: white;
+      }
+      button:hover {
+        color: #222222;
+        box-shadow: 0 5px 25px rgba(145, 102, 182, .4);
+      }
+      input{
+        width: 55vw;
+        background-image:linear-gradient(#f9ffff, #e3e6e8, #fdfcfb, #ffffff) ;
+        padding: 8px 20px;
+        border:3px solid yellow;
+        border-color: yellow;
+        border-radius: 16px;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+        color: black;
+      }
+      .noneSelected{background-image:linear-gradient(180deg, #dddddd, #999999, #dddddd); color: white;}
+      option{
+        background-color: black; color: white;}
+      select{
+        width: 80vw;
+        background-image:linear-gradient(#191f22, #131618, #0d0c0b, #000000) ;
+        padding: 8px 20px;
+        border:3px solid yellow;
+        border-color: yellow;
+        border-radius: 16px;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+        color: white;
+      }
+      h1{font-size:48px}
+      a {font-size:inherit}
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+      .slider.round {
+        border-radius: 34px;
+      }
+      .slider.round:before {
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body ><article>
+    
+    <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
+    
+    <h1>Sample Size for Hypothesis testing</h1>
+    <hr>
+    <div style="text-align: center;">Select type of Calculation:<br> Sample Size for Hypothesis testing for 
+      <select id="TypeOfCalculation" required="required" width="85%" onchange="typeOfCalculation()">
+        <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+        <option> Two population mean</option>
+        <option> Paired Mean</option>
+        <option> Paired Proportion</option>
+      </select>
+    </div>
+    <hr>
+    <p id="z1aby2p">Ζ<sub>1-(α/2) </sub>=&nbsp; <input id="z1aby2" placeholder="Please enter value" required="required" type="tel"></p>
+    <p id="z1-bp">Z<sub>1-β </sub>= <input id="z1-b" placeholder="Please enter value" type="tel"></p>
+ 
+    <p id="S1p">S<sub>1 </sub>= <input id="S1" placeholder="Please enter value" required="required" type="tel"> </p>
+    <p id="S2p">S<sub>2 </sub>= <input id="S2" placeholder="Please enter value" required="required" type="tel"></p>
+    <p id="Mdp">μ<sub>d </sub>= <input id="Md" placeholder="Mean Difference" required="required" type="tel"> </p>
+    
+    <p id="μ1p">μ<sub>1</sub> = <input id="μ1" placeholder="Please enter value" type="tel"></p>
+    <p id="μ2p">μ<sub>2</sub> = <input id="μ2" placeholder="Please enter value" type="tel"></p>
+    <p id="σ1p">σ<sub>1</sub> = <input id="σ1" placeholder="Please enter value" type="tel"></p>
+    <p id="σ2p">σ<sub>2</sub> = <input id="σ2" placeholder="Please enter value" type="tel"></p>
+    
+    <p id="Sp">s   = <input id="S" placeholder="Please enter value" required="required" type="tel"> </p>
+    <p id="Tp">t = <input id="T" placeholder="Please enter value" required="required" type="tel"></p>
+    <p id="Npairsp">n<sub>pairs </sub>= <input id="Npairs" placeholder="Total number of pairs" required="required" type="tel"> </p>
+
+    <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
+    <div id= "resultDiv"><span>Result:</span>
+    <span id="result"> Result will appear here once you enter parameters. </span>
+    </div>
+    <br><div hidden id="variableshower">
+    <label class="switch">
+      <input type="checkbox" onfocus="toggled()">
+      <span class="slider round"></span>
+    </label>&nbsp;&nbsp;Know what the parameters stand for
+    <div hidden id="variables">
+     <ul hidden id="TwoPopulationMeanVariables">
+     <li> S<sub>1</sub> = Standard deviation in the first group</li>
+     <li> S<sub>2</sub> = Standard deviation in the second group</li>
+     <li> μ<sub>d</sub> = Mean difference between the samples</li>
+     <li> α = Significance level </li>
+     <li> 1-β = Power</li>
+     </ul>
+    <ul hidden id="PairedMeanVariables">
+     <li> μ<sub>1</sub> = Pre-test mean</li>
+     <li> μ<sub>2</sub> = Post-test mean</li>
+     <li> σ<sub>1</sub> = Standard deviation in the Pre-test</li>
+     <li> σ<sub>2</sub> = Standard deviation in the Post-test</li>
+     <li> Δ = Effect size</li>
+     <li> α = Significance level </li>
+     <li> 1-β = Power</li>
+     </ul>
+    <ul hidden id="PairedProportionVariables">
+     <li> s = Number of cases exposed and control not exposed</li>
+     <li> t = Number of cases not exposed and control exposed</li>
+     <li> n<sub>pairs</sub>= Total pairs</li>
+     <li> α = Significance level </li>
+     <li> 1-β = Power</li>
+     </ul>
+    </div>
+    </div><br>
+    <button onfocus="startAgain()" id="strtagn">Start Again</button><br><br><button onclick="location.replace('./index.html')"> Back to home </button><br><br><hr>
+  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at <a href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
+  </article>
+  </body>
+<script>
+let O="NotYetSelected";
+let O1="NotYetSelected";
+function toggled(){
+  let c = document.getElementById("variables");
+  if (c.hasAttribute("hidden")){
+    document.getElementById('variables').removeAttribute('hidden');
+  }
+  else{
+    document.getElementById('variables').setAttribute('hidden', "");}
+}
+function typeOfCalculation(){
+  O= document.getElementById("TypeOfCalculation");
+  O1= O.options[O.selectedIndex].text;
+  switch(O1){
+    case "Two population mean":
+      TwoPopulationMeanShow()
+      break;
+    case "Paired Mean":
+      PairedMeanShow()
+      break;
+    case "Paired Proportion":
+      PairedProportionShow()
+      break;
+    default:
+      document.getElementById("result").innerHTML="Please report this error to developer"
+      break;
+  }
+  document.getElementById("variableshower").removeAttribute("hidden");
+}
+function TwoPopulationMeanShow(){
+  document.getElementById("z1aby2p").removeAttribute("hidden");
+  document.getElementById("z1-bp").removeAttribute("hidden");
+  document.getElementById("S1p").removeAttribute("hidden");
+  document.getElementById("S2p").removeAttribute("hidden");
+  document.getElementById("Mdp").removeAttribute("hidden");
+  document.getElementById("σ1p").setAttribute("hidden","");
+  document.getElementById("σ2p").setAttribute("hidden","");
+  document.getElementById("μ1p").setAttribute("hidden","");
+  document.getElementById("μ2p").setAttribute("hidden","");
+  document.getElementById("Npairsp").setAttribute("hidden","");
+  document.getElementById("Sp").setAttribute("hidden","");
+  document.getElementById("Tp").setAttribute("hidden","");
+  document.getElementById("strtagn").removeAttribute("hidden");
+  document.getElementById("TwoPopulationMeanVariables").removeAttribute("hidden");
+  document.getElementById("PairedMeanVariables").setAttribute("hidden", "");
+  document.getElementById("PairedProportionVariables").setAttribute("hidden", "");
+}
+function PairedMeanShow(){
+  document.getElementById("z1aby2p").removeAttribute("hidden");
+  document.getElementById("z1-bp").removeAttribute("hidden");
+  document.getElementById("μ1p").removeAttribute("hidden");
+  document.getElementById("μ2p").removeAttribute("hidden");
+  document.getElementById("σ1p").removeAttribute("hidden");
+  document.getElementById("σ2p").removeAttribute("hidden");
+  document.getElementById("S1p").setAttribute("hidden","");
+  document.getElementById("S2p").setAttribute("hidden","");
+  document.getElementById("Mdp").setAttribute("hidden","");
+  document.getElementById("Npairsp").setAttribute("hidden","");
+  document.getElementById("Sp").setAttribute("hidden","");
+  document.getElementById("Tp").setAttribute("hidden","");
+  document.getElementById("strtagn").removeAttribute("hidden");
+  document.getElementById("PairedMeanVariables").removeAttribute("hidden");
+  document.getElementById("TwoPopulationMeanVariables").setAttribute("hidden", "");
+  document.getElementById("PairedProportionVariables").setAttribute("hidden", "");
+}
+function PairedProportionShow(){
+  document.getElementById("z1aby2p").removeAttribute("hidden");
+  document.getElementById("z1-bp").removeAttribute("hidden");
+  document.getElementById("Npairsp").removeAttribute("hidden","");
+  document.getElementById("Sp").removeAttribute("hidden","");
+  document.getElementById("Tp").removeAttribute("hidden","");
+  document.getElementById("σ1p").setAttribute("hidden","");
+  document.getElementById("σ2p").setAttribute("hidden","");
+  document.getElementById("μ1p").setAttribute("hidden","");
+  document.getElementById("μ2p").setAttribute("hidden","");
+  document.getElementById("S1p").setAttribute("hidden","");
+  document.getElementById("S2p").setAttribute("hidden","");
+  document.getElementById("Mdp").setAttribute("hidden",""); 
+  document.getElementById("strtagn").removeAttribute("hidden"); 
+  document.getElementById("PairedProportionVariables").removeAttribute("hidden");
+  document.getElementById("TwoPopulationMeanVariables").setAttribute("hidden", "");
+  document.getElementById("PairedMeanVariables").setAttribute("hidden", "");
+}
+
+
+function calculate(){
+  O= document.getElementById("TypeOfCalculation");
+  O1= O.options[O.selectedIndex].text;
+  switch(O1){
+    case "Two population mean":
+      TwoPopulationMeanCalculate()
+      break;
+    case "Paired Mean":
+      PairedMeanCalculate()
+      break;
+    case "Paired Proportion":
+      PairedProportionCalculate()
+      break;
+    case "Please select an option":
+      document.getElementById("result").innerHTML="Please select type of study";
+      break;
+    default:
+      document.getElementById("result").innerHTML="Please report this error to developer"
+      break;
+  }
+}
+function TwoPopulationMeanCalculate(){
+  let Za = parseFloat(document.getElementById("z1aby2").value);
+  let Zb = parseFloat(document.getElementById("z1-b").value);
+  let S1 = parseFloat(document.getElementById("S1").value);
+  let S2 = parseFloat(document.getElementById("S2").value);
+  let SP2 = ((S1*S1)+(S2*S2))/2;
+  let e1 = (Za+Zb)*(Za+Zb);
+  let e2 = 2*SP2;
+  let e3 = e1*e2;
+  let Md = parseFloat(document.getElementById("Md").value);
+  let e4 = Md*Md;
+  let  n = e3/e4;
+  if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
+  else{document.getElementById("result").innerHTML= n;}
+}
+function PairedMeanCalculate(){
+  let Za = parseFloat(document.getElementById("z1aby2").value);
+  let Zb = parseFloat(document.getElementById("z1-b").value);
+  let e1 = (Za+Zb)*(Za+Zb);
+  let σ1 = parseFloat(document.getElementById("σ1").value);
+  let σ2 = parseFloat(document.getElementById("σ2").value);
+  let μ1 = parseFloat(document.getElementById("μ1").value);
+  let μ2 = parseFloat(document.getElementById("μ2").value);
+  let σ  = (σ1+σ2)/2;
+  let Δ  = (μ1-μ2)/σ;
+  let e2 = e1/(Δ*Δ);
+  let e3 = (Za*Za)/2;
+  let n  = e2+e3;
+  if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
+  else{document.getElementById("result").innerHTML= n;}
+}
+
+function PairedProportionCalculate(){
+  let Za = parseFloat(document.getElementById("z1aby2").value);
+  let Zb = parseFloat(document.getElementById("z1-b").value);
+  let S  = parseFloat(document.getElementById("S").value);
+  let T  = parseFloat(document.getElementById("T").value);
+  let Npairs = parseFloat(document.getElementById("Npairs").value);
+  let ψ  = S/T;
+  let Pi = (S+T)/Npairs;
+  let e1 = Za*(ψ+1);
+  let e2 = Zb*(Math.sqrt(((ψ+1)*(ψ+1))-(((ψ-1)*(ψ-1))*Pi)));
+  let e3 = (e1+e2)*(e1+e2);
+  let e4 = ((ψ-1)*(ψ-1))*Pi;
+  let n  = e3/e4;
+  if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
+  else{document.getElementById("result").innerHTML= n;}
+}
+function startAgain(){
+  document.getElementById("z1aby2p").setAttribute("hidden", "");
+  document.getElementById("z1-bp").setAttribute("hidden", "");
+  document.getElementById("S1").value="";
+  document.getElementById("S1p").setAttribute("hidden", "");
+  document.getElementById("S2p").setAttribute("hidden", "");
+  document.getElementById("S2").value="";
+  document.getElementById("Mdp").setAttribute("hidden", "");
+  document.getElementById("Md").value="";
+  document.getElementById("μ1p").setAttribute("hidden", "");
+  document.getElementById("μ2p").setAttribute("hidden", "");
+  document.getElementById("σ1p").setAttribute("hidden", "");
+  document.getElementById("σ2p").setAttribute("hidden", "");
+  document.getElementById("μ1").value="";
+  document.getElementById("σ1").value="";
+  document.getElementById("σ2").value="";
+  document.getElementById("μ2").value="";
+  document.getElementById("Npairsp").setAttribute("hidden","");
+  document.getElementById("Sp").setAttribute("hidden","");
+  document.getElementById("Tp").setAttribute("hidden","");
+  document.getElementById("Npairs").value="";
+  document.getElementById("S").value="";
+  document.getElementById("T").value="";
+  document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";document.getElementById("z1aby2").value="";
+  document.getElementById("z1-b").value="";
+  document.getElementById("TypeOfCalculation").selectedIndex = 0;
+  document.getElementById("strtagn").setAttribute("hidden", "");
+  document.getElementById("javascriptDisabled").setAttribute("hidden", "");
+}
+startAgain();
+</script>
+</html>
