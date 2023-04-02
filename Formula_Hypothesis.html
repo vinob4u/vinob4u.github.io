@@ -8,7 +8,7 @@
     <title>Formula Hypothesis testing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    *{font-size:20px; font-family: Verdana; text-align: center; vertical-align: middle;}
+    *{font-size:20px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
     html{background-image: linear-gradient(120deg, #2a2e86, #444444, #366d21); color: white; text-align: center; font-weight:bold;}
     body{min-height: 200vh !important; margin:0; display: grid; grid-template-rows: auto 1fr auto;}
     article{flex:1;}
@@ -347,7 +347,7 @@ function CrossSectionalCalculate(){
   let e4 = (P1-P2)*(P1-P2);
   let  n = e3/e4;
   if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
-  else{document.getElementById("result").innerHTML= n;}
+  else{document.getElementById("result").innerHTML= Math.ceil(n);}
 }
 function CaseControlCalculate(){
   let t  = document.getElementById("ORP1P2Select")
@@ -376,7 +376,7 @@ function CaseControlCalculate(){
   let e4 = (P1-P2)*(P1-P2);
   let  n = e3/e4;
   if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
-  else{document.getElementById("result").innerHTML= n;}
+  else{document.getElementById("result").innerHTML= Math.ceil(n);}
 }
 
 function CohortCalculate(){
@@ -406,7 +406,7 @@ function CohortCalculate(){
   let e4 = (P1-P2)*(P1-P2);
   let  n = e3/e4;
   if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
-  else{document.getElementById("result").innerHTML= n;}
+  else{document.getElementById("result").innerHTML= Math.ceil(n);}
 }
 function startAgain(){
   document.getElementById("z1aby2p").setAttribute("hidden", "");
