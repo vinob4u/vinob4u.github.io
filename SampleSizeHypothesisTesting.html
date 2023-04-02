@@ -321,7 +321,7 @@ function TwoPopulationMeanCalculate(){
   let e4 = Md*Md;
   let  n = e3/e4;
   if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
-  else{document.getElementById("result").innerHTML= n;}
+  else{document.getElementById("result").innerHTML= Math.ceil(n);}
 }
 function PairedMeanCalculate(){
   let Za = parseFloat(document.getElementById("z1aby2").value);
@@ -337,7 +337,7 @@ function PairedMeanCalculate(){
   let e3 = (Za*Za)/2;
   let n  = e2+e3;
   if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
-  else{document.getElementById("result").innerHTML= n;}
+  else{document.getElementById("result").innerHTML= Math.ceil(n);}
 }
 
 function PairedProportionCalculate(){
@@ -354,7 +354,7 @@ function PairedProportionCalculate(){
   let e4 = ((ψ-1)*(ψ-1))*Pi;
   let n  = e3/e4;
   if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
-  else{document.getElementById("result").innerHTML= n;}
+  else{document.getElementById("result").innerHTML= Math.ceil(n);}
 }
 function startAgain(){
   document.getElementById("z1aby2p").setAttribute("hidden", "");
