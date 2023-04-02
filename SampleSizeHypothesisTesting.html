@@ -8,10 +8,10 @@
     <title>Sample Size for Hypothesis testing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    *{font-size:24px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
-    html{background-image: linear-gradient(120deg, #2a2e86, #444444, #366d21); color: white; text-align: center; font-weight:bold;}
+    *{font-size: inherit}
+    html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ); color: black; font-weight:bold;}
     body{min-height: 200vh !important; margin:0; display: grid; grid-template-rows: auto 1fr auto;}
-    article{flex:1;}
+    article{flex:1; font-size:110%;}
     #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
     #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
     hr {
@@ -21,7 +21,7 @@
       left: 0; right: 0;
       display:block;
       background-color: black; color: white;
-      font-size:18px;     
+      font-size:0.75rem;     
       text-align: center;    
       bottom: 0; 
       width: 100%;}
@@ -39,14 +39,13 @@
         height: 80px;
       }
       button {
-        background-image:linear-gradient(240deg, #2a2e86, #444444, #366d21);
+        background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
         padding: 8px 20px;
-        border:3px solid yellow;
-        border-color: yellow;
+        border:5px solid black;
         border-radius: 12px;
         font-weight: bold;
         transition: all 0.2s ease-in-out;
-        color: white;
+        color: black;
       }
       button:hover {
         color: #222222;
@@ -54,30 +53,25 @@
       }
       input{
         width: 55vw;
-        background-image:linear-gradient(#f9ffff, #e3e6e8, #fdfcfb, #ffffff) ;
+        background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
         padding: 8px 20px;
-        border:3px solid yellow;
-        border-color: yellow;
+        border:5px solid black;
         border-radius: 16px;
         font-weight: bold;
         transition: all 0.2s ease-in-out;
         color: black;
       }
-      .noneSelected{background-image:linear-gradient(180deg, #dddddd, #999999, #dddddd); color: white;}
-      option{
-        background-color: black; color: white;}
       select{
         width: 80vw;
-        background-image:linear-gradient(#191f22, #131618, #0d0c0b, #000000) ;
+        background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+        color: black ;
         padding: 8px 20px;
-        border:3px solid yellow;
-        border-color: yellow;
+        border:5px solid black;
         border-radius: 16px;
         font-weight: bold;
         transition: all 0.2s ease-in-out;
-        color: white;
+        color: black;
       }
-      h1{font-size:48px}
       a {font-size:inherit}
       .switch {
         position: relative;
@@ -129,6 +123,8 @@
       .slider.round:before {
         border-radius: 50%;
       }
+      h1{font-size:2rem}
+
     </style>
   </head>
   <body ><article>
@@ -178,6 +174,7 @@
      <li> μ<sub>d</sub> = Mean difference between the samples</li>
      <li> α = Significance level </li>
      <li> 1-β = Power</li>
+     <li> <img src="twoPopMean.png"></li>
      </ul>
     <ul hidden id="PairedMeanVariables">
      <li> μ<sub>1</sub> = Pre-test mean</li>
@@ -187,6 +184,7 @@
      <li> Δ = Effect size</li>
      <li> α = Significance level </li>
      <li> 1-β = Power</li>
+     <li> <img src="pairedMean.png"></li>
      </ul>
     <ul hidden id="PairedProportionVariables">
      <li> s = Number of cases exposed and control not exposed</li>
@@ -194,11 +192,12 @@
      <li> n<sub>pairs</sub>= Total pairs</li>
      <li> α = Significance level </li>
      <li> 1-β = Power</li>
+     <li> <img src="pairedProportion.png"></li>
      </ul>
     </div>
     </div><br>
     <button onfocus="startAgain()" id="strtagn">Start Again</button><br><br><button onclick="location.replace('./index.html')"> Back to home </button><br><br><hr>
-  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at <a href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
+  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
   </article>
   </body>
 <script>
@@ -384,6 +383,7 @@ function startAgain(){
   document.getElementById("TypeOfCalculation").selectedIndex = 0;
   document.getElementById("strtagn").setAttribute("hidden", "");
   document.getElementById("javascriptDisabled").setAttribute("hidden", "");
+  document.getElementById("variableshower").setAttribute("hidden", "");
 }
 startAgain();
 </script>
