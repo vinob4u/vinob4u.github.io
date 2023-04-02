@@ -8,10 +8,10 @@
     <title>Sample Size Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-    *{font-size:20px;font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
-    html{background-image: linear-gradient(120deg, #2a2e86, #444444, #366d21); color: white; text-align: center;font-weight:bold;}
+    *{font-size: inherit}
+    html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ); color: black; font-weight:bold;}
     body{min-height: 200vh !important; margin:0; display: grid; grid-template-rows: auto 1fr auto;}
-    article{flex:1;}
+    article{flex:1; font-size:110%;}
     #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
     hr {
       border-top: 3px dashed red;
@@ -20,7 +20,7 @@
       left: 0; right: 0;
       display:block;
       background-color: black; color: white;
-      font-size:12px;     
+      font-size:0.75rem;     
       text-align: center;    
       bottom: 0; 
       width: 100vw;}
@@ -38,27 +38,23 @@
         height: 80px;
       }
     button {
-        background-image:linear-gradient(240deg, #2a2e86, #444444, #366d21);
+        background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
         padding: 8px 20px;
-        border:3px solid yellow;
+        border:5px solid black;
         border-radius: 16px;
         font-weight: bold;
         transition: all 0.2s ease-in-out;
-        color: white;
+        color: black;
       }
     button:hover {
         color: #222222;
         box-shadow: 0 5px 25px rgba(145, 102, 182, .4);
       }
-      .noneSelected{background-image:linear-gradient(180deg, #dddddd, #999999, #dddddd); color: white;}
-    option{
-        background-color: black; color: white;}
     select{
         width: 85vw;
-        background-image:linear-gradient(#f9ffff, #e3e6e8, #fdfcfb, #ffffff) ;
+        background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ) ;
         padding: 8px 20px;
-        border:3px solid yellow;
-        border-color: yellow;
+        border:5px solid black;
         border-radius: 16px;
         font-weight: bold;
         transition: all 0.2s ease-in-out;
@@ -66,10 +62,9 @@
       }
       input{
         width: 55vw;
-        background-image:linear-gradient(#f9ffff, #e3e6e8, #fdfcfb, #ffffff) ;
+        background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ) ;
         padding: 8px 20px;
-        border:3px solid yellow;
-        border-color: yellow;
+        border:5px solid black;
         border-radius: 16px;
         font-weight: bold;
         transition: all 0.2s ease-in-out;
@@ -79,14 +74,14 @@
       input[name="typeOfCalculation"] {
         width: 23vw;
       }
-      td{background-image:linear-gradient(240deg, #2a2e86, #444444, #366d21);
+      td{background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
         padding: 8px 20px;
-        border:3px solid yellow;
+        border:5px solid black;
         border-radius: 16px;
         font-weight: bold;
-        color: white;}
-      h1{font-size:48px}
-      a {font-size:inherit}
+        color: black;}
+      h1{font-size:2rem}
+      a {font-size:inherit; color:yellow}
       </style>
   </head>
   <body><article>
