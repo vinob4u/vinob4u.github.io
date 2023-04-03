@@ -5,11 +5,11 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
-    <title>Sample Size for Hypothesis testing</title>
+    <title>Pre-test and Post-test Studies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
     *{font-size: inherit;}
-    html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ); color: black; font-weight:bold;}
+    html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% ); color: black; font-weight:bold;}
     #holder { display:flex; flex-direction:column;
       min-height: 100vh;
       }
@@ -43,7 +43,7 @@
       }
       #strtagn{ margin-bottom:80px;}
       button {
-        background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+        background-image: linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 8px 20px;
         border:5px solid black;
         border-radius: 12px;
@@ -57,7 +57,7 @@
       }
       input{
         width: 55vw;
-        background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+        background-image: linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 8px 20px;
         border:5px solid black;
         border-radius: 16px;
@@ -67,7 +67,7 @@
       }
       select{
         width: 80vw;
-        background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+        background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 8px 20px;
         border:5px solid black;
         border-radius: 16px;
@@ -92,7 +92,7 @@
         position: absolute;
         cursor: pointer;
         top: 0;
-        left: 0;
+        left: 0;&nbsp;
         right: 0;
         bottom: 0;
         background-color: #ccc;
@@ -134,32 +134,28 @@
     
     <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
     <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
-    <h1>Sample Size for Hypothesis testing</h1>
+    <h1>Pre- and Post- Studies</h1>
     <hr>
     <div style="text-align: center;">Select type of Calculation:<br> Sample Size for Hypothesis testing for 
       <select id="TypeOfCalculation" required="required" width="85%" onchange="typeOfCalculation()">
         <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-        <option> Two population mean</option>
         <option> Paired Mean</option>
         <option> Paired Proportion</option>
       </select>
     </div>
     <hr>
-    <p id="z1aby2p">Ζ<sub>1-(α/2) </sub>=&nbsp; <input id="z1aby2" placeholder="Please enter value" required="required" type="tel"></p>
-    <p id="z1-bp">Z<sub>1-β </sub>= <input id="z1-b" placeholder="Please enter value" type="tel"></p>
+    <p id="z1aby2p">Alpha Error =&nbsp; <input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
+    <p id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
  
-    <p id="S1p">S<sub>1 </sub>= <input id="S1" placeholder="Please enter value" required="required" type="tel"> </p>
-    <p id="S2p">S<sub>2 </sub>= <input id="S2" placeholder="Please enter value" required="required" type="tel"></p>
-    <p id="Mdp">μ<sub>d </sub>= <input id="Md" placeholder="Mean Difference" required="required" type="tel"> </p>
     
-    <p id="μ1p">μ<sub>1</sub> = <input id="μ1" placeholder="Please enter value" type="tel"></p>
-    <p id="μ2p">μ<sub>2</sub> = <input id="μ2" placeholder="Please enter value" type="tel"></p>
-    <p id="σ1p">σ<sub>1</sub> = <input id="σ1" placeholder="Please enter value" type="tel"></p>
-    <p id="σ2p">σ<sub>2</sub> = <input id="σ2" placeholder="Please enter value" type="tel"></p>
+    <p id="μ1p">μ<sub>1</sub> = <input id="μ1" placeholder="Pre-test mean" type="tel"></p>
+    <p id="μ2p">μ<sub>2</sub> = <input id="μ2" placeholder="Post-test mean" type="tel"></p>
+    <p id="σ1p">σ<sub>1</sub> = <input id="σ1" placeholder="SD in the pre-test" type="tel"></p>
+    <p id="σ2p">σ<sub>2</sub> = <input id="σ2" placeholder="SD in the post-test" type="tel"></p>
     
-    <p id="Sp">s   = <input id="S" placeholder="Please enter value" required="required" type="tel"> </p>
+    <p id="Sp">s = <input id="S" placeholder="Please enter value" required="required" type="tel"> </p>
     <p id="Tp">t = <input id="T" placeholder="Please enter value" required="required" type="tel"></p>
-    <p id="Npairsp">n<sub>pairs </sub>= <input id="Npairs" placeholder="Total number of pairs" required="required" type="tel"> </p>
+    <p id="Npairsp">n<sub>pairs </sub> = <input id="Npairs" placeholder="Total pairs" required="required" type="tel"> </p>
 
     <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
     <div id= "resultDiv"><span>Result:</span>
@@ -171,32 +167,24 @@
       <span class="slider round"></span>
     </label>&nbsp;&nbsp;Know what the parameters stand for
     <div hidden id="variables">
-     <ul hidden id="TwoPopulationMeanVariables">
-     <li> S<sub>1</sub> = Standard deviation in the first group</li>
-     <li> S<sub>2</sub> = Standard deviation in the second group</li>
-     <li> μ<sub>d</sub> = Mean difference between the samples</li>
-     <li> α = Significance level </li>
-     <li> 1-β = Power</li>
-     <li> <img src="twoPopMean.png"></li>
-     </ul>
-    <ul hidden id="PairedMeanVariables">
-     <li> μ<sub>1</sub> = Pre-test mean</li>
-     <li> μ<sub>2</sub> = Post-test mean</li>
-     <li> σ<sub>1</sub> = Standard deviation in the Pre-test</li>
-     <li> σ<sub>2</sub> = Standard deviation in the Post-test</li>
-     <li> Δ = Effect size</li>
-     <li> α = Significance level </li>
-     <li> 1-β = Power</li>
-     <li> <img src="pairedMean.png"></li>
-     </ul>
-    <ul hidden id="PairedProportionVariables">
-     <li> s = Number of cases exposed and control not exposed</li>
-     <li> t = Number of cases not exposed and control exposed</li>
-     <li> n<sub>pairs</sub>= Total pairs</li>
-     <li> α = Significance level </li>
-     <li> 1-β = Power</li>
-     <li> <img src="pairedProportion.png"></li>
-     </ul>
+    <p hidden id="PairedMeanVariables">
+     <br> μ<sub>1</sub> = Pre-test mean
+     <br> μ<sub>2</sub> = Post-test mean
+     <br> σ<sub>1</sub> = Standard deviation in the Pre-test
+     <br> σ<sub>2</sub> = Standard deviation in the Post-test
+     <br> Δ = Effect size
+     <br> α = Significance level
+     <br> 1-β = Power
+     <br> <img src="pairedMean.png">
+     </p>
+    <p hidden id="PairedProportionVariables">
+     <br> s = Number of cases exposed and control not exposed
+     <br> t = Number of cases not exposed and control exposed
+     <br> n<sub>pairs</sub>= Total pairs
+     <br> α = Significance level
+     <br> 1-β = Power
+     <br> <img src="pairedProportion.png">
+     </p>
     </div>
     </div><br>
     <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
@@ -218,9 +206,6 @@ function typeOfCalculation(){
   O= document.getElementById("TypeOfCalculation");
   O1= O.options[O.selectedIndex].text;
   switch(O1){
-    case "Two population mean":
-      TwoPopulationMeanShow()
-      break;
     case "Paired Mean":
       PairedMeanShow()
       break;
@@ -233,24 +218,7 @@ function typeOfCalculation(){
   }
   document.getElementById("variableshower").removeAttribute("hidden");
 }
-function TwoPopulationMeanShow(){
-  document.getElementById("z1aby2p").removeAttribute("hidden");
-  document.getElementById("z1-bp").removeAttribute("hidden");
-  document.getElementById("S1p").removeAttribute("hidden");
-  document.getElementById("S2p").removeAttribute("hidden");
-  document.getElementById("Mdp").removeAttribute("hidden");
-  document.getElementById("σ1p").setAttribute("hidden","");
-  document.getElementById("σ2p").setAttribute("hidden","");
-  document.getElementById("μ1p").setAttribute("hidden","");
-  document.getElementById("μ2p").setAttribute("hidden","");
-  document.getElementById("Npairsp").setAttribute("hidden","");
-  document.getElementById("Sp").setAttribute("hidden","");
-  document.getElementById("Tp").setAttribute("hidden","");
-  document.getElementById("strtagn").removeAttribute("hidden");
-  document.getElementById("TwoPopulationMeanVariables").removeAttribute("hidden");
-  document.getElementById("PairedMeanVariables").setAttribute("hidden", "");
-  document.getElementById("PairedProportionVariables").setAttribute("hidden", "");
-}
+
 function PairedMeanShow(){
   document.getElementById("z1aby2p").removeAttribute("hidden");
   document.getElementById("z1-bp").removeAttribute("hidden");
@@ -258,15 +226,11 @@ function PairedMeanShow(){
   document.getElementById("μ2p").removeAttribute("hidden");
   document.getElementById("σ1p").removeAttribute("hidden");
   document.getElementById("σ2p").removeAttribute("hidden");
-  document.getElementById("S1p").setAttribute("hidden","");
-  document.getElementById("S2p").setAttribute("hidden","");
-  document.getElementById("Mdp").setAttribute("hidden","");
   document.getElementById("Npairsp").setAttribute("hidden","");
   document.getElementById("Sp").setAttribute("hidden","");
   document.getElementById("Tp").setAttribute("hidden","");
   document.getElementById("strtagn").removeAttribute("hidden");
   document.getElementById("PairedMeanVariables").removeAttribute("hidden");
-  document.getElementById("TwoPopulationMeanVariables").setAttribute("hidden", "");
   document.getElementById("PairedProportionVariables").setAttribute("hidden", "");
 }
 function PairedProportionShow(){
@@ -278,13 +242,9 @@ function PairedProportionShow(){
   document.getElementById("σ1p").setAttribute("hidden","");
   document.getElementById("σ2p").setAttribute("hidden","");
   document.getElementById("μ1p").setAttribute("hidden","");
-  document.getElementById("μ2p").setAttribute("hidden","");
-  document.getElementById("S1p").setAttribute("hidden","");
-  document.getElementById("S2p").setAttribute("hidden","");
-  document.getElementById("Mdp").setAttribute("hidden",""); 
+  document.getElementById("μ2p").setAttribute("hidden",""); 
   document.getElementById("strtagn").removeAttribute("hidden"); 
   document.getElementById("PairedProportionVariables").removeAttribute("hidden");
-  document.getElementById("TwoPopulationMeanVariables").setAttribute("hidden", "");
   document.getElementById("PairedMeanVariables").setAttribute("hidden", "");
 }
 
@@ -293,9 +253,6 @@ function calculate(){
   O= document.getElementById("TypeOfCalculation");
   O1= O.options[O.selectedIndex].text;
   switch(O1){
-    case "Two population mean":
-      TwoPopulationMeanCalculate()
-      break;
     case "Paired Mean":
       PairedMeanCalculate()
       break;
@@ -310,21 +267,7 @@ function calculate(){
       break;
   }
 }
-function TwoPopulationMeanCalculate(){
-  let Za = parseFloat(document.getElementById("z1aby2").value);
-  let Zb = parseFloat(document.getElementById("z1-b").value);
-  let S1 = parseFloat(document.getElementById("S1").value);
-  let S2 = parseFloat(document.getElementById("S2").value);
-  let SP2 = ((S1*S1)+(S2*S2))/2;
-  let e1 = (Za+Zb)*(Za+Zb);
-  let e2 = 2*SP2;
-  let e3 = e1*e2;
-  let Md = parseFloat(document.getElementById("Md").value);
-  let e4 = Md*Md;
-  let  n = e3/e4;
-  if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
-  else{document.getElementById("result").innerHTML= Math.ceil(n);}
-}
+
 function PairedMeanCalculate(){
   let Za = parseFloat(document.getElementById("z1aby2").value);
   let Zb = parseFloat(document.getElementById("z1-b").value);
@@ -361,12 +304,6 @@ function PairedProportionCalculate(){
 function startAgain(){
   document.getElementById("z1aby2p").setAttribute("hidden", "");
   document.getElementById("z1-bp").setAttribute("hidden", "");
-  document.getElementById("S1").value="";
-  document.getElementById("S1p").setAttribute("hidden", "");
-  document.getElementById("S2p").setAttribute("hidden", "");
-  document.getElementById("S2").value="";
-  document.getElementById("Mdp").setAttribute("hidden", "");
-  document.getElementById("Md").value="";
   document.getElementById("μ1p").setAttribute("hidden", "");
   document.getElementById("μ2p").setAttribute("hidden", "");
   document.getElementById("σ1p").setAttribute("hidden", "");
