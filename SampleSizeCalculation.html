@@ -5,11 +5,11 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
-    <title>Sample Size Calculator</title>
+    <title>Descriptive Studies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
     *{font-size: inherit}
-    html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ); color: black; font-weight:bold;}
+    html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% ); color: black; font-weight:bold;}
     #holder { display:flex; flex-direction:column;
       min-height: 100vh;
       }
@@ -42,7 +42,7 @@
         height: 80px;
       }
     button {
-        background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+        background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 8px 20px;
         border:5px solid black;
         border-radius: 16px;
@@ -56,7 +56,7 @@
       }
     select{
         width: 85vw;
-        background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ) ;
+        background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% ) ;
         padding: 8px 20px;
         border:5px solid black;
         border-radius: 16px;
@@ -66,7 +66,7 @@
       }
       input{
         width: 55vw;
-        background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ) ;
+        background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% ) ;
         padding: 8px 20px;
         border:5px solid black;
         border-radius: 16px;
@@ -78,7 +78,7 @@
       input[name="typeOfCalculation"] {
         width: 23vw;
       }
-      td{background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+      td{background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 8px 20px;
         border:5px solid black;
         border-radius: 16px;
@@ -89,7 +89,7 @@
       </style>
   </head><div id="holder">
   <body><article><button onclick="location.replace('./index.html')" style="float: left"> Back to home </button><br>
-    <h1> Sample Size Calculator </h1>
+    <h1> Descriptive Studies </h1>
     <div id="typeOfCalculationDiv">
       <table style="width: 100%" border="1">
         <tbody>
@@ -155,7 +155,8 @@
 <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp;<a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
 <script>
 let typeOfCalculation = 0;
-function PrAbsPShow(){document.getElementById("labelCF").setAttribute("hidden", "");
+function PrAbsPShow(){
+  document.getElementById("labelCF").setAttribute("hidden", "");
   document.getElementById("CF").setAttribute("hidden", "");
   document.getElementById("labelPrevalence").removeAttribute("hidden");
   document.getElementById("prevalence").removeAttribute("hidden");
