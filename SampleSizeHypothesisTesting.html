@@ -8,16 +8,19 @@
     <title>Sample Size for Hypothesis testing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    *{font-size: inherit}
+    *{font-size: inherit;}
     html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ); color: black; font-weight:bold;}
-    body{min-height: 200vh !important; margin:0; display: grid; grid-template-rows: auto 1fr auto;}
+    #holder { display:flex; flex-direction:column;
+      min-height: 100vh;
+      }
+    body{ margin:0;}
     article{flex:1; font-size:110%;}
     #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
     #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
     hr {
       border-top: 3px dashed red;
     }
-    footer{ float:left;
+    footer{ margin-top:auto;
       left: 0; right: 0;
       display:block;
       background-color: black; color: white;
@@ -38,6 +41,7 @@
         width: 100%;
         height: 80px;
       }
+      #strtagn{ margin-bottom:80px;}
       button {
         background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
         padding: 8px 20px;
@@ -64,7 +68,6 @@
       select{
         width: 80vw;
         background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
-        color: black ;
         padding: 8px 20px;
         border:5px solid black;
         border-radius: 16px;
@@ -72,7 +75,8 @@
         transition: all 0.2s ease-in-out;
         color: black;
       }
-      a {font-size:inherit}
+      h1{font-size:2rem}
+      a {font-size:inherit; color:yellow}
       .switch {
         position: relative;
         display: inline-block;
@@ -123,14 +127,13 @@
       .slider.round:before {
         border-radius: 50%;
       }
-      h1{font-size:2rem}
       img {height: 20vh; width:80vw}
     </style>
-  </head>
+  </head><div id="holder">
   <body ><article>
     
     <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-    
+    <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
     <h1>Sample Size for Hypothesis testing</h1>
     <hr>
     <div style="text-align: center;">Select type of Calculation:<br> Sample Size for Hypothesis testing for 
@@ -196,10 +199,10 @@
      </ul>
     </div>
     </div><br>
-    <button onfocus="startAgain()" id="strtagn">Start Again</button><br><br><button onclick="location.replace('./index.html')"> Back to home </button><br><br><hr>
-  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
+    <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
+  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
   </article>
-  </body>
+  </body></div>
 <script>
 let O="NotYetSelected";
 let O1="NotYetSelected";
