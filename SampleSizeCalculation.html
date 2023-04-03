@@ -10,13 +10,17 @@
     <style>
     *{font-size: inherit}
     html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ); color: black; font-weight:bold;}
-    body{min-height: 200vh !important; margin:0; display: grid; grid-template-rows: auto 1fr auto;}
+    #holder { display:flex; flex-direction:column;
+      min-height: 100vh;
+      }
+    #strtagn{ margin-bottom:80px;}
+    body{ margin:0;}
     article{flex:1; font-size:110%;}
     #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
     hr {
       border-top: 3px dashed red;
     }
-    footer{ float:left;
+    footer{
       left: 0; right: 0;
       display:block;
       background-color: black; color: white;
@@ -83,8 +87,8 @@
       h1{font-size:2rem}
       a {font-size:inherit; color:yellow}
       </style>
-  </head>
-  <body><article>
+  </head><div id="holder">
+  <body><article><button onclick="location.replace('./index.html')" style="float: left"> Back to home </button><br>
     <h1> Sample Size Calculator </h1>
     <div id="typeOfCalculationDiv">
       <table style="width: 100%" border="1">
@@ -146,9 +150,9 @@
     <p><div id= "resultDiv"><span>Result:<span>
     <span id="result"> Result will appear here once you enter parameters. </span>
     </div><br><br>
-    <button id="strtagn" onfocus="startAgain()">Start Again</button></p><br><br><button onclick="location.replace('./index.html')"> Back to home </button><br><br><hr></article>
-  </body>
-<footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at <a href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
+    <button id="strtagn" onfocus="startAgain()">Start Again</button></p><hr></article>
+  </body></div>
+<footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp;<a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
 <script>
 let typeOfCalculation = 0;
 function PrAbsPShow(){document.getElementById("labelCF").setAttribute("hidden", "");
