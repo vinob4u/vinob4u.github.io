@@ -8,15 +8,19 @@
     <title>Formula Hypothesis testing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    *{font-size: inherit}
+    *{font-size: inherit;}
     html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ); color: black; font-weight:bold;}
-    body{min-height: 200vh !important; margin:0; display: grid; grid-template-rows: auto 1fr auto;}
+    #holder { display:flex; flex-direction:column;
+      min-height: 100vh;
+      }
+    body{ margin:0;}
     article{flex:1; font-size:110%;}
     #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
+    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
     hr {
       border-top: 3px dashed red;
     }
-    footer{ float:left;
+    footer{ margin-top:auto;
       left: 0; right: 0;
       display:block;
       background-color: black; color: white;
@@ -37,6 +41,7 @@
         width: 100%;
         height: 80px;
       }
+      #strtagn{ margin-bottom:80px;}
       button {
         background-image:linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
         padding: 8px 20px;
@@ -71,7 +76,7 @@
         color: black;
       }
       h1{font-size:2rem}
-      a {font-size:inherit}
+      a {font-size:inherit; color:yellow}
       .switch {
         position: relative;
         display: inline-block;
@@ -124,8 +129,9 @@
       }
       img {height: 20vh; width:80vw}
     </style>
-  </head>
+  </head><div id="holder">
   <body ><article>
+    <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button>
     <h1>Formula hypothesis testing</h1>
     <hr>
     <div style="text-align: center;">Select type of study:
@@ -193,10 +199,10 @@
     </div>
     </div>
     <br>
-    <button onfocus="startAgain()" id="strtagn">Start Again</button><br><br><button onclick="location.replace('./index.html')"> Back to home </button><br><br><hr>
-  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at <a href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
+    <button onfocus="startAgain()" id="strtagn">Start Again</button><br><hr>
+  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp;<a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
   </article>
-  </body>
+  </body></div>
 <script>
 let s="NotYetSelected";
 let s1="NotYetSelected";
@@ -356,7 +362,7 @@ function CaseControlCalculate(){
       let P2 = parseFloat(document.getElementById("P2*").value);
       let OR = parseFloat(document.getElementById("OR").value);
       P1 = (OR*P2)/((OR*P2)+(1-P2));
-      break;document.getElementById("OR").value="";
+      break;
     case "P1* and P2*":
       P1 = parseFloat(document.getElementById("P1*").value);
       break;
@@ -364,6 +370,7 @@ function CaseControlCalculate(){
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
   }
+  let OR = parseFloat(document.getElementById("OR").value);
   let P2 = parseFloat(document.getElementById("P2*").value);
   let P0 = (P1+P2)/2;
   let Za = parseFloat(document.getElementById("z1aby2").value);
@@ -373,7 +380,7 @@ function CaseControlCalculate(){
   let e3 = (e1+e2)*(e1+e2);
   let e4 = (P1-P2)*(P1-P2);
   let  n = e3/e4;
-  if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
+  if(isNaN(n) || OR === 0){document.getElementById("result").innerHTML= "Please enter valid parameters";}
   else{document.getElementById("result").innerHTML= Math.ceil(n);}
 }
 
@@ -394,6 +401,7 @@ function CohortCalculate(){
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
   }
+  let RR = parseFloat(document.getElementById("RR").value);
   let P2 = parseFloat(document.getElementById("P2").value);
   let P0 = (P1+P2)/2;
   let Za = parseFloat(document.getElementById("z1aby2").value);
@@ -403,7 +411,7 @@ function CohortCalculate(){
   let e3 = (e1+e2)*(e1+e2);
   let e4 = (P1-P2)*(P1-P2);
   let  n = e3/e4;
-  if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
+  if(isNaN(n) || RR === 0){document.getElementById("result").innerHTML= "Please enter valid parameters";}
   else{document.getElementById("result").innerHTML= Math.ceil(n);}
 }
 function startAgain(){
