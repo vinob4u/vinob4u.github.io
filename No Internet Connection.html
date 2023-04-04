@@ -28,6 +28,33 @@
       </b></p>
     <h2 style="text-align: center;"><b>Please make sure you have an active
         internet connection!</b></h2>
+    <p> Current Status:</p>
+    <p id="status">Offline</p>
+    <p> Connection status is checked every 5 seconds</p>
   </body>
   <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
+<script>
+let checkOnlineStatus = async() => {
+  try {
+    let online = await fetch("https://vinob4u.github.io");
+    return online.status >= 200 && online.status < 300; // either true or false
+  } catch (err) {
+    document.getElementById("result").innerText = "Still Offline";
+    return false; // definitely offline
+  }
+}
+setInterval(async () => {
+  let result = await checkOnlineStatus();
+  let statusDisplay = document.getElementById("status");
+  statusDisplay.textContent = result ? "Back Online" : "Offline";
+  OnlineChecker();
+}, 5000); // probably too often, try 30000 for every 30 seconds
+
+function OnlineChecker() {
+    let o = document.getElementById("status").innerText;
+    if (o === "Back Online") {
+    	location.replace("https://vinob4u.github.io");
+    }
+}
+</script>
 </html>
