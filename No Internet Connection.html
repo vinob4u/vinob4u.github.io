@@ -37,18 +37,17 @@
 let checkOnlineStatus = async() => {
   try {
     let online = await fetch("https://vinob4u.github.io");
-    return online.status >= 200 && online.status < 300; // either true or false
+    return online.status >= 200 && online.status < 300;
   } catch (err) {
-    document.getElementById("result").innerText = "Still Offline";
-    return false; // definitely offline
+    return false;
   }
 }
 setInterval(async () => {
   let result = await checkOnlineStatus();
   let statusDisplay = document.getElementById("status");
-  statusDisplay.textContent = result ? "Back Online" : "Offline";
+  statusDisplay.textContent = result ? "Back Online" : "Still Offline";
   OnlineChecker();
-}, 5000); // probably too often, try 30000 for every 30 seconds
+}, 5000);
 
 function OnlineChecker() {
     let o = document.getElementById("status").innerText;
