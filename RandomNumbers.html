@@ -15,7 +15,8 @@
       }
     body{ margin:0;}
     article{flex:1; font-size:110%;}
-    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
+    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh;}
+    #result span{display: inline-block;}
     #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
     hr {
       border-top: 3px dashed red;
@@ -113,7 +114,7 @@ function startAgain(){
   document.getElementById("minValue").value="";
   document.getElementById("maxValue").value="";
   document.getElementById("javascriptDisabled").setAttribute("hidden", "");
-  document.getElementById("countRandom").removeAttribute("hidden");
+  document.getElementById("countRandom").value="";
 }
 startAgain();
 let typeOfCalculation=2;
@@ -126,19 +127,19 @@ function generate(){
   let m = parseFloat(document.getElementById("minValue").value);
   let M = parseFloat(document.getElementById("maxValue").value);
   let c = parseFloat(document.getElementById("countRandom").value);
-  if (isNaN(m * M * c)||(!Number.isInteger(c))){
+  if (isNaN(m * M * c)||(!Number.isInteger(c))||M<m||c<0){
     document.getElementById("result").innerHTML="Please enter valid parameters";}
   else{
     let n = "";
     switch (typeOfCalculation){
       case 2:
         for(let i=0;i < c;  i++) {
-          n+=(m+(Math.floor(Math.random()*(M-m))))+("&nbsp;&nbsp;&nbsp;");
+          n+=("<span>")+(m+(Math.floor(Math.random()*(M-m))))+("&nbsp;&nbsp;&nbsp;</span>");
         }
         break;
       case 1:
       for(let i=0;i < c;  i++) {
-        n+=(m+(Math.random()*(M-m)))+("&nbsp;&nbsp;&nbsp;");
+        n+=("<span>")+(m+(Math.random()*(M-m)))+("&nbsp;&nbsp;&nbsp;</span>");
       }
     }
     document.getElementById("result").innerHTML=n;
