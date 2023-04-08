@@ -5,7 +5,7 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
-    <title>Bio-statistics tools</title>
+    <title>Sample Size Calculator Beta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
     *{font-size: inherit}
@@ -81,5 +81,9 @@
 <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer></div>
 <script>
 document.getElementById("javascriptDisabled").setAttribute("hidden", "");
+document.addEventListener("backbutton", onBackKeyDown, false);
+function onBackKeyDown(){
+  $$(".back").click(); }
+
 </script>
 </html>
