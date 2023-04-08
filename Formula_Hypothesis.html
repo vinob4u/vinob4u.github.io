@@ -440,5 +440,8 @@ function startAgain(){
   document.getElementById("variableshower").setAttribute("hidden", "");
 }
 startAgain();
+function onBackKeyDown(){
+  $$(".back").click(); }
+document.addEventListener("backbutton", onBackKeyDown, false);
 </script>
 </html>
