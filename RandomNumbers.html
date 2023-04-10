@@ -153,6 +153,7 @@ function generate(){
   let m = parseFloat(document.getElementById("minValue").value);
   let M = parseFloat(document.getElementById("maxValue").value);
   let c = parseFloat(document.getElementById("countRandom").value);
+  if (c>999){document.getElementById("result").innerHTML="Count of random numbers must be less than 1000"; return false;}
   let q = parseInt(document.getElementById("decimalsNumber").value);
   let q1;
   switch (q){
