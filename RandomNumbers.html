@@ -171,7 +171,7 @@ function generate(){
     switch (typeOfCalculation){
       case 2:
         if (unique===1){
-        if ((M-m)>=c){
+        if ((M-m+1)>=c){
         while(array.length < c){
           var r = (m+(Math.round(Math.random()*(M-m))));
           if(array.indexOf(r) === -1) {array.push(r)};
@@ -179,7 +179,7 @@ function generate(){
         array.forEach( element => n+=("<span>")+element+("&nbsp;&nbsp;&nbsp;</span>"));
         document.getElementById("result").innerHTML=n;
         }
-        else{document.getElementById("result").innerHTML="<span>Difference between minimum and maximum </span> <span> should exceed the count of random numbers requested</span>";}
+        else{document.getElementById("result").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";}
         }
         if (unique===0){
         for(let i=0;i < c;  i++) {
@@ -190,12 +190,15 @@ function generate(){
         break;  
       case 1:
         if (unique===1){
+        if ((((M-m)*q1)+1)>=c){
         while(array.length < c){
           var r = (m+((Math.round(((Math.random()*(M-m)) + (Number.EPSILON)) * q1) / q1))).toFixed(q);
           if(array.indexOf(r) === -1) {array.push(r)};
         }
         array.forEach( element => n+=("<span>")+element+("&nbsp;&nbsp;&nbsp;</span>"));
         document.getElementById("result").innerHTML=n;
+        }
+        else{document.getElementById("result").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";}
         }
         if (unique===0){
         for(let i=0;i < c;  i++) {
