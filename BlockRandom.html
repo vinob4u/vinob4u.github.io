@@ -297,7 +297,7 @@ function validityChecker(){
   let M = parseFloat(document.getElementById("maxValue").value);
   let c = parseFloat(document.getElementById("countRandom").value);
   let C = parseFloat(document.getElementById("countBlock").value);
-  if (c>99||C>99){document.getElementById("result").innerHTML="Count of random numbers and blocks must be less than 100"; return false;}
+  if (c>99||C>99||(c*C)>1024){document.getElementById("result").innerHTML="<span>Count of random numbers and blocks must not be too high</span> <span>(maximum 99 and their product less than 1024)</span<"; return false;}
   if (isNaN(m * M * c)||(!Number.isInteger(c))||M<m||c<0||C<0){
     document.getElementById("result").innerHTML="Please enter valid parameters";return false}
   let q =parseInt(document.getElementById("decimalsNumber").value);
