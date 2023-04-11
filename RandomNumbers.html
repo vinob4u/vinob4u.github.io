@@ -143,7 +143,7 @@ function decimalNo(){
   document.getElementById("decimalsNumberp").setAttribute("hidden", "");
   typeOfCalculation=2; return typeOfCalculation;}
 function decimalNumberChecker(){
-  let q =document.getElementById("decimalsNumber").value;
+  let q =parseInt(document.getElementById("decimalsNumber").value);
   document.getElementById("label2forDecimalNumber").innerText=q;
   return q;
 }
@@ -193,7 +193,7 @@ function generate(){
         if (unique===1){
         if ((((M-m)*q1)+1)>=c){
         while(array.length < c){
-          var r = (m+((Math.round(((Math.random()*(M-m)) + (Number.EPSILON)) * q1) / q1))).toFixed(q);
+          var r = (m+((Math.round((((Math.random()*(M-m)) + (Number.EPSILON))) * q1) / q1))).toFixed(q);
           if(array.indexOf(r) === -1) {array.push(r)};
         }
         array.forEach( element => n+=("<span>")+element+("&nbsp;&nbsp;&nbsp;</span>"));
