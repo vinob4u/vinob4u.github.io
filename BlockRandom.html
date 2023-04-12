@@ -16,7 +16,7 @@
     body{ margin:0;}
     article{flex:1; font-size:110%;}
     #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh;}
-    #result span{display: inline-block;}
+    span{display: inline-block;}
     #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
     hr {
       border-top: 3px dashed red;
@@ -98,6 +98,56 @@
       }
       h1{font-size:2rem}
       a {font-size:inherit; color:yellow}
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+      .slider.round {
+        border-radius: 34px;
+      }
+      .slider.round:before {
+        border-radius: 50%;
+      }
     </style>
   </head><div id="holder">
   <body ><article>
@@ -109,34 +159,56 @@
     <p id="minValuep">Minimum Value (inclusive):&nbsp; <input id="minValue" placeholder="Please enter value" required="required" type="tel"></p>
     <p id="maxValuep">Maximum Value (inclusive):&nbsp; <input id="maxValue" placeholder="Please enter value" required="required" type="tel"> </p>
     <p id="countRandomp">Count of Random Numbers per block:&nbsp;<input id="countRandom" placeholder="Only Integres" type="tel"></p>
+    <hr>
     <p id="decimalsBoolean">Do you want Decimals?&nbsp;<input id="Yes" name="typeOfCalculation" type="radio" onfocus="decimalYes()">Yes.
                                                        <input id="No" name="typeOfCalculation" type="radio" onfocus="decimalNo()" checked>No.</p>
     <p id="decimalsNumberp" hidden>
     <label for="decimalsNumber">Level of decimal points (between 1 and 5):</label>
     <input type="range" id="decimalsNumber" min="1" max="5" step="1" value="0" onchange="decimalNumberChecker()"><span id="label2forDecimalNumber">1</span></p>
+    <hr>
     <p id="uniqueBoolean">Do you want Unique Random Numbers per block?&nbsp;<input id="Yes1" name="UniqueBoolean" type="radio" onfocus="uniqueYes()">Yes.
                                                        <input id="No1" name="UniqueBoolean" type="radio" onfocus="uniqueNo()" checked> No. 
-    </p>  
+    </p>
+    <hr>
     <p id="uniqueBlockBoolean">Do you want Unique Blocks?&nbsp;<input id="Yes2" name="UniqueBlockBoolean" type="radio" onfocus="uniqueBlockYes()">Yes.
                                                        <input id="No2" name="UniqueBlockBoolean" type="radio" onfocus="uniqueBlockNo()" checked> No. 
     </p>
     <p id="uniqueBlockOrderBoolean" hidden>Do you want blocks to be unique despite order of numbers?&nbsp;<input id="Yes3" name="UniqueBlockOrderBoolean" type="radio" onfocus="uniqueBlockOrderYes()">Yes.
                                                        <input id="No3" name="UniqueBlockOrderBoolean" type="radio" onfocus="uniqueBlockOrderNo()" checked> No. 
     </p>
+    <hr>
     <p id="sortingp">Do you want the numbers in a block to be sorted?&nbsp;<input id="Yes4.1" name="sorting" type="radio" onfocus="sortingAsc()">Yes, Ascending order.
                                                       <input id="Yes4.2" name="sorting" type="radio" onfocus="sortingDesc()">Yes, Descending order.
                                                        <input id="No4" name="sorting" type="radio" onfocus="sortingNo()" checked> No. 
     </p>
+    <hr>
     <button id="Generate" onfocus="generateMain()">Generate</button><hr>
     <div id= "resultDiv"><span>Result:</span>
     <span id="result"> Result will appear here once you enter parameters. </span>
     </div>
+    <label class="switch">
+      <input type="checkbox" onfocus="toggled()">
+      <span class="slider round"></span>
+    </label>&nbsp;&nbsp;Help
+    <div id="help" hidden>
+    <strong><u> Unique blocks: </u></strong><br>
+    <span>The phrase "Unique blocks" means if [2,3] is generated as one of the results,</span> <span>[2,3] won't repeat but [3,2] can be generated as another result.</span><br><br>
+    <strong><u> Unique blocks despite order of numbers: </u></strong><br>
+    <span> The phrase "Unique blocks despite order of numbers" means if [2,3] is generated as one of the results,</span> <span> both [2,3] and [3,2] wont repeat as another result.</span>
+    </div><hr>
      <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
   <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
   </article>
   </body></div>
 <script>
-
+function toggled(){
+  let c = document.getElementById("help");
+  if (c.hasAttribute("hidden")){
+    document.getElementById('help').removeAttribute('hidden');
+  }
+  else{
+    document.getElementById('help').setAttribute('hidden', "");}
+}
 function startAgain(){
   document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";
   document.getElementById("minValue").value="";
@@ -238,6 +310,10 @@ function generateNumbers(){
 function generateMain(){
   let N = "";
   let C = parseFloat(document.getElementById("countBlock").value);
+  if (C===""||document.getElementById("countRandom").value===""||document.getElementById("minValue").value===""||document.getElementById("maxValue").value===""){
+    document.getElementById("result").innerText="Please enter all the fields";
+    return null;
+  }
   let a=[];
   if (uniqueBlock===1){
   if (uniqueOrder===0){
