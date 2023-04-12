@@ -295,7 +295,7 @@ function generateNumbers(){
         if ((((M-m)*q1)+1)>=c){
         let i=0;
         while(array.length < c){
-          var r = (m+((Math.round((((Math.random()*(M-m)) + (Number.EPSILON))) * q1) / q1))).toFixed(q);
+          var r = (m+(Math.round(((Math.random()*(M-m)) + (Number.EPSILON))* q1)/ q1)).toFixed(q);
           if(array.indexOf(r) === -1) {array.push(r)};
         }
         }
@@ -308,7 +308,8 @@ function generateNumbers(){
         }
         if (unique===0){
         for(let i=0;i < c;  i++) {
-          array.push(m+(((Math.round(((Math.random()*(M-m)) + (Number.EPSILON))) * q1) / q1))).toFixed(q);
+          let r = (m+(Math.round(((Math.random()*(M-m)) + (Number.EPSILON))* q1)/ q1)).toFixed(q);
+          array.push(r);
         }
         if (sorting===0){array=array}
         if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
