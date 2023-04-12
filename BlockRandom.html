@@ -257,35 +257,43 @@ function generateNumbers(){
     case 5: q1=100000; break;
     default: document.getElementById("result").innerHTML="Please report this error to developers"; break;
   }
-  
     let array = [];
+    var numberString="";
     switch (typeOfCalculation){
       case 2:
         if (unique===1){
         if (((M-m+1)*q1)>=c){
         while(array.length < c){
-          var r = (m+(Math.round(Math.random()*(M-m))));
-          if(array.indexOf(r) === -1) {array.push(r)};
+          var r = m+(Math.round(Math.random()*(M-m)));
+          if(array.indexOf(r) === -1) {
+          array.push(r);
+          };
         }
         if (sorting===0){array=array}
         if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
         if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        return array;
+        array.forEach(element => {if (array.indexOf(element)===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
+                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}}          );
+        return [array, numberString];
         }
         }
         if (unique===0){
         for(let i=0;i < c;  i++) {
-          array.push(m+(Math.round(Math.random()*(M-m))));
+          var r = m+(Math.round(Math.random()*(M-m)));
+          array.push(r);
           }
         if (sorting===0){array=array}
         if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
         if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        return array;
+        array.forEach(element => {if (array.indexOf(element)===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
+                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}}          );
+        return [array, numberString];
         }
         break;  
       case 1:
         if (unique===1){
         if ((((M-m)*q1)+1)>=c){
+        let i=0;
         while(array.length < c){
           var r = (m+((Math.round((((Math.random()*(M-m)) + (Number.EPSILON))) * q1) / q1))).toFixed(q);
           if(array.indexOf(r) === -1) {array.push(r)};
@@ -294,7 +302,9 @@ function generateNumbers(){
         if (sorting===0){array=array}
         if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
         if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        return array;
+        array.forEach(element => {if (array.indexOf(element)===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
+                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}}          );
+        return [array, numberString];
         }
         if (unique===0){
         for(let i=0;i < c;  i++) {
@@ -303,7 +313,9 @@ function generateNumbers(){
         if (sorting===0){array=array}
         if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
         if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        return array;
+        array.forEach(element => {if (array.indexOf(element)===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
+                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}}          );
+        return [array, numberString];
         }
      }
 }
@@ -319,11 +331,13 @@ function generateMain(){
   if (uniqueOrder===0){
   while(a.length<C){
     if (validityChecker()===true){
-      let array = generateNumbers();
+      let arrayPlusNumberString = generateNumbers();
+      let array= arrayPlusNumberString[0];
+      let numberString= arrayPlusNumberString[1];
       let arrayString = array.toString();
       if (a.indexOf(arrayString) === -1){
         a.push(arrayString);
-        N+=("<p>")+array+("&nbsp;&nbsp;&nbsp;</p>");
+        N+=("<p>")+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
       }
     }
     else{return null;}//invalid parameters
@@ -334,7 +348,9 @@ function generateMain(){
   let majorArray= [];
   while(a.length<C){
     if (validityChecker()===true){
-      let array = generateNumbers();
+      let arrayPlusNumberString = generateNumbers();
+      let array= arrayPlusNumberString[0];
+      let numberString= arrayPlusNumberString[1];
       let arrayString = array.toString();
       
       let possiblePermutations= permutator(array);
@@ -344,7 +360,7 @@ function generateMain(){
       if (majorArray.indexOf(arrayString) === -1 ){ 
         if (a.indexOf(arrayString) === -1){
           a.push(arrayString);
-          N+=("<p>")+arrayString+("&nbsp;&nbsp;&nbsp;</p>");
+          N+=("<p>")+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
         }
       }
       majorArray.push(pPString);
@@ -358,9 +374,11 @@ function generateMain(){
   else{//uniqueBlock===0;
   while(a.length<C){
     if (validityChecker()===true){
-      let array = generateNumbers();
+      let arrayPlusNumberString = generateNumbers();
+      let array= arrayPlusNumberString[0];
+      let numberString= arrayPlusNumberString[1];
       let arrayString = array.toString();  
-        N+=("<p>")+array+("&nbsp;&nbsp;&nbsp;</p>");
+        N+=("<p>")+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
         a.push(arrayString);
     }
     else{return null;}//invalid parameters
