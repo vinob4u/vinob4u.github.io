@@ -137,8 +137,7 @@ function generateMain(){
     else{return null;}//invalid parameters
   }
   }
-  self.postMessage((document.getElementById("result").innerHTML=N;))
-  self.postMessage((document.getElementById("Generate").blur();))
+  self.postMessage(N)
 }
 const permutator = (inputArr) => {
   let result = [];
