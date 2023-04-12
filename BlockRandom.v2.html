@@ -325,7 +325,7 @@ function validityChecker(){
 worker.onmessage= (N) => {document.getElementById('result').innerHTML=N; document.getElementById("Generate").blur();};
 worker.postMessage(validityChecker());
 
-function generateMain(){worker.generateMain()};
+function generateMain(){worker.postMessage("do generateMain()")};
 </script>
 
 </html>
