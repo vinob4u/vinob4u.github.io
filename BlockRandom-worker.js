@@ -158,3 +158,4 @@ const permutator = (inputArr) => {
 
  return result;
 }
+onmessage= (something) => {if (something === "do generateMain()"){generateMain();}}
