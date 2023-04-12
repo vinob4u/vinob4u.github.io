@@ -182,7 +182,7 @@
                                                        <input id="No4" name="sorting" type="radio" onfocus="sortingNo()" checked> No. 
     </p>
     <hr>
-    <button id="Generate" onfocus="worker.generateMain()">Generate</button><hr>
+    <button id="Generate" onfocus="generateMain()">Generate</button><hr>
     <div id= "resultDiv"><span style="vertical-align:top;">Result:</span>
     <span id="result"> Result will appear here once you enter parameters. </span>
     </div>
@@ -325,7 +325,7 @@ function validityChecker(){
 worker.onmessage= (N) => {document.getElementById('result').innerHTML=N; document.getElementById("Generate").blur();};
 worker.postMessage(validityChecker());
 
-
+function generateMain(){worker.generateMain()};
 </script>
 
 </html>
