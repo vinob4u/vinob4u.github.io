@@ -137,8 +137,8 @@ function generateMain(){
     else{return null;}//invalid parameters
   }
   }
-  self.postMessage(document.getElementById("result").innerHTML=N;)
-  self.postMessage(document.getElementById("Generate").blur();)
+  self.postMessage((document.getElementById("result").innerHTML=N;))
+  self.postMessage((document.getElementById("Generate").blur();))
 }
 const permutator = (inputArr) => {
   let result = [];
@@ -159,4 +159,3 @@ const permutator = (inputArr) => {
 
  return result;
 }
-
