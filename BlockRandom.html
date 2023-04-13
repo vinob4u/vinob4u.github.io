@@ -196,7 +196,7 @@
     <strong><u> Unique blocks despite order of numbers: </u></strong><br>
     <span>"Unique blocks despite order of numbers" means if [2,3] is generated as one of the results,</span> <span> both [2,3] and [3,2] wont repeat as another result.</span><br>
     <strong><u>Warning:</u></strong><br>
-    <span>If you enter the level of decimal points as greater than 1, and choose unique blocks despite order of numbers, the process of generation of random numbers will cause system malfunction and so it is prevented.</span>
+    <span>To prevent crashes, count of Random Numbers per Block is restricted to less than 8 (i.e, maximum 7) in case of Unique blocks despite order of numbers.</span>
     </div>
     <hr>
      <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
@@ -331,10 +331,12 @@ function generateMain(){
     return null;
   }
   let a=[];
+  let valid= validityChecker();
+  console.log(valid);
   if (uniqueBlock===1){
   if (uniqueOrder===0){
   while(a.length<C){
-    if (validityChecker()===true){
+    if (valid){
       let arrayPlusNumberString = generateNumbers();
       let array= arrayPlusNumberString[0];
       let numberString= arrayPlusNumberString[1];
@@ -351,14 +353,12 @@ function generateMain(){
   
   let majorArray= [];
   while(a.length<C){
-    if (validityChecker()===true){
+    if (valid){
       let arrayPlusNumberString = generateNumbers();
       let array= arrayPlusNumberString[0];
       let numberString= arrayPlusNumberString[1];
       let arrayString = array.toString();
-      
-      let possiblePermutations= permutator(array);
-      
+      let possiblePermutations= permutation(array);
       possiblePermutations.forEach(arrayElement  => {
       let pPString= arrayElement.toString();
       if (majorArray.indexOf(arrayString) === -1 ){ 
@@ -377,13 +377,13 @@ function generateMain(){
   }
   else{//uniqueBlock===0;
   while(a.length<C){
-    if (validityChecker()===true){
+    if (valid){
       let arrayPlusNumberString = generateNumbers();
       let array= arrayPlusNumberString[0];
       let numberString= arrayPlusNumberString[1];
       let arrayString = array.toString();  
-        N+=("<p>")+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
-        a.push(arrayString);
+      N+=("<p>")+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
+      a.push(arrayString);
     }
     else{return null;}//invalid parameters
   }
@@ -396,9 +396,11 @@ function validityChecker(){
   let M = parseFloat(document.getElementById("maxValue").value);
   let c = parseFloat(document.getElementById("countRandom").value);
   let C = parseFloat(document.getElementById("countBlock").value);
-  if (c>99||C>99||(c*C)>1024){document.getElementById("result").innerHTML="<span>Count of random numbers and blocks must not be too high</span> <span>(maximum 99 and their product less than 1024)</span<"; return false;}
+  if (c>100||C>100||(c*C)>1024){document.getElementById("result").innerHTML="<span>Count of random numbers and blocks must not be too high</span> <span>(maximum 100 and their product less than 1024)</span<"; return false;}
   if (isNaN(m * M * c)||(!Number.isInteger(c))||M<m||c<0||C<0){
     document.getElementById("result").innerHTML="Please enter valid parameters";return false}
+  if (uniqueOrder===1){
+        if (c>7){document.getElementById("result").innerHTML="<span>Numbers per block requested should be less than</span> 8 <span> if you choose unique blocks despite order of numbers.";return false;}}
   let q =parseInt(document.getElementById("decimalsNumber").value);
   let q1;
   if (document.getElementById("decimalsNumberp").hasAttribute("hidden")===true){q1=1}
@@ -416,12 +418,11 @@ function validityChecker(){
       case 2:
         if (unique===1){
         if (((M-m+1)*q1)>=c){
-        if (UniqueOrder=1){
+        if (uniqueOrder===1){
         let exponentialLimit=(M-m+1)*q1;
-        
         if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
-        else{
+        else{ //uniqueOrder===0
         let accumulator=1;
         if (c===1){accumulator=1}
         else{
@@ -443,12 +444,12 @@ function validityChecker(){
       case 1:
         if (unique===1){
         if (((M-m+1)*q1)>=c){
-        if (UniqueOrder=1){
+        if (uniqueOrder===1){
         let exponentialLimit=(M-m+1)*q1;
         
         if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
-        else{
+        else{//uniqueOrder=0
         let accumulator=1;
         if (c===1){accumulator=1}
         else{
@@ -466,27 +467,26 @@ function validityChecker(){
         for (let o=1;o<c;o++){exponentialLimit = exponentialLimit*((M-m+1)*q1)}
         if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
-        if ((C*c*q1)>100){document.getElementById("result").innerHTML="<span>Too high parameters. </span> <span> This may break the system. </span> <span> Process aborted.</span> The product of blocks requested <span>and numbers per block requested should be less than</span>"+(100/q1)+".";return false;}
         break;
      }   
   return true;
 }
-const permutator = (inputArr) => {
+const permutation = (inputArray) => {
   let result = [];
 
-  const permute = (arr, m = []) => {
-    if (arr.length === 0) {
+  const permute = (array, m = []) => {
+    if (array.length === 0) {
       result.push(m)
     } else {
-      for (let i = 0; i < arr.length; i++) {
-        let curr = arr.slice();
-        let next = curr.splice(i, 1);
-        permute(curr.slice(), m.concat(next))
+      for (let i = 0; i < array.length; i++) {
+        let current = array.slice();
+        let next = current.splice(i, 1);
+        permute(current.slice(), m.concat(next))
      }
    }
  }
 
- permute(inputArr)
+ permute(inputArray)
 
  return result;
 }
