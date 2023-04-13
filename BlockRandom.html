@@ -192,10 +192,13 @@
     </label>&nbsp;&nbsp;Help
     <div id="help" hidden>
     <strong><u> Unique blocks: </u></strong><br>
-    <span>The phrase "Unique blocks" means if [2,3] is generated as one of the results,</span> <span>[2,3] won't repeat but [3,2] can be generated as another result.</span><br><br>
+    <span>"Unique blocks" means if [2,3] is generated as one of the results,</span> <span>[2,3] won't repeat but [3,2] can be generated as another result.</span><br><br>
     <strong><u> Unique blocks despite order of numbers: </u></strong><br>
-    <span> The phrase "Unique blocks despite order of numbers" means if [2,3] is generated as one of the results,</span> <span> both [2,3] and [3,2] wont repeat as another result.</span>
-    </div><hr>
+    <span>"Unique blocks despite order of numbers" means if [2,3] is generated as one of the results,</span> <span> both [2,3] and [3,2] wont repeat as another result.</span><br>
+    <strong><u>Warning:</u></strong><br>
+    <span>If you enter the level of decimal points as greater than 1, and choose unique blocks despite order of numbers, the process of generation of random numbers will cause system malfunction and so it is prevented.</span>
+    </div>
+    <hr>
      <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
   <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
   </article>
@@ -434,25 +437,36 @@ function validityChecker(){
         if (unique===0){
         let exponentialLimit=(M-m+1)*q1;
         for (let o=1;o<c;o++){exponentialLimit = exponentialLimit*((M-m+1)*q1)}
-        
         if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
         break;  
       case 1:
         if (unique===1){
-        if ((((M-m)*q1)+1)>=c){
+        if (((M-m+1)*q1)>=c){
+        if (UniqueOrder=1){
         let exponentialLimit=(M-m+1)*q1;
         
         if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
-        else{document.getElementById("result").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";return false}
+        else{
+        let accumulator=1;
+        if (c===1){accumulator=1}
+        else{
+        for(let x=1;x<c;x++){accumulator=accumulator*(x+1)}
         }
-        if (unique===0){
-        let exponentialLimit=(M-m+1)
-        for (let o=1;o<c;o++){exponentialLimit = exponentialLimit*(M-m+1)}
+        let exponentialLimit=(M-m+1)*q1*accumulator;
         
         if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
+        }
+        else{document.getElementById("result").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters.</span>";return false}
+        }
+        if (unique===0){
+        let exponentialLimit=(M-m+1)*q1;
+        for (let o=1;o<c;o++){exponentialLimit = exponentialLimit*((M-m+1)*q1)}
+        if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
+        }
+        if ((C*c*q1)>100){document.getElementById("result").innerHTML="<span>Too high parameters. </span> <span> This may break the system. </span> <span> Process aborted.</span> The product of blocks requested <span>and numbers per block requested should be less than</span>"+(100/q1)+".";return false;}
         break;
      }   
   return true;
