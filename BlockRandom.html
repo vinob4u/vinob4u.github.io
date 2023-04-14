@@ -288,8 +288,10 @@ function generateNumbers(){
         if (sorting===0){array=array}
         if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
         if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        array.forEach(element => {if (array.indexOf(element)===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
-                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}}          );
+        let realIndex=0;
+        array.forEach(element => {if (realIndex===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
+                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}
+                                  realIndex++;});
         return [array, numberString];
         }
         break;  
@@ -317,8 +319,10 @@ function generateNumbers(){
         if (sorting===0){array=array}
         if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
         if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        array.forEach(element => {if (array.indexOf(element)===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
-                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}}          );
+        let realIndex=0;
+        array.forEach(element => {if (realIndex===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
+                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}
+                                  realIndex++;});
         return [array, numberString];
         }
      }
@@ -332,7 +336,6 @@ function generateMain(){
   }
   let a=[];
   let valid= validityChecker();
-  console.log(valid);
   if (uniqueBlock===1){
   if (uniqueOrder===0){
   while(a.length<C){
