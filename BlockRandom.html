@@ -148,6 +148,9 @@
       .slider.round:before {
         border-radius: 50%;
       }
+      .blockLabel{
+        color: red;
+      }
     </style>
   </head><div id="holder">
   <body ><article>
@@ -338,6 +341,7 @@ function generateMain(){
   let valid= validityChecker();
   if (uniqueBlock===1){
   if (uniqueOrder===0){
+  let blockNumber=0;
   while(a.length<C){
     if (valid){
       let arrayPlusNumberString = generateNumbers();
@@ -346,7 +350,8 @@ function generateMain(){
       let arrayString = array.toString();
       if (a.indexOf(arrayString) === -1){
         a.push(arrayString);
-        N+=("<p>")+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
+        blockNumber++;
+        N+=("<p><span class='blockLabel'>Block-")+blockNumber+":&nbsp; </span>"+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
       }
     }
     else{return null;}//invalid parameters
@@ -355,6 +360,7 @@ function generateMain(){
   else{//uniqueOrder===1;
   
   let majorArray= [];
+  let blockNumber=0;
   while(a.length<C){
     if (valid){
       let arrayPlusNumberString = generateNumbers();
@@ -367,7 +373,8 @@ function generateMain(){
       if (majorArray.indexOf(arrayString) === -1 ){ 
         if (a.indexOf(arrayString) === -1){
           a.push(arrayString);
-          N+=("<p>")+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
+          blockNumber++;
+          N+=("<p><span class='blockLabel'>Block-")+blockNumber+":&nbsp; </span>"+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
         }
       }
       majorArray.push(pPString);
@@ -379,13 +386,15 @@ function generateMain(){
   }
   }
   else{//uniqueBlock===0;
+  let blockNumber=0;
   while(a.length<C){
     if (valid){
       let arrayPlusNumberString = generateNumbers();
       let array= arrayPlusNumberString[0];
       let numberString= arrayPlusNumberString[1];
-      let arrayString = array.toString();  
-      N+=("<p>")+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
+      let arrayString = array.toString(); 
+      blockNumber++;
+      N+=("<p><span class='blockLabel'>Block-")+blockNumber+":&nbsp; </span>"+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
       a.push(arrayString);
     }
     else{return null;}//invalid parameters
