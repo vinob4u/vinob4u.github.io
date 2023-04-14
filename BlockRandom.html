@@ -328,12 +328,12 @@ function generateNumbers(){
      }
 }
 function generateMain(){
-  let N = "";
-  let C = parseFloat(document.getElementById("countBlock").value);
-  if (C===""||document.getElementById("countRandom").value===""||document.getElementById("minValue").value===""||document.getElementById("maxValue").value===""){
+  if (document.getElementById("countBlock").value===""||document.getElementById("countRandom").value===""||document.getElementById("minValue").value===""||document.getElementById("maxValue").value===""){
     document.getElementById("result").innerText="Please enter all the fields";
     return null;
   }
+  let N = "";
+  let C = parseFloat(document.getElementById("countBlock").value);
   let a=[];
   let valid= validityChecker();
   if (uniqueBlock===1){
@@ -417,36 +417,9 @@ function validityChecker(){
     default: document.getElementById("result").innerHTML="Please report this error to developers"; break;
   }
   }
-  switch (typeOfCalculation){
-      case 2:
         if (unique===1){
         if (((M-m+1)*q1)>=c){
-        if (uniqueOrder===1){
-        let exponentialLimit=(M-m+1)*q1;
-        if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
-        }
-        else{ //uniqueOrder===0
-        let accumulator=1;
-        if (c===1){accumulator=1}
-        else{
-        for(let x=1;x<c;x++){accumulator=accumulator*(x+1)}
-        }
-        let exponentialLimit=(M-m+1)*q1*accumulator;
-        
-        if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
-        }
-        }
-        else{document.getElementById("result").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters.</span>";return false}
-        }
-        if (unique===0){
-        let exponentialLimit=(M-m+1)*q1;
-        for (let o=1;o<c;o++){exponentialLimit = exponentialLimit*((M-m+1)*q1)}
-        if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
-        }
-        break;  
-      case 1:
-        if (unique===1){
-        if (((M-m+1)*q1)>=c){
+        if (uniqueBlock===1){
         if (uniqueOrder===1){
         let exponentialLimit=(M-m+1)*q1;
         
@@ -463,15 +436,30 @@ function validityChecker(){
         if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
         }
+        }
         else{document.getElementById("result").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters.</span>";return false}
         }
         if (unique===0){
         let exponentialLimit=(M-m+1)*q1;
-        for (let o=1;o<c;o++){exponentialLimit = exponentialLimit*((M-m+1)*q1)}
+        if (uniqueBlock===1){
+        if (uniqueOrder===1){
+        let exponentialLimit=(M-m+1)*q1;
+        
         if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
-        break;
-     }   
+        else{//uniqueOrder=0
+        let accumulator=1;
+        if (c===1){accumulator=1}
+        else{
+        for(let x=1;x<c;x++){accumulator=accumulator*(x+1)}
+        }
+        let exponentialLimit=(M-m+1)*q1*accumulator;
+        
+        if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
+        }
+        }
+        }
+        
   return true;
 }
 const permutation = (inputArray) => {
