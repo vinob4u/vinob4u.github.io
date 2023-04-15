@@ -69,7 +69,7 @@
         color: black;
       }
       input[type="range"]{
-        width: 20vW;
+        width: 40vW;
         background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 0px 0px;
         border:0px solid black;
@@ -100,6 +100,23 @@
       }
       h1{font-size:2rem}
       a {font-size:inherit; color:yellow}
+      .rangeticks {
+        margin: auto;
+        width: 39vW;
+        display: flex;
+        justify-content: space-between;
+      
+      }
+    .rangeticks span {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      width: 0.25vw;
+      background: black;
+      height: 10px;
+      line-height: 40px;
+      margin: 0;
+    }
     </style>
   </head><div id="holder">
   <body ><article>
@@ -110,28 +127,32 @@
     <p id="minValuep">Minimum Value (inclusive):&nbsp; <input id="minValue" placeholder="Please enter value" required="required" type='tel'></p>
     <p id="maxValuep">Maximum Value (inclusive):&nbsp; <input id="maxValue" placeholder="Please enter value" required="required" type='tel'> </p>
     <p id="countRandomp">Count of Random Numbers:&nbsp;<input id="countRandom" placeholder="Only Integres" type='tel'></p>
-    <p id="decimalsBoolean">Do you want Decimals?&nbsp;<input id="Yes" name="typeOfCalculation" type="radio" onfocus="decimalYes()">Yes
-                                                       <input id="No" name="typeOfCalculation" type="radio" onfocus="decimalNo()" checked>No</p>
-    <p id="decimalsNumberp" hidden>
-    <label for="decimalsNumber">Level of decimal points (between 1 and 5):</label>
-    <input type="range" id="decimalsNumber" min="1" max="5" step="1" value="1" onchange="decimalNumberChecker()"><span id="label2forDecimalNumber">1</span></p>
-    <p id="uniqueBoolean">Do you want Unique Random Numbers?&nbsp;<input id="Yes" name="UniqueBoolean" type="radio" onfocus="uniqueYes()">Yes
-                                                       <input id="No" name="UniqueBoolean" type="radio" onfocus="uniqueNo()" checked>No</p>
-    <p id="sortingp">Do you want the random numbers to be sorted?&nbsp;<input id="Yes4.1" name="sorting" type="radio" onfocus="sortingAsc()">Yes, Ascending order.
-                                                      <input id="Yes4.2" name="sorting" type="radio" onfocus="sortingDesc()">Yes, Descending order.
-                                                       <input id="No4" name="sorting" type="radio" onfocus="sortingNo()" checked> No. 
+    <p id="decimalsBoolean">Do you want Decimals?&nbsp;<br><input id="Yes" name="typeOfCalculation" type="radio" onfocus="decimalYes()"><label for="Yes">Yes</label>
+                                                       <input id="No" name="typeOfCalculation" type="radio" onfocus="decimalNo()" checked><label for="No">No</label></p>
+    <div id="decimalsNumberp" hidden>
+    <label for="decimalsNumber">Level of decimal points (between 1 and 5):</label><br>
+    <input type="range" id="decimalsNumber" min="1" max="5" step="1" value="1" onchange="decimalNumberChecker()">
+    <div class="rangeticks"><span>0.1</span><span>0.12</span><span>0.123</span><span>0.1234</span><span>0.12345</span></div><br></div>
+    <p id="uniqueBoolean">Do you want Unique Random Numbers?&nbsp;<br><input id="Yes1" name="UniqueBoolean" type="radio" onfocus="uniqueYes()"><label for="Yes1">Yes</label>
+                                                       <input id="No1" name="UniqueBoolean" type="radio" onfocus="uniqueNo()" checked><label for="No1">No</label></p>
+    <p id="sortingp">Do you want the random numbers to be sorted?&nbsp;<br>
+                                                      <input id="Yes4.1" name="sorting" type="radio" onfocus="sortingAsc()"><label for="Yes4.1">Yes, Ascending order.</label>
+                                                      <input id="Yes4.2" name="sorting" type="radio" onfocus="sortingDesc()"><label for="Yes4.2">Yes, Descending order.</label>
+                                                      <input id="No4" name="sorting" type="radio" onfocus="sortingNo()" checked><label for="No4"> No.</label> 
     </p>
-    <p id="tableBoolean">Do you want results to be formatted to a table?&nbsp;<input id="Yes1" name="TableBoolean" type="radio" onfocus="tableYes()">Yes
-                                                       <input id="No1" name="TableBoolean" type="radio" onfocus="tableNo()" checked>No</p>
-    <p id="tableColumnsp" hidden>Format to how many columns?&nbsp;<input id="tableColumns" onchange="columnShow()" type="range" min="2" max="8" step="1" value="2">
-    <span id="labelForColumn">2</span>
-    </p>
+    <p id="tableBoolean">Do you want results to be formatted to a table?&nbsp;<br>
+                                                      <input id="Yes3" name="TableBoolean" type="radio" onfocus="tableYes()"><label for="Yes3">Yes</label>
+                                                      <input id="No3" name="TableBoolean" type="radio" onfocus="tableNo()" checked><label for="No3">No</label></p>
+    <div id="tableColumnsp" hidden>Format to how many columns?&nbsp;<br>
+    <br>
+    <input id="tableColumns" onchange="columnShow()" type="range" min="2" max="8" step="1" value="2" />
+    <div class="rangeticks"><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><br></div><br>
     <button id="Generate" onfocus="generate()">Generate</button><hr>
     <div id= "resultDiv">
     <span id="result"> Result will appear here once you enter parameters. </span>
     </div><hr>
      <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
+  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a target="_blank" href='https://vinob4u.github.io'> vinob4u.github.io </a> </footer>
   </article>
   </body></div>
 <script>
@@ -154,7 +175,6 @@ function decimalNo(){
   typeOfCalculation=2; return typeOfCalculation;}
 function decimalNumberChecker(){
   let q =parseInt(document.getElementById("decimalsNumber").value);
-  document.getElementById("label2forDecimalNumber").innerText=q;
   return q;
 }
 let sorting=0;
@@ -168,7 +188,6 @@ function tableNo(){
   document.getElementById("tableColumnsp").setAttribute("hidden", ""); column=1; return column;}
 function columnShow(){
   column =parseInt(document.getElementById("tableColumns").value);
-  document.getElementById("labelForColumn").innerText=column;
   return column;
 }
 function uniqueYes(){unique=1; return unique;}
