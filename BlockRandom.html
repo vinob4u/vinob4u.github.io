@@ -15,8 +15,10 @@
       }
     body{ margin:0;}
     article{flex:1; font-size:110%;}
-    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh;}
-    span{display: inline-block;}
+    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh; text-align:center;}
+    #resultDiv table{margin:0 auto; width:95vw; border: solid 1px blue; border-spacing:0;}
+    #resultDiv table tr td{margin:0 auto; border: solid 1px red; background-color: white;}
+    #resultDiv span{display: inline-block;}
     #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
     hr {
       border-top: 3px dashed red;
@@ -56,7 +58,7 @@
         color: #222222;
         box-shadow: 0 5px 25px rgba(145, 102, 182, .4);
       }
-      input{
+      input[type='tel']{
         width: 55vw;
         background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 8px 20px;
@@ -66,7 +68,7 @@
         transition: all 0.2s ease-in-out;
         color: black;
       }
-      #decimalsNumber{
+      input[type="range"]{
         width: 20vW;
         background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 0px 0px;
@@ -149,11 +151,14 @@
         border-radius: 50%;
       }
       .blockLabel{
+        background-color: cyan;
         color: red;
+        font-weight: bolder;
+        padding: 0.5vw;
       }
     </style>
   </head><div id="holder">
-  <body ><article>
+  <body><article>
   <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
     <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
     <h1>Blocks of Random Numbers Generator</h1>
@@ -185,6 +190,12 @@
                                                        <input id="No4" name="sorting" type="radio" onfocus="sortingNo()" checked> No. 
     </p>
     <hr>
+    <p id="tableBoolean">Do you want results in each block to be formatted to a table?&nbsp;<input id="Yes1" name="TableBoolean" type="radio" onfocus="tableYes()">Yes
+                                                       <input id="No1" name="TableBoolean" type="radio" onfocus="tableNo()" checked>No</p>
+    <p id="tableColumnsp" hidden>Format to how many columns?&nbsp;<input id="tableColumns" onchange="columnShow()" type="range" min="2" max="8" step="1" value="2">
+    <span id="labelForColumn">2</span>
+    </p>
+    <hr>
     <button id="Generate" onfocus="generateMain()">Generate</button><hr>
     <div id= "resultDiv"><span style="vertical-align:top;">Result:</span>
     <span id="result"> Result will appear here once you enter parameters. </span>
@@ -199,7 +210,7 @@
     <strong><u> Unique blocks despite order of numbers: </u></strong><br>
     <span>"Unique blocks despite order of numbers" means if [2,3] is generated as one of the results,</span> <span> both [2,3] and [3,2] wont repeat as another result.</span><br>
     <strong><u>Warning:</u></strong><br>
-    <span>To prevent crashes, count of Random Numbers per Block is restricted to less than 8 (i.e, maximum 7) in case of Unique blocks despite order of numbers.</span>
+    <span>To prevent crashes, count of Random Numbers per Block is restricted to a maximum of 5 in case of Unique blocks despite order of numbers.</span>
     </div>
     <hr>
      <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
@@ -216,7 +227,7 @@ function toggled(){
     document.getElementById('help').setAttribute('hidden', "");}
 }
 function startAgain(){
-  document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";
+  document.getElementById("resultDiv").innerHTML= " Result will appear here once you enter parameters. ";
   document.getElementById("minValue").value="";
   document.getElementById("maxValue").value="";
   document.getElementById("javascriptDisabled").setAttribute("hidden", "");
@@ -234,6 +245,16 @@ function uniqueBlockNo(){document.getElementById("uniqueBlockOrderBoolean").setA
 function sortingAsc(){sorting=1.1;return sorting}
 function sortingDesc(){sorting=1.2;return sorting}
 function sortingNo(){sorting=0;return sorting}
+let column = 1;
+function tableYes(){
+  document.getElementById("tableColumnsp").removeAttribute("hidden"); column=parseInt(document.getElementById("tableColumns").value); return column;}
+function tableNo(){
+  document.getElementById("tableColumnsp").setAttribute("hidden", ""); column=1; return column;}
+function columnShow(){
+  column =parseInt(document.getElementById("tableColumns").value);
+  document.getElementById("labelForColumn").innerText=column;
+  return column;
+}
 function decimalYes(){
   document.getElementById("decimalsNumberp").removeAttribute("hidden");
   typeOfCalculation=1; return typeOfCalculation;}
@@ -249,10 +270,11 @@ function uniqueYes(){unique=1; return unique;}
 function uniqueNo(){unique=0; return unique;}
 function uniqueBlockOrderYes(){uniqueOrder = 1; return uniqueOrder;}
 function uniqueBlockOrderNo(){uniqueOrder = 0; return uniqueOrder;}
-function generateNumbers(){
+function generateNumbers(blockNumber){
   let m = parseFloat(document.getElementById("minValue").value);
   let M = parseFloat(document.getElementById("maxValue").value);
   let c = parseFloat(document.getElementById("countRandom").value);
+  if (c>1000){document.getElementById("resultDiv").innerHTML="Maximum count of random numbers that can be generated at once is 1000, this is to prevent system overload and crashes"; return false;}
   let q = parseInt(document.getElementById("decimalsNumber").value);
   let q1;
   switch (q){
@@ -261,97 +283,132 @@ function generateNumbers(){
     case 3: q1=1000; break;
     case 4: q1=10000; break;
     case 5: q1=100000; break;
-    default: document.getElementById("result").innerHTML="Please report this error to developers"; break;
+    default: document.getElementById("resultDiv").innerHTML="Please report this error to developers"; break;
   }
+  if (isNaN(m * M * c)||(!Number.isInteger(c))||M<m||c<0){
+    document.getElementById("resultDiv").innerHTML="Please enter valid parameters"; return null;}
+  else{
+    if (column===1){
+    let n = "<span class='blockLabel'>Block-"+blockNumber+":&nbsp; </span>";
     let array = [];
-    var numberString="";
     switch (typeOfCalculation){
       case 2:
         if (unique===1){
-        if (((M-m+1)*q1)>=c){
+        if ((M-m+1)>=c){
         while(array.length < c){
-          var r = m+(Math.round(Math.random()*(M-m)));
-          if(array.indexOf(r) === -1) {
-          array.push(r);
-          };
+          var r = (m+(Math.round(Math.random()*(M-m))));
+          if(array.indexOf(r) === -1) {array.push(r)};
         }
-        if (sorting===0){array=array}
-        if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
-        if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        array.forEach(element => {if (array.indexOf(element)===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
-                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}}          );
-        return [array, numberString];
+        
         }
+        else{document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";}
         }
         if (unique===0){
         for(let i=0;i < c;  i++) {
-          var r = m+(Math.round(Math.random()*(M-m)));
+          var r=m+(Math.round(Math.random()*(M-m)));
           array.push(r);
-          }
-        if (sorting===0){array=array}
-        if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
-        if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        let realIndex=0;
-        array.forEach(element => {if (realIndex===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
-                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}
-                                  realIndex++;});
-        return [array, numberString];
+        }
         }
         break;  
       case 1:
         if (unique===1){
         if ((((M-m)*q1)+1)>=c){
-        let i=0;
         while(array.length < c){
-          var r = (m+(Math.round(((Math.random()*(M-m)) + (Number.EPSILON))* q1)/ q1)).toFixed(q);
+          var r = (m+((Math.round((((Math.random()*(M-m)) + (Number.EPSILON))) * q1) / q1))).toFixed(q);
           if(array.indexOf(r) === -1) {array.push(r)};
         }
         }
-        if (sorting===0){array=array}
-        if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
-        if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        array.forEach(element => {if (array.indexOf(element)===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
-                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}}          );
-        return [array, numberString];
+        else{document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";}
         }
         if (unique===0){
         for(let i=0;i < c;  i++) {
-          let r = (m+(Math.round(((Math.random()*(M-m)) + (Number.EPSILON))* q1)/ q1)).toFixed(q);
+          var r =(m+((Math.round(((Math.random()*(M-m)) + (Number.EPSILON)) * q1) / q1))).toFixed(q);
           array.push(r);
         }
-        if (sorting===0){array=array}
-        if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
-        if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
-        let realIndex=0;
-        array.forEach(element => {if (realIndex===(array.length - 1)){numberString+="<span>"+(element.toString())+"&nbsp;</span>"}
-                                  else{numberString+="<span>"+(element.toString()+",&nbsp;</span>");}
-                                  realIndex++;});
-        return [array, numberString];
+        }
+     } 
+    if (sorting===0){array=array}
+    if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
+    if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
+    let realIndex=0;
+    array.forEach(element => {if (realIndex===(array.length - 1)){n+="<span>"+(element.toString())+"&nbsp;</span>"}
+                              else{n+="<span>"+(element.toString()+",&nbsp;</span>");}
+                              realIndex++;});
+    return [array, n];
+  }
+  else{
+    let n = "<table><span class='blockLabel'>Block-"+blockNumber+":&nbsp; </span><tr>";
+    let array = [];
+    let counter=1;
+    switch (typeOfCalculation){
+      case 2:
+        if (unique===1){
+        if ((M-m+1)>=c){
+        while(array.length < c){
+          var r = (m+(Math.round(Math.random()*(M-m))));
+          if(array.indexOf(r) === -1) {array.push(r)};
+        }
+        }
+        else{document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";return null}
+        }
+        if (unique===0){
+        for(let i=0;i < c;  i++) {
+          var r=m+(Math.round(Math.random()*(M-m)));
+          array.push(r)
+        }
+        }
+        break;  
+      case 1:
+        if (unique===1){
+        if ((((M-m)*q1)+1)>=c){
+        while(array.length < c){
+          var r = (m+((Math.round((((Math.random()*(M-m)) + (Number.EPSILON))) * q1) / q1))).toFixed(q);
+          if(array.indexOf(r) === -1) {array.push(r)};
+        }
+        }
+        else{document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";return null}
+        }
+        if (unique===0){
+        for(let i=0;i < c;  i++) {
+          var r=(m+((Math.round(((Math.random()*(M-m)) + (Number.EPSILON)) * q1) / q1))).toFixed(q);
+          array.push(r)
+        }
         }
      }
+    if (sorting===0){array=array}
+    if (sorting===1.1){array.sort(function(axe, book){return axe - book});};
+    if (sorting===1.2){array.sort(function(axe, book){return book - axe});};
+    array.forEach( element => {n+=("<td><span>")+element+("</span></td>")
+        if (counter%column===0){n+="</tr><tr>"}
+        counter++;
+        });
+    n+="</tr></table>"
+    return [array, n];
+  }
+  }
 }
 function generateMain(){
   if (document.getElementById("countBlock").value===""||document.getElementById("countRandom").value===""||document.getElementById("minValue").value===""||document.getElementById("maxValue").value===""){
-    document.getElementById("result").innerText="Please enter all the fields";
+    document.getElementById("resultDiv").innerText="Please enter all the fields";
     return null;
   }
   let N = "";
   let C = parseFloat(document.getElementById("countBlock").value);
   let a=[];
   let valid= validityChecker();
+  let blockNumber=1;
   if (uniqueBlock===1){
   if (uniqueOrder===0){
-  let blockNumber=0;
   while(a.length<C){
     if (valid){
-      let arrayPlusNumberString = generateNumbers();
+      let arrayPlusNumberString = generateNumbers(blockNumber);
       let array= arrayPlusNumberString[0];
       let numberString= arrayPlusNumberString[1];
       let arrayString = array.toString();
       if (a.indexOf(arrayString) === -1){
         a.push(arrayString);
+        N+="<p>"+numberString+"&nbsp;&nbsp;&nbsp;</p><hr>"; 
         blockNumber++;
-        N+=("<p><span class='blockLabel'>Block-")+blockNumber+":&nbsp; </span>"+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
       }
     }
     else{return null;}//invalid parameters
@@ -360,10 +417,9 @@ function generateMain(){
   else{//uniqueOrder===1;
   
   let majorArray= [];
-  let blockNumber=0;
   while(a.length<C){
     if (valid){
-      let arrayPlusNumberString = generateNumbers();
+      let arrayPlusNumberString = generateNumbers(blockNumber);
       let array= arrayPlusNumberString[0];
       let numberString= arrayPlusNumberString[1];
       let arrayString = array.toString();
@@ -373,8 +429,8 @@ function generateMain(){
       if (majorArray.indexOf(arrayString) === -1 ){ 
         if (a.indexOf(arrayString) === -1){
           a.push(arrayString);
+          N+="<p>"+numberString+"&nbsp;&nbsp;&nbsp;</p><hr>";
           blockNumber++;
-          N+=("<p><span class='blockLabel'>Block-")+blockNumber+":&nbsp; </span>"+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
         }
       }
       majorArray.push(pPString);
@@ -386,21 +442,20 @@ function generateMain(){
   }
   }
   else{//uniqueBlock===0;
-  let blockNumber=0;
   while(a.length<C){
     if (valid){
-      let arrayPlusNumberString = generateNumbers();
+      let arrayPlusNumberString = generateNumbers(blockNumber);
       let array= arrayPlusNumberString[0];
       let numberString= arrayPlusNumberString[1];
-      let arrayString = array.toString(); 
+      let arrayString = array.toString();
+      N+="<p>"+numberString+"&nbsp;&nbsp;&nbsp;</p><hr>"; 
       blockNumber++;
-      N+=("<p><span class='blockLabel'>Block-")+blockNumber+":&nbsp; </span>"+numberString+("&nbsp;&nbsp;&nbsp;</p><hr>");
       a.push(arrayString);
     }
     else{return null;}//invalid parameters
   }
   }
-  document.getElementById("result").innerHTML=N;
+  document.getElementById("resultDiv").innerHTML=N;
   document.getElementById("Generate").blur();
 }
 function validityChecker(){
@@ -408,11 +463,11 @@ function validityChecker(){
   let M = parseFloat(document.getElementById("maxValue").value);
   let c = parseFloat(document.getElementById("countRandom").value);
   let C = parseFloat(document.getElementById("countBlock").value);
-  if (c>100||C>100||(c*C)>1024){document.getElementById("result").innerHTML="<span>Count of random numbers and blocks must not be too high</span> <span>(maximum 100 and their product less than 1024)</span<"; return false;}
+  if (c>100||C>100||(c*C)>1024){document.getElementById("resultDiv").innerHTML="<span>Count of random numbers and blocks must not be too high</span> <span>(maximum 100 and their product less than 1024)</span<"; return false;}
   if (isNaN(m * M * c)||(!Number.isInteger(c))||M<m||c<0||C<0){
-    document.getElementById("result").innerHTML="Please enter valid parameters";return false}
+    document.getElementById("resultDiv").innerHTML="Please enter valid parameters";return false}
   if (uniqueOrder===1){
-        if (c>7){document.getElementById("result").innerHTML="<span>Numbers per block requested should be less than</span> 8 <span> if you choose unique blocks despite order of numbers.";return false;}}
+        if (c>5){document.getElementById("resultDiv").innerHTML="<span>Numbers per block requested should be less than</span> 6 <span> if you choose unique blocks despite order of numbers.";return false;}}
   let q =parseInt(document.getElementById("decimalsNumber").value);
   let q1;
   if (document.getElementById("decimalsNumberp").hasAttribute("hidden")===true){q1=1}
@@ -423,7 +478,7 @@ function validityChecker(){
     case 3: q1=1000; break;
     case 4: q1=10000; break;
     case 5: q1=100000; break;
-    default: document.getElementById("result").innerHTML="Please report this error to developers"; break;
+    default: document.getElementById("resultDiv").innerHTML="Please report this error to developers"; break;
   }
   }
         if (unique===1){
@@ -432,7 +487,7 @@ function validityChecker(){
         if (uniqueOrder===1){
         let exponentialLimit=(M-m+1)*q1;
         
-        if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
+        if (C>exponentialLimit){document.getElementById("resultDiv").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
         else{//uniqueOrder=0
         let accumulator=1;
@@ -442,11 +497,11 @@ function validityChecker(){
         }
         let exponentialLimit=(M-m+1)*q1*accumulator;
         
-        if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
+        if (C>exponentialLimit){document.getElementById("resultDiv").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
         }
         }
-        else{document.getElementById("result").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters.</span>";return false}
+        else{document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters.</span>";return false}
         }
         if (unique===0){
         let exponentialLimit=(M-m+1)*q1;
@@ -454,7 +509,7 @@ function validityChecker(){
         if (uniqueOrder===1){
         let exponentialLimit=(M-m+1)*q1;
         
-        if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
+        if (C>exponentialLimit){document.getElementById("resultDiv").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
         else{//uniqueOrder=0
         let accumulator=1;
@@ -464,7 +519,7 @@ function validityChecker(){
         }
         let exponentialLimit=(M-m+1)*q1*accumulator;
         
-        if (C>exponentialLimit){document.getElementById("result").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
+        if (C>exponentialLimit){document.getElementById("resultDiv").innerHTML="<span>Unique block </span> <span> generation not possible </span> <span> with the given parameters.</span> <span>Maximum blocks possible: </span>"+exponentialLimit;return false;}
         }
         }
         }
