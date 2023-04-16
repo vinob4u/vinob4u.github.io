@@ -58,7 +58,7 @@
         color: #222222;
         box-shadow: 0 5px 25px rgba(145, 102, 182, .4);
       }
-      input[type='tel']{
+      input[type='tel'], input[type="text"]{
         width: 55vw;
         background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 8px 20px;
@@ -216,12 +216,13 @@
                                                       <input id="Yes5" name="TableBoolean" type="radio" onfocus="tableYes()"><label for="Yes5">Yes</label>
                                                       <input id="No5" name="TableBoolean" type="radio" onfocus="tableNo()" checked><label for="No5">No</label></p>
     <div id="tableColumnsp" hidden>Format to how many columns?&nbsp;<br>
-    <input id="tableColumns" onchange="columnShow()" type="range" min="2" max="8" step="1" value="2" />
-    <div class="rangeticks"><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><br></div><br>
+    <input id="tableColumns" onchange="columnShow()" type="range" min="1" max="8" step="1" value="1" />
+    <div class="rangeticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><br></div>
     <hr>
     <button id="Generate" onfocus="generateMain()">Generate</button><hr>
-    <div id= "resultDiv"><span style="vertical-align:top;">Result:</span>
-    <span id="result"> Result will appear here once you enter parameters. </span>
+    <div id= "resultDiv">
+    </div>
+    <div id="print" hidden>
     </div>
     <label class="switch">
       <input type="checkbox" onfocus="toggled()">
@@ -268,11 +269,11 @@ function uniqueBlockNo(){document.getElementById("uniqueBlockOrderBoolean").setA
 function sortingAsc(){sorting=1.1;return sorting}
 function sortingDesc(){sorting=1.2;return sorting}
 function sortingNo(){sorting=0;return sorting}
-let column = 1;
+let column = 0;
 function tableYes(){
   document.getElementById("tableColumnsp").removeAttribute("hidden"); column=parseInt(document.getElementById("tableColumns").value); return column;}
 function tableNo(){
-  document.getElementById("tableColumnsp").setAttribute("hidden", ""); column=1; return column;}
+  document.getElementById("tableColumnsp").setAttribute("hidden", ""); column=0; return column;}
 function columnShow(){
   column =parseInt(document.getElementById("tableColumns").value);
   return column;
@@ -309,7 +310,7 @@ function generateNumbers(blockNumber){
   if (isNaN(m * M * c)||(!Number.isInteger(c))||M<m||c<0){
     document.getElementById("resultDiv").innerHTML="Please enter valid parameters"; return null;}
   else{
-    if (column===1){
+    if (column===0){
     let n = "<span class='blockLabel'>Block-"+blockNumber+":&nbsp; </span>";
     let array = [];
     switch (typeOfCalculation){
@@ -408,6 +409,7 @@ function generateNumbers(blockNumber){
   }
   }
 }
+let printString="<button id=\"showCSVoptions\" onfocus=\"showCSVoptions()\"><strong>Save the results as a CSV file</strong></button><br>CSV stands for Comma Seperated Values which can be opened in any spreadsheet software including Excel.<br><p id=\"CSVfileName\" hidden><label for=\"fileNameCSV\"> Please enter the file name:</label><input id=\"fileNameCSV\" type=\"text\" pattern=\"[0-9a-zA-Z_\-.\s]\" placeholder=\"Random Number Generator-Result\" /><strong>.csv</strong><br><button id=\"printAsCSV\" onfocus=\"printAsCSV()\">Generate CSV file</button><br></p><div id=\"printingStatus\"></div><hr>";
 function generateMain(){
   if (document.getElementById("countBlock").value===""||document.getElementById("countRandom").value===""||document.getElementById("minValue").value===""||document.getElementById("maxValue").value===""){
     document.getElementById("resultDiv").innerText="Please enter all the fields";
@@ -478,6 +480,9 @@ function generateMain(){
   }
   document.getElementById("resultDiv").innerHTML=N;
   document.getElementById("Generate").blur();
+  document.getElementById("print").innerHTML=printString;
+  if (column===0){document.getElementById("print").setAttribute("hidden", "");}
+  else{document.getElementById("print").removeAttribute("hidden");document.getElementById("printAsCSV").removeAttribute("hidden");}
 }
 function validityChecker(){
   let m = parseFloat(document.getElementById("minValue").value);
@@ -544,12 +549,10 @@ function validityChecker(){
         }
         }
         }
-        
   return true;
 }
 const permutation = (inputArray) => {
   let result = [];
-
   const permute = (array, m = []) => {
     if (array.length === 0) {
       result.push(m)
@@ -561,10 +564,53 @@ const permutation = (inputArray) => {
      }
    }
  }
-
  permute(inputArray)
-
  return result;
+}
+function showCSVoptions(){
+document.getElementById('fileNameCSV').removeAttribute('hidden');
+document.getElementById('CSVfileName').removeAttribute('hidden');
+document.getElementById("showCSVoptions").blur();
+}
+var link;
+function printAsCSV(){
+  var content=[""];
+  var table = document.getElementById("resultDiv").querySelectorAll("table");
+  table.forEach( tableNumber => {
+  var caption = tableNumber.querySelector("caption");
+  var rows = tableNumber.querySelectorAll("tr");
+  content.push(caption.innerText);
+  content.push("\n");
+  for (var i = 0;i<rows.length; i++){
+      var row=[];
+      var cols=rows[i].querySelectorAll("td");
+      for (var j=0; j<cols.length; j++){
+        row.push(cols[j].innerText);
+      }
+      content.push(row.join(","));
+      content.push("\n");
+    }
+  });
+  var csv;
+  csv = new Blob([content],{type: "text/csv"});
+  link = document.createElement("a");
+  let blobtodata = new FileReader();
+  blobtodata.readAsDataURL(csv);
+  blobtodata.onload = () => {
+  link.href = blobtodata.result;
+  }
+  link.innerHTML = "<button onfocus='newFunction(link)'>Download!</button>";
+  document.getElementById("printingStatus").innerHTML+="File generation successfull.<br>"
+  document.getElementById("printingStatus").appendChild(link);
+  document.getElementById("printAsCSV").blur();
+  document.getElementById("printAsCSV").setAttribute("hidden","");
+  return link;
+}
+function newFunction(link){
+  if (document.getElementById("fileNameCSV").value===""){ link.download = "Random Number Generator-Result.csv"; link.click();}
+  else{ link.download = document.getElementById("fileNameCSV").value+".csv"; link.click();}
+  document.getElementById('print').innerHTML="Results downloaded";
+  return null;
 }
 </script>
 </html>
