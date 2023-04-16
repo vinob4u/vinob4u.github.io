@@ -615,7 +615,7 @@ function newFunction(link){
   if (document.getElementById("fileNameCSV").value===""){ link.download = "Random Number Generator-Result.csv"; link.click();}
   else{ link.download = document.getElementById("fileNameCSV").value+".csv"; link.click();}
   document.getElementById('print').innerHTML="Results downloaded";
-  return null;
+  return fileName;
 }
 </script>
 </html>
