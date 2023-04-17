@@ -599,23 +599,16 @@ function printAsCSV(){
   blobtodata.onload = () => {
   link.href = blobtodata.result;
   }
-  link.innerHTML = "<button onfocus='newFunction(link)'>Download!</button>";
+  if (document.getElementById("fileNameCSV").value===""){ link.download = "Random Number Generator-Result.csv";}
+  else{ link.download = document.getElementById("fileNameCSV").value+".csv";}
+  link.innerHTML = "<button>Download!</button>";
+  link.onfocus = () => document.getElementById('print').innerHTML="Results downloaded";
   document.getElementById("printingStatus").innerHTML+="File generation successfull.<br>"
   document.getElementById("printingStatus").appendChild(link);
   document.getElementById("printAsCSV").blur();
   document.getElementById("printAsCSV").setAttribute("hidden","");
-  return link;
+  return link.download;
 }
-function feedfileName(){
-var fileName=document.getElementById("fileNameCSV").value;
-return fileName;
-}
-function newFunction(link){
-  feedfileName();
-  if (document.getElementById("fileNameCSV").value===""){ link.download = "Random Number Generator-Result.csv"; link.click();}
-  else{ link.download = document.getElementById("fileNameCSV").value+".csv"; link.click();}
-  document.getElementById('print').innerHTML="Results downloaded";
-  return fileName;
-}
+
 </script>
 </html>
