@@ -409,7 +409,7 @@ function generateNumbers(blockNumber){
   }
   }
 }
-let printString="<button id=\"showCSVoptions\" onfocus=\"showCSVoptions()\"><strong>Save the results as a CSV file</strong></button><br>CSV stands for Comma Seperated Values which can be opened in any spreadsheet software including Excel.<br><p id=\"CSVfileName\" hidden><label for=\"fileNameCSV\"> Please enter the file name:</label><input id=\"fileNameCSV\" type=\"text\" pattern=\"[0-9a-zA-Z_\-.\s]\" placeholder=\"Random Number Generator-Result\" /><strong>.csv</strong><br><button id=\"printAsCSV\" onfocus=\"printAsCSV()\">Generate CSV file</button><br></p><div id=\"printingStatus\"></div><hr>";
+let printString="<button id=\"showCSVoptions\" onfocus=\"showCSVoptions()\"><strong>Save the results as a CSV file</strong></button><br>CSV stands for Comma Seperated Values which can be opened in any spreadsheet software including Excel.<br><p id=\"CSVfileName\" hidden><br><button id=\"printAsCSV\" onfocus=\"printAsCSV()\">Generate CSV file</button><br></p><div id=\"printingStatus\"></div><hr>";
 function generateMain(){
   if (document.getElementById("countBlock").value===""||document.getElementById("countRandom").value===""||document.getElementById("minValue").value===""||document.getElementById("maxValue").value===""){
     document.getElementById("resultDiv").innerText="Please enter all the fields";
@@ -568,7 +568,6 @@ const permutation = (inputArray) => {
  return result;
 }
 function showCSVoptions(){
-document.getElementById('fileNameCSV').removeAttribute('hidden');
 document.getElementById('CSVfileName').removeAttribute('hidden');
 document.getElementById("showCSVoptions").blur();
 }
@@ -597,23 +596,22 @@ function printAsCSV(){
   let blobtodata = new FileReader();
   blobtodata.readAsDataURL(csv);
   blobtodata.onload = () => {
-  link.href = blobtodata.result;
+  link.onfocus = downloadfinished();
   }
-  if (document.getElementById("fileNameCSV").value===""){ link.download = "Random Number Generator-Result.csv";}
-  else{ link.download = document.getElementById("fileNameCSV").value+".csv";}
-  link.innerHTML = "<button>Download!</button>";
-  link.onfocus = () => document.getElementById('print').innerHTML="Results downloaded";
+  function downloadfinished(){
+  var link2 = link = document.createElement("a");
+  link2.download = "Random Number Generator - Results.csv";
+  link2.href = blobtodata.result;
+  link2.click();
+  document.getElementById('print').innerHTML="Results downloaded";
+  return null;
+  }
+  link.innerHTML = "Download!";
   document.getElementById("printingStatus").innerHTML+="File generation successfull.<br>"
   document.getElementById("printingStatus").appendChild(link);
   document.getElementById("printAsCSV").blur();
   document.getElementById("printAsCSV").setAttribute("hidden","");
-  return link.download;
-}
-function returnFileName(){
-  var result;
-  if (document.getElementById("fileNameCSV").value===""){ result = "Random Number Generator-Result";}
-  else{ result = document.getElementById("fileNameCSV").value;}
-  return result;
+  return null;
 }
 </script>
 </html>
