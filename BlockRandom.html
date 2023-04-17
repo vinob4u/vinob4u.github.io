@@ -609,6 +609,11 @@ function printAsCSV(){
   document.getElementById("printAsCSV").setAttribute("hidden","");
   return link.download;
 }
-
+function returnFileName(){
+  var result;
+  if (document.getElementById("fileNameCSV").value===""){ result = "Random Number Generator-Result";}
+  else{ result = document.getElementById("fileNameCSV").value;}
+  return result;
+}
 </script>
 </html>
