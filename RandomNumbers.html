@@ -194,7 +194,7 @@ function columnShow(){
 }
 function uniqueYes(){unique=1; return unique;}
 function uniqueNo(){unique=0; return unique;}
-let printString="<button id=\"showCSVoptions\" onfocus=\"showCSVoptions()\"><strong>Save the results as a CSV file</strong></button><br>CSV stands for Comma Seperated Values which can be opened in any spreadsheet software including Excel.<br><p id=\"CSVfileName\" hidden><br><button id=\"printAsCSV\" onfocus=\"printAsCSV()\">Generate CSV file</button><br></p><div id=\"printingStatus\"></div><hr>";
+let printString="<button id=\"showCSVoptions\" onfocus=\"showCSVoptions()\"><strong>Save the results as a CSV file</strong></button><br>CSV stands for Comma Seperated Values which can be opened in any spreadsheet software including Excel.<br><p id=\"CSVfileName\" hidden><br><button id=\"printAsCSV\" onfocus=\"printAsCSV()\">Download!</button><br></p><div id=\"printingStatus\"></div><hr>";
 function generate(){
   let m = parseFloat(document.getElementById("minValue").value);
   let M = parseFloat(document.getElementById("maxValue").value);
@@ -356,12 +356,6 @@ function printAsCSV(){
   document.getElementById('print').innerHTML="Results downloaded";
   return null;
   }
-  link.innerHTML = "Download!";
-  document.getElementById("printingStatus").innerHTML+="File generation successfull.<br>"
-  document.getElementById("printingStatus").appendChild(link);
-  document.getElementById("printAsCSV").blur();
-  document.getElementById("printAsCSV").setAttribute("hidden","");
-  return null;
 }
 
 </script>

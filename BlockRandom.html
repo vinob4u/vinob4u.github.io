@@ -409,7 +409,7 @@ function generateNumbers(blockNumber){
   }
   }
 }
-let printString="<button id=\"showCSVoptions\" onfocus=\"showCSVoptions()\"><strong>Save the results as a CSV file</strong></button><br>CSV stands for Comma Seperated Values which can be opened in any spreadsheet software including Excel.<br><p id=\"CSVfileName\" hidden><br><button id=\"printAsCSV\" onfocus=\"printAsCSV()\">Generate CSV file</button><br></p><div id=\"printingStatus\"></div><hr>";
+let printString="<button id=\"showCSVoptions\" onfocus=\"showCSVoptions()\"><strong>Save the results as a CSV file</strong></button><br>CSV stands for Comma Seperated Values which can be opened in any spreadsheet software including Excel.<br><p id=\"CSVfileName\" hidden><br><button id=\"printAsCSV\" onfocus=\"printAsCSV()\">Download!</button><br></p><div id=\"printingStatus\"></div><hr>";
 function generateMain(){
   if (document.getElementById("countBlock").value===""||document.getElementById("countRandom").value===""||document.getElementById("minValue").value===""||document.getElementById("maxValue").value===""){
     document.getElementById("resultDiv").innerText="Please enter all the fields";
@@ -606,12 +606,6 @@ function printAsCSV(){
   document.getElementById('print').innerHTML="Results downloaded";
   return null;
   }
-  link.innerHTML = "Download!";
-  document.getElementById("printingStatus").innerHTML+="File generation successfull.<br>"
-  document.getElementById("printingStatus").appendChild(link);
-  document.getElementById("printAsCSV").blur();
-  document.getElementById("printAsCSV").setAttribute("hidden","");
-  return null;
 }
 </script>
 </html>
