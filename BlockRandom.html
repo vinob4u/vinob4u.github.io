@@ -17,6 +17,17 @@
     #resultDiv table tr td{margin:0 auto; border: solid 1px red; background-color: white;}
     #resultDiv span{display: inline-block;}
     #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
+    @media print {
+      body {
+        visibility: hidden;
+      }
+      #resultDiv {
+      visibility: visible;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
     hr {
       border-top: 3px dashed red;
     }
