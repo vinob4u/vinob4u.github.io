@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
     <title>Sample Size for Hypothesis testing for two population mean</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -15,18 +12,19 @@
       }
     body{ margin:0;}
     article{flex:1; font-size:110%;}
-    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
-    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
+    #resultDiv{background-color:white; color:black; font-weight:bold; width:99vw; min-height: 7vh}
+    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle; color:red}
     hr {
       border-top: 3px dashed red;
     }
-    footer{ margin-top:auto;
+    footer{ 
+      margin-top:auto;
       left: 0; right: 0;
       display:block;
       background-color: black; color: white;
-      font-size:0.75rem;     
-      text-align: center;    
-      bottom: 0; 
+      font-size:0.75rem;
+      text-align: center;
+      bottom: 0;
       width: 100%;}
     body {
         position: relative;
@@ -129,38 +127,39 @@
       }
       img {height: 20vh; width:80vw}
     </style>
-  </head><div id="holder">
-  <body ><article>
-  <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-    <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
-    <h1>Sample Size for Hypothesis testing for two population mean</h1>
-    <hr>
-    <p id="z1aby2p">Alpha Error =&nbsp; <input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
-    <p id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
-    <p id="S1p">S<sub>1 </sub>= <input id="S1" placeholder="Please enter value" required="required" type="tel"> </p>
-    <p id="S2p">S<sub>2 </sub>= <input id="S2" placeholder="Please enter value" required="required" type="tel"></p>
-    <p id="Mdp">μ<sub>d </sub>= <input id="Md" placeholder="Mean Difference" required="required" type="tel"> </p>
-    <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
-    <div id= "resultDiv"><span>Result:</span>
-    <span id="result"> Result will appear here once you enter parameters. </span>
-    </div>
-    <br><div hidden id="variableshower">
-    <label class="switch">
-      <input type="checkbox" onfocus="toggled()">
-      <span class="slider round"></span>
-    </label>&nbsp;&nbsp;Know what the parameters stand for
-    <p hidden id="variables">
-     <br> S<sub>1</sub> = Standard deviation in the first group
-     <br> S<sub>2</sub> = Standard deviation in the second group
-     <br> μ<sub>d</sub> = Mean difference between the samples
-     <br> α = Significance level
-     <br> 1-β = Power
-     <br> <img src="twoPopMean.png">
-     </p></div>
-     <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
-  </article>
-  </body></div>
+</head><div id="holder">
+    <body ><article>
+        <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
+        <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
+        <h1>Sample Size for Hypothesis testing for two population mean</h1>
+        <hr>
+        <p id="z1aby2p">Alpha Error =&nbsp; <input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
+        <p id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
+        <p id="S1p">S<sub>1 </sub>= <input id="S1" placeholder="Please enter value" required="required" type="tel"> </p>
+        <p id="S2p">S<sub>2 </sub>= <input id="S2" placeholder="Please enter value" required="required" type="tel"></p>
+        <p id="Mdp">μ<sub>d </sub>= <input id="Md" placeholder="Mean Difference" required="required" type="tel"> </p>
+        <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
+        <div id= "resultDiv"><span>Result:</span>
+            <span id="result"> Result will appear here once you enter parameters. </span>
+        </div>
+        <br><div hidden id="variableshower">
+        <label class="switch">
+            <input type="checkbox" onfocus="toggled()">
+            <span class="slider round"></span>
+        </label>&nbsp;&nbsp;Know what the parameters stand for
+        <p hidden id="variables">
+            <br> S<sub>1</sub> = Standard deviation in the first group
+            <br> S<sub>2</sub> = Standard deviation in the second group
+            <br> μ<sub>d</sub> = Mean difference between the samples
+            <br> α = Significance level
+            <br> 1-β = Power
+            <br> <img src="twoPopMean.png">
+        </p></div>
+        <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
+        <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io<br>
+        <a href="LICENSE">Copyright Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="Privacy%20Notice.html">Privacy Notice</a></footer>
+    </article>
+    </body></div>
 <script>
  function toggled(){
   let c = document.getElementById("variables");

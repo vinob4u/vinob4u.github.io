@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
     <title>Descriptive Studies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
@@ -16,7 +13,7 @@
     #strtagn{ margin-bottom:80px;}
     body{ margin:0;}
     article{flex:1; font-size:110%;}
-    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
+    #resultDiv{background-color:white; color:black; font-weight:bold; width:99vw; min-height: 7vh}
     hr {
       border-top: 3px dashed red;
     }
@@ -24,9 +21,9 @@
       left: 0; right: 0;
       display:block;
       background-color: black; color: white;
-      font-size:0.75rem;     
-      text-align: center;    
-      bottom: 0; 
+      font-size:0.75rem;
+      text-align: center;
+      bottom: 0;
       width: 100vw;}
     body {
         position: relative;
@@ -77,6 +74,9 @@
       #CF{width: 50vw;}
       input[name="typeOfCalculation"] {
         width: 23vw;
+        -ms-transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
       }
       td{background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 8px 20px;
@@ -87,72 +87,76 @@
       h1{font-size:2rem}
       a {font-size:inherit; color:yellow}
       </style>
-  </head><div id="holder">
-  <body><article><button onclick="location.replace('./index.html')" style="float: left"> Back to home </button><br>
-    <h1> Descriptive Studies </h1>
-    <div id="typeOfCalculationDiv">
-      <table style="width: 100%" border="1">
-        <tbody>
-          <tr>
-            <td><input id="ProportionAbsPrecision" name="typeOfCalculation" value="Proportion with Absolute Precision"
-                type="radio" onfocus="PrAbsPShow()"><label for="ProportionAbsPrecision"><br>Proportion with
-                Absolute Precision</label><br>
-            </td>
-            <td><input id="ProportionRelPrecision" name="typeOfCalculation" value="Proportion with Relative Precision"
-                type="radio" onfocus="PrRelPShow()"><label for="ProportionRelPrecision"><br>Proportion with
-                Relative Precision</label><br>
-            </td>
-          </tr>
-          <tr>
-            <td><input id="MeanAbsPrecision" name="typeOfCalculation" value="Mean with Absolute Precision"
-                type="radio" onfocus="MAbsPShow()"><label for="MeanAbsPrecision"><br>Mean with Absolute
-                Precision</label><br>
-            </td>
-            <td><input id="MeanRelPrecision" name="typeOfCalculation" value="Mean with Realtive Precision"
-                type="radio" onfocus="MRelPShow()"><label for="MeanRelPrecision"><br>Mean with Relative
-                Precision</label><br>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <hr><p>
-    <div id="labelPrevalence" hidden>
-    <label for="prevalence">Enter expected prevalence: </label> <input hidden id="prevalence"
-      name="Prevalence" placeholder="12" required="" type="tel"> %</div>   
-    <div id="labelSD" hidden>
-    <label for="SD">Enter expected Standard Deviation: </label> <input hidden id="SD"
-      name="Prevalence" placeholder="SD" required="" type="tel">%</div></p>
-    
-    <label id="labelCF" for="CF" hidden> Confidence Interval: </label>
-    <select id="CF" hidden>
-      <option>80%</option>
-      <option>85%</option>
-      <option>90%</option>
-      <option selected="selected">95%</option>
-      <option>99%</option>
-      <option>99.5%</option>
-      <option>99.9%</option>
-    </select>
-    <p>
-   <div  id="labelAbsPrecision" hidden>
-    <label for="AbsPrecision">Enter absolute precision: </label> <input hidden id="AbsPrecision"
-      name="d" placeholder="Absolute Precision" required="" type="tel">%</div>
-    <div hidden id="labelRelPrecision">
-    <label for="RelPrecision">Enter relative precision: </label> <input hidden id="RelPrecision"
-      name="e" placeholder="Relative Precision" required="" type="tel">%</div></p>
-   <p>
-    <label id="labelMean" hidden for="mean">Enter expected mean: </label> <input hidden id="mean"
-      name="Mean" placeholder="Mean" required="" type="tel"></p>
-    
-   
-    <button id="Calculate" onfocus="calculate()"> Calculate </button> <hr>
-    <p><div id= "resultDiv"><span>Result:<span>
+</head><div id="holder">
+    <body><article><button onclick="location.replace('./index.html')" style="float: left"> Back to home </button><br>
+        <h1> Descriptive Studies </h1>
+        <div id="typeOfCalculationDiv">
+            <table style="width: 100%" border="1">
+                <tbody>
+                <tr>
+                    <td><input id="ProportionAbsPrecision" name="typeOfCalculation" value="Proportion with Absolute Precision"
+                               type="radio" onfocus="PrAbsPShow()"><label for="ProportionAbsPrecision"><br>Proportion with
+                        Absolute Precision</label><br>
+                    </td>
+                    <td><input id="ProportionRelPrecision" name="typeOfCalculation" value="Proportion with Relative Precision"
+                               type="radio" onfocus="PrRelPShow()"><label for="ProportionRelPrecision"><br>Proportion with
+                        Relative Precision</label><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="MeanAbsPrecision" name="typeOfCalculation" value="Mean with Absolute Precision"
+                               type="radio" onfocus="MAbsPShow()"><label for="MeanAbsPrecision"><br>Mean with Absolute
+                        Precision</label><br>
+                    </td>
+                    <td><input id="MeanRelPrecision" name="typeOfCalculation" value="Mean with Relative Precision"
+                               type="radio" onfocus="MRelPShow()"><label for="MeanRelPrecision"><br>Mean with Relative
+                        Precision</label><br>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div id="labelPrevalence" hidden>
+            <label for="prevalence">Enter expected prevalence: </label> <input hidden id="prevalence"
+                                                                               name="Prevalence" placeholder="12" required="" type="tel"> %</div>
+        <div id="labelSD" hidden>
+            <label for="SD">Enter expected Standard Deviation: </label> <input hidden id="SD"
+                                                                               name="Prevalence" placeholder="SD" required="" type="tel">%</div>
+
+        <label id="labelCF" for="CF" hidden> Confidence Interval: </label>
+        <select id="CF" hidden>
+            <option>80%</option>
+            <option>85%</option>
+            <option>90%</option>
+            <option selected="selected">95%</option>
+            <option>99%</option>
+            <option>99.5%</option>
+            <option>99.9%</option>
+        </select>
+
+        <div  id="labelAbsPrecision" hidden>
+            <label for="AbsPrecision">Enter absolute precision: </label> <input hidden id="AbsPrecision"
+                                                                                name="d" placeholder="Absolute Precision" required="" type="tel">%</div>
+        <div hidden id="labelRelPrecision">
+            <label for="RelPrecision">Enter relative precision: </label> <input hidden id="RelPrecision"
+                                                                                name="e" placeholder="Relative Precision" required="" type="tel">%</div>
+
+
+        <p>
+            <label id="labelMean" hidden for="mean">Enter expected mean: </label> <input hidden id="mean"
+                                                                                         name="Mean" placeholder="Mean" required="" type="tel">
+        </p>
+
+
+        <button id="Calculate" onfocus="calculate()"> Calculate </button> <hr>
+        <br><div id= "resultDiv"><span>Result:</span>
     <span id="result"> Result will appear here once you enter parameters. </span>
-    </div><br><br>
-    <button id="strtagn" onfocus="startAgain()">Start Again</button></p><hr></article>
-  </body></div>
-<footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp;<a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
+        </div><br><br>
+        <button id="strtagn" onfocus="startAgain()">Start Again</button><hr></article>
+    </body></div>
+<footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io<br>
+        <a href="LICENSE">Copyright Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="Privacy%20Notice.html">Privacy Notice</a></footer>
 <script>
 let typeOfCalculation = 0;
 function PrAbsPShow(){
@@ -226,7 +230,7 @@ function calculate(){
   if (document.getElementById('prevalence').value>100 || document.getElementById('AbsPrecision').value>100 || document.getElementById('RelPrecision').value>100 || document.getElementById('SD').value>100||document.getElementById('prevalence').value<0 || document.getElementById('AbsPrecision').value<0 || document.getElementById('RelPrecision').value<0 || document.getElementById('SD').value<0){
     document.getElementById('result').innerHTML= "Please enter valid parameters"
   }
-  else{  
+  else{
   let z= document.getElementById("CF");
   switch(typeOfCalculation){
     case 0:

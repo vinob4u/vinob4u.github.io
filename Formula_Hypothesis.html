@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
     <title>Analytical Studies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -15,18 +12,19 @@
       }
     body{ margin:0;}
     article{flex:1; font-size:110%;}
-    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
-    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
+    #resultDiv{background-color:white; color:black; font-weight:bold; width:99vw; min-height: 7vh}
+    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle; color:red}
     hr {
       border-top: 3px dashed red;
     }
-    footer{ margin-top:auto;
+    footer{ 
+      margin-top:auto;
       left: 0; right: 0;
       display:block;
       background-color: black; color: white;
-      font-size:0.75rem;     
-      text-align: center;    
-      bottom: 0; 
+      font-size:0.75rem;
+      text-align: center;
+      bottom: 0;
       width: 100%;}
     body {
         position: relative;
@@ -129,80 +127,81 @@
       }
       img {height: 20vh; width:80vw}
     </style>
-  </head><div id="holder">
-  <body ><article>
-    <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
-    <h1>Analytical Studies</h1>
-    <hr>
-    <div style="text-align: center;">Select type of study:
-      <select id="TypeOfStudy" required="required" width="85%" onchange="typeOfStudy()">
-        <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-        <option value="CrossSectional">Cross Sectional Study</option>
-        <option value="CaseControl">Case Control Study</option>
-        <option value="Cohort">Cohort Study</option>
-      </select>
-    </div>
-    <hr>
-    <p hidden id="z1aby2p">Alpha Error =&nbsp;<input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
-    <p hidden id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
-    <p hidden id="ORP1P2p">Please select parameters you have:
-    <select id="ORP1P2Select" width="85%" onchange="ORP1P2Selected()">
-        <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-        <option value="ODP1">Odds ratio and P2*</option>
-        <option value="P1P2">P1* and P2*</option>
-      </select>
-    </p>
-    <p hidden id="p1*p">P<sub>1</sub>* = <input id="P1*" placeholder="0.50" type="tel"></p>
-    <p hidden id="p2*p">P<sub>2</sub>* = <input id="P2*" placeholder="0.40" type="tel"></p>
-    <p hidden id="RRP1P2p">Please select parameters you have:
-    <select id="RRP1P2Select" width="85%" onchange="RRP1P2Selected()">
-        <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-        <option value="ODP1">Relative Risk and P2</option>
-        <option value="P1P2">P1 and P2</option>
-      </select>
-    </p>
-    <p hidden id="ORp">Odds Ratio = <input id="OR" placeholder="2" type="tel"></p>
-    <p hidden id="p1p">P<sub>1 </sub>= <input id="P1" placeholder="0.50" required="required" type="tel"> </p>
-    <p hidden id="p2p">P<sub>2 </sub>= <input id="P2" placeholder="0.40" required="required" type="tel"></p>
-    <p hidden id="RRp">Relative Risk = <input id="RR" placeholder="Relative Risk" type="tel"></p>
-    <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
-    <div id= "resultDiv"><span>Result:</span>
-    <span id="result"> Result will appear here once you enter parameters. </span>
-    </div><br>
-    <div hidden id="variableshower">
-    <label class="switch">
-      <input type="checkbox" onfocus="toggled()">
-      <span class="slider round"></span>
-    </label>&nbsp;&nbsp;Know what the parameters stand for
-    <div hidden id="variables">
-     <ul hidden id="CrossSectionalVariables">
-     <li> P<sub>1</sub> = Proportion in the first group</li>
-     <li> P<sub>2</sub> = Proportion in the second group</li>
-     <li> α = Significance level </li>
-     <li> 1-β = Power</li>
-     <li> <img src="crossSect.png"></li>
-     </ul>
-    <ul hidden id="CaseControlVariables">
-     <li> P<sub>2</sub>* = Probability of the exposure given disease is absent</li>
-     <li> P<sub>1</sub>* = Probability of the exposure given disease is present</li>
-     <li> α = Significance level </li>
-     <li> 1-β = Power</li>
-     <li> <img src="caseControl.png"></li>
-     </ul>
-    <ul hidden id="CohortVariables">
-     <li> P<sub>2</sub> = Proportion(incidence) of disease present in the unexposed group</li>
-     <li> P<sub>2</sub> = Proportion(incidence) of disease present in the exposed group</li>
-     <li> α = Significance level </li>
-     <li> 1-β = Power</li>
-     <li> <img src="cohort.png"></li>
-     </ul>
-    </div>
-    </div>
-    <br>
-    <button onfocus="startAgain()" id="strtagn">Start Again</button><br><hr>
-  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp;<a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
-  </article>
-  </body></div>
+</head><div id="holder">
+    <body ><article>
+        <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
+        <h1>Analytical Studies</h1>
+        <hr>
+        <div style="text-align: center;">Select type of study:
+            <select id="TypeOfStudy" required="required" onchange="typeOfStudy()">
+                <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+                <option value="CrossSectional">Cross Sectional Study</option>
+                <option value="CaseControl">Case Control Study</option>
+                <option value="Cohort/RCT">Cohort Study/RCT</option>
+            </select>
+        </div>
+        <hr>
+        <p hidden id="z1aby2p">Alpha Error =&nbsp;<input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
+        <p hidden id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
+        <p hidden id="ORP1P2p">Please select parameters you have:
+            <select id="ORP1P2Select" onchange="ORP1P2Selected()">
+                <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+                <option value="ODP1">Odds ratio and P2*</option>
+                <option value="P1P2">P1* and P2*</option>
+            </select>
+        </p>
+        <p hidden id="p1*p">P<sub>1</sub>* = <input id="P1*" placeholder="0.50" type="tel"></p>
+        <p hidden id="p2*p">P<sub>2</sub>* = <input id="P2*" placeholder="0.40" type="tel"></p>
+        <p hidden id="RRP1P2p">Please select parameters you have:
+            <select id="RRP1P2Select" onchange="RRP1P2Selected()">
+                <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+                <option value="ODP1">Relative Risk and P2</option>
+                <option value="P1P2">P1 and P2</option>
+            </select>
+        </p>
+        <p hidden id="ORp">Odds Ratio = <input id="OR" placeholder="2" type="tel"></p>
+        <p hidden id="p1p">P<sub>1 </sub>= <input id="P1" placeholder="0.50" required="required" type="tel"> </p>
+        <p hidden id="p2p">P<sub>2 </sub>= <input id="P2" placeholder="0.40" required="required" type="tel"></p>
+        <p hidden id="RRp">Relative Risk = <input id="RR" placeholder="Relative Risk" type="tel"></p>
+        <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
+        <div id= "resultDiv"><span>Result:</span>
+            <span id="result"> Result will appear here once you enter parameters. </span>
+        </div><br>
+        <div hidden id="variableshower">
+            <label class="switch">
+                <input type="checkbox" onfocus="toggled()">
+                <span class="slider round"></span>
+            </label>&nbsp;&nbsp;Know what the parameters stand for
+            <div hidden id="variables">
+                <ul hidden id="CrossSectionalVariables">
+                    <li> P<sub>1</sub> = Proportion in the first group</li>
+                    <li> P<sub>2</sub> = Proportion in the second group</li>
+                    <li> α = Significance level </li>
+                    <li> 1-β = Power</li>
+                    <li> <img src="crossSect.png"></li>
+                </ul>
+                <ul hidden id="CaseControlVariables">
+                    <li> P<sub>2</sub>* = Probability of the exposure given disease is absent</li>
+                    <li> P<sub>1</sub>* = Probability of the exposure given disease is present</li>
+                    <li> α = Significance level </li>
+                    <li> 1-β = Power</li>
+                    <li> <img src="caseControl.png"></li>
+                </ul>
+                <ul hidden id="CohortVariables">
+                    <li> P<sub>2</sub> = Proportion(incidence) of disease present in the unexposed group</li>
+                    <li> P<sub>2</sub> = Proportion(incidence) of disease present in the exposed group</li>
+                    <li> α = Significance level </li>
+                    <li> 1-β = Power</li>
+                    <li> <img src="cohort.png"></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <button onfocus="startAgain()" id="strtagn">Start Again</button><br><hr>
+        <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io<br>
+        <a href="LICENSE">Copyright Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="Privacy%20Notice.html">Privacy Notice</a></footer>
+    </article>
+    </body></div>
 <script>
 let s="NotYetSelected";
 let s1="NotYetSelected";
@@ -226,7 +225,7 @@ function typeOfStudy(){
     case "Case Control Study":
       CaseControlShow()
       break;
-    case "Cohort Study":
+    case "Cohort Study/RCT":
       CohortShow()
       break;
     default:

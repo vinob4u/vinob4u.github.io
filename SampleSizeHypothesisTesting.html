@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Pre-test and Post-test Studies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,18 +12,19 @@
       }
     body{ margin:0;}
     article{flex:1; font-size:110%;}
-    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh}
-    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
+    #resultDiv{background-color:white; color:black; font-weight:bold; width:99vw; min-height: 7vh}
+    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle; color:red}
     hr {
       border-top: 3px dashed red;
     }
-    footer{ margin-top:auto;
+    footer{ 
+      margin-top:auto;
       left: 0; right: 0;
       display:block;
       background-color: black; color: white;
-      font-size:0.75rem;     
-      text-align: center;    
-      bottom: 0; 
+      font-size:0.75rem;
+      text-align: center;
+      bottom: 0;
       width: 100%;}
     body {
         position: relative;
@@ -126,68 +127,69 @@
       }
       img {height: 20vh; width:80vw}
     </style>
-  </head><div id="holder">
-  <body ><article>
-    
-    <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-    <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
-    <h1>Pre- and Post- Studies</h1>
-    <hr>
-    <div style="text-align: center;">Select type of Calculation:<br> Sample Size for Hypothesis testing for 
-      <select id="TypeOfCalculation" required="required" width="85%" onchange="typeOfCalculation()">
-        <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-        <option> Paired Mean</option>
-        <option> Paired Proportion</option>
-      </select>
-    </div>
-    <hr>
-    <p id="z1aby2p">Alpha Error =&nbsp; <input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
-    <p id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
- 
-    
-    <p id="μ1p">μ<sub>1</sub> = <input id="μ1" placeholder="Pre-test mean" type="tel"></p>
-    <p id="μ2p">μ<sub>2</sub> = <input id="μ2" placeholder="Post-test mean" type="tel"></p>
-    <p id="σ1p">σ<sub>1</sub> = <input id="σ1" placeholder="SD in the pre-test" type="tel"></p>
-    <p id="σ2p">σ<sub>2</sub> = <input id="σ2" placeholder="SD in the post-test" type="tel"></p>
-    
-    <p id="Sp">s = <input id="S" placeholder="Please enter value" required="required" type="tel"> </p>
-    <p id="Tp">t = <input id="T" placeholder="Please enter value" required="required" type="tel"></p>
-    <p id="Npairsp">n<sub>pairs </sub> = <input id="Npairs" placeholder="Total pairs" required="required" type="tel"> </p>
+</head><div id="holder">
+    <body ><article>
 
-    <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
-    <div id= "resultDiv"><span>Result:</span>
-    <span id="result"> Result will appear here once you enter parameters. </span>
-    </div>
-    <br><div hidden id="variableshower">
-    <label class="switch">
-      <input type="checkbox" onfocus="toggled()">
-      <span class="slider round"></span>
-    </label>&nbsp;&nbsp;Know what the parameters stand for
-    <div hidden id="variables">
-    <p hidden id="PairedMeanVariables">
-     <br> μ<sub>1</sub> = Pre-test mean
-     <br> μ<sub>2</sub> = Post-test mean
-     <br> σ<sub>1</sub> = Standard deviation in the Pre-test
-     <br> σ<sub>2</sub> = Standard deviation in the Post-test
-     <br> Δ = Effect size
-     <br> α = Significance level
-     <br> 1-β = Power
-     <br> <img src="pairedMean.png">
-     </p>
-    <p hidden id="PairedProportionVariables">
-     <br> s = Number of cases exposed and control not exposed
-     <br> t = Number of cases not exposed and control exposed
-     <br> n<sub>pairs</sub>= Total pairs
-     <br> α = Significance level
-     <br> 1-β = Power
-     <br> <img src="pairedProportion.png">
-     </p>
-    </div>
+        <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
+        <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
+        <h1>Pre- and Post- Studies</h1>
+        <hr>
+        <div style="text-align: center;">Select type of Calculation:<br> Sample Size for Hypothesis testing for
+            <select id="TypeOfCalculation" required="required" width="85%" onchange="typeOfCalculation()">
+                <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+                <option> Paired Mean</option>
+                <option> Paired Proportion</option>
+            </select>
+        </div>
+        <hr>
+        <p id="z1aby2p">Alpha Error =&nbsp; <input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
+        <p id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
+
+
+        <p id="μ1p">μ<sub>1</sub> = <input id="μ1" placeholder="Pre-test mean" type="tel"></p>
+        <p id="μ2p">μ<sub>2</sub> = <input id="μ2" placeholder="Post-test mean" type="tel"></p>
+        <p id="σ1p">σ<sub>1</sub> = <input id="σ1" placeholder="SD in the pre-test" type="tel"></p>
+        <p id="σ2p">σ<sub>2</sub> = <input id="σ2" placeholder="SD in the post-test" type="tel"></p>
+
+        <p id="Sp">s = <input id="S" placeholder="Please enter value" required="required" type="tel"> </p>
+        <p id="Tp">t = <input id="T" placeholder="Please enter value" required="required" type="tel"></p>
+        <p id="Npairsp">n<sub>pairs </sub> = <input id="Npairs" placeholder="Total pairs" required="required" type="tel"> </p>
+
+        <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
+        <div id= "resultDiv"><span>Result:</span>
+            <span id="result"> Result will appear here once you enter parameters. </span>
+        </div>
+        <br><div hidden id="variableshower">
+        <label class="switch">
+            <input type="checkbox" onfocus="toggled()">
+            <span class="slider round"></span>
+        </label>&nbsp;&nbsp;Know what the parameters stand for
+        <div hidden id="variables">
+            <p hidden id="PairedMeanVariables">
+                <br> μ<sub>1</sub> = Pre-test mean
+                <br> μ<sub>2</sub> = Post-test mean
+                <br> σ<sub>1</sub> = Standard deviation in the Pre-test
+                <br> σ<sub>2</sub> = Standard deviation in the Post-test
+                <br> Δ = Effect size
+                <br> α = Significance level
+                <br> 1-β = Power
+                <br> <img src="pairedMean.png">
+            </p>
+            <p hidden id="PairedProportionVariables">
+                <br> s = Number of cases exposed and control not exposed
+                <br> t = Number of cases not exposed and control exposed
+                <br> n<sub>pairs</sub>= Total pairs
+                <br> α = Significance level
+                <br> 1-β = Power
+                <br> <img src="pairedProportion.png">
+            </p>
+        </div>
     </div><br>
-    <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-  <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at &nbsp;&nbsp; <a target="_blank" href='https://vinob4u.github.io'>vinob4u.github.io</a></footer>
-  </article>
-  </body></div>
+        <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
+        <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io<br>
+        <a href="LICENSE">Copyright Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="Privacy%20Notice.html">Privacy Notice</a></footer>
+    </article>
+    </body></div>
 <script>
 let O="NotYetSelected";
 let O1="NotYetSelected";
@@ -239,8 +241,8 @@ function PairedProportionShow(){
   document.getElementById("σ1p").setAttribute("hidden","");
   document.getElementById("σ2p").setAttribute("hidden","");
   document.getElementById("μ1p").setAttribute("hidden","");
-  document.getElementById("μ2p").setAttribute("hidden",""); 
-  document.getElementById("strtagn").removeAttribute("hidden"); 
+  document.getElementById("μ2p").setAttribute("hidden","");
+  document.getElementById("strtagn").removeAttribute("hidden");
   document.getElementById("PairedProportionVariables").removeAttribute("hidden");
   document.getElementById("PairedMeanVariables").setAttribute("hidden", "");
 }

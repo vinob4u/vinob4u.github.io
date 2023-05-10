@@ -10,13 +10,14 @@
     #holder { display:flex; flex-direction:column;
       min-height: 100vh;
       }
-    body{ margin:0;}
+    body{ margin:0; padding:0;}
     article{flex:1; font-size:110%;}
-    #resultDiv{background-color:white; color:black; font-weight:bold; width:100vw; min-height: 7vh; text-align:center;}
+    #resultDiv{background-color:white; color:black; font-weight:bold; width:99vw; min-height: 7vh; text-align:center;}
     #resultDiv table{margin:0 auto; width:95vw; border: solid 1px blue; border-spacing:0;}
     #resultDiv table tr td{margin:0 auto; border: solid 1px red; background-color: white;}
     #resultDiv span{display: inline-block;}
-    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle;}
+    #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle; color:red}
+    a {font-size:inherit; color:yellow}
     @media print {
       body {
         visibility: hidden;
@@ -38,7 +39,8 @@
       font-size:0.75rem;
       text-align: center;
       bottom: 0;
-      width: 100%;}
+      width: 100%;
+      }
     body {
         position: relative;
       }
@@ -87,7 +89,7 @@
         color: black;
       }
       input[type="radio"]{
-        width: 1rem;
+        width: 1.5rem;
         background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
         padding: 0 0;
         border: 0px solid black;
@@ -95,6 +97,9 @@
         font-weight: bold;
         transition: all 0.2s ease-in-out;
         color: black;
+        -ms-transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
       }
       select{
         width: 80vw;
@@ -246,9 +251,10 @@
         </div>
         <hr>
         <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-        <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io</footer>
     </article>
-    </body></div>
+    </body>
+    <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io<br>
+        <a href="LICENSE">Copyright Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="Privacy%20Notice.html">Privacy Notice</a></footer></div>
 <script>
 function toggled(){
   let c = document.getElementById("help");
