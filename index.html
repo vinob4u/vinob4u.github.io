@@ -4,64 +4,11 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Sample Size Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" >
-    <style>
-    *{font-size: inherit}
-    html{font-size:110%; font-family: "Sans Serif"; text-align: center; vertical-align: middle; background-image: linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% ); color: black;  font-weight:bold;}
-    #holder { display:flex; flex-direction:column;
-      min-height: 100vh;
-      }
-    body{ margin:0;}
-    article{flex:1;font-size:110%;}
-    hr {
-      border-top: 3px dashed red;
-    }
-    footer{
-      left: 0; right: 0;
-      display:block;
-      background-color: black; color: white;
-      font-size:0.63rem;
-      text-align: center;
-      bottom: 0;
-      width: 100vw;}
-    body {
-        position: relative;
-      }
-
-     body::after {
-        content: '';
-      }
-    footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        min-height: 7vh;
-      }
-    button {
-        background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
-        padding: 8px 20px;
-        border:5px solid black;
-        border-radius: 16px;
-        font-weight: bold;
-        transition: all 0.2s ease-in-out;
-        color: black;
-      }
-    button:hover {
-        color: #222222;
-        box-shadow: 0 5px 25px rgba(145, 102, 182, .4);
-      }
-      #firstButton{ border: 5px solid blue; color: blue;}
-      #secondButton{ border: 5px solid red; color: red;}
-      #thirdButton{ border: 5px solid purple; color: purple;}
-      #fourthButton{ border: 5px solid navy; color: navy;}
-      #fifthButton{ border: 5px solid black; color: black;}
-      #sixthButton{ border: 5px solid #783114; color: #783114;}
-      h1{font-size:2rem}
-      a {font-size:inherit; color:yellow}
-      #lastHr{ margin-bottom:80px}
-      #javascriptDisabled {background-color:black; font-size:60px; font-family: "Sans Serif"; text-align: center; vertical-align: middle; color:red}
-      </style>
-</head><div id="holder">
-    <body><article>
+    <link rel="stylesheet" href="style_main.css">
+</head>
+<div id="holder">
+    <body>
+      <article>
         <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
         <h1> Study Design </h1><hr>
             <button id="firstButton" onclick="location.assign('./SampleSizeCalculation.html')"> Descriptive Studies </button>
@@ -76,7 +23,7 @@
             <hr>
             <button id="sixthButton" onclick="location.assign('./BlockRandom.html')"> Blocks of Random Numbers Generator</button>
             <hr id="lastHr">
-    </article>
+      </article>
     </body>
     <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io<br>
         <a href="LICENSE">Copyright Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="Privacy%20Notice.html">Privacy Notice</a></footer></div>
