@@ -167,6 +167,11 @@
     return true;
   }
   function showCSVoptions(){
+  var table = document.getElementById("resultDiv").querySelectorAll("table");
+  if (table.length===0){
+    document.getElementById('Miscellaneous').innerHTML="No results found!";
+    return null;
+  }
   document.getElementById('fileNameCSV').removeAttribute('hidden');
   document.getElementById('CSVfileName').removeAttribute('hidden');
   document.getElementById("showCSVoptions").blur();

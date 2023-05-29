@@ -32,7 +32,14 @@
             <option>99.9%</option>
         </select>
         </p>
-        <p hidden id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
+        <p id="z1-bp" hidden> Power =
+            <select id="z1-b" class="CF">
+                <option selected="selected">80%</option>
+                <option>90%</option>
+                <option>95%</option>
+                <option>99%</option>
+            </select>
+        </p>
         <p hidden id="ORP1P2p">Please select parameters you have:
             <select id="ORP1P2Select" onchange="ORP1P2Selected()">
                 <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
