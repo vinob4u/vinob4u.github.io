@@ -21,7 +21,17 @@
             </select>
         </div>
         <hr>
-        <p hidden id="z1aby2p">Alpha Error =&nbsp;<input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
+        <p id="z1aby2p" hidden> Alpha Error =
+        <select id="z1aby2" class="CF">
+            <option>80%</option>
+            <option>85%</option>
+            <option>90%</option>
+            <option selected="selected">95%</option>
+            <option>99%</option>
+            <option>99.5%</option>
+            <option>99.9%</option>
+        </select>
+        </p>
         <p hidden id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
         <p hidden id="ORP1P2p">Please select parameters you have:
             <select id="ORP1P2Select" onchange="ORP1P2Selected()">
