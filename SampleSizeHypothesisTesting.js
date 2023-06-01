@@ -65,7 +65,7 @@ function calculate(){
     case "Paired Proportion":
       PairedProportionCalculate()
       break;
-    case "Please select an option":
+    case "Please select":
       document.getElementById("result").innerHTML="Please select type of study";
       break;
     default:
@@ -75,8 +75,55 @@ function calculate(){
 }
 
 function PairedMeanCalculate(){
-  let Za = parseFloat(document.getElementById("z1aby2").value);
-  let Zb = parseFloat(document.getElementById("z1-b").value);
+  z1= document.getElementById("z1aby2");
+  var z01 = z1.options[z1.selectedIndex].text;
+  let Za= 1.96;
+  switch(z01){
+    case '80%':
+      Za= 1.282
+      break;
+    case '85%':
+      Za= 1.440
+      break;
+    case '90%':
+      Za= 1.645
+      break;
+    case '95%':
+      Za= 1.96;
+      break;
+    case '99%':
+      Za= 2.576
+      break;
+    case '99.5%':
+      Za=  2.807
+      break;
+    case '99.9%':
+      Za=3.291
+      break;
+    default:
+      document.getElementById('result').innerHTML= "Please report this error to developer"
+      return null;
+  }
+  z2= document.getElementById("z1-b");
+  var z02 = z2.options[z2.selectedIndex].text;
+  let Zb= 0.82;
+  switch(z02){
+    case '80%':
+      Zb= 0.82
+      break;
+    case '90%':
+      Zb= 1.28
+      break;
+    case '95%':
+      Zb= 1.645
+      break;
+    case '99%':
+      Zb= 2.326
+      break;
+    default:
+      document.getElementById('result').innerHTML= "Please report this error to developer"
+      return null;
+  }
   let e1 = (Za+Zb)*(Za+Zb);
   let σ1 = parseFloat(document.getElementById("σ1").value);
   let σ2 = parseFloat(document.getElementById("σ2").value);
@@ -92,8 +139,55 @@ function PairedMeanCalculate(){
 }
 
 function PairedProportionCalculate(){
-  let Za = parseFloat(document.getElementById("z1aby2").value);
-  let Zb = parseFloat(document.getElementById("z1-b").value);
+  z1= document.getElementById("z1aby2");
+  var z01 = z1.options[z1.selectedIndex].text;
+  let Za= 1.96;
+  switch(z01){
+    case '80%':
+      Za= 1.282
+      break;
+    case '85%':
+      Za= 1.440
+      break;
+    case '90%':
+      Za= 1.645
+      break;
+    case '95%':
+      Za= 1.96;
+      break;
+    case '99%':
+      Za= 2.576
+      break;
+    case '99.5%':
+      Za=  2.807
+      break;
+    case '99.9%':
+      Za=3.291
+      break;
+    default:
+      document.getElementById('result').innerHTML= "Please report this error to developer"
+      return null;
+  }
+  z2= document.getElementById("z1-b");
+  var z02 = z2.options[z2.selectedIndex].text;
+  let Zb= 0.82;
+  switch(z02){
+    case '80%':
+      Zb= 0.82
+      break;
+    case '90%':
+      Zb= 1.28
+      break;
+    case '95%':
+      Zb= 1.645
+      break;
+    case '99%':
+      Zb= 2.326
+      break;
+    default:
+      document.getElementById('result').innerHTML= "Please report this error to developer"
+      return null;
+  }
   let S  = parseFloat(document.getElementById("S").value);
   let T  = parseFloat(document.getElementById("T").value);
   let Npairs = parseFloat(document.getElementById("Npairs").value);
@@ -124,8 +218,7 @@ function startAgain(){
   document.getElementById("Npairs").value="";
   document.getElementById("S").value="";
   document.getElementById("T").value="";
-  document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";document.getElementById("z1aby2").value="";
-  document.getElementById("z1-b").value="";
+  document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";
   document.getElementById("TypeOfCalculation").selectedIndex = 0;
   document.getElementById("strtagn").setAttribute("hidden", "");
   document.getElementById("javascriptDisabled").setAttribute("hidden", "");

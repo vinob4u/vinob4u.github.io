@@ -125,7 +125,7 @@ function calculate(){
     case "Cohort Study/RCT":
       CohortCalculate()
       break;
-    case "Please select an option":
+    case "Please select":
       document.getElementById("result").innerHTML="Please select type of study";
       break;
     default:

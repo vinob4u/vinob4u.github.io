@@ -10,7 +10,7 @@
     <body >
       <article>
         <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-        <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
+        <button onclick="location.assign('./index.html')" style="float: left;"> Back to home </button><br>
         <h1>Pre- and Post- Studies</h1>
         <hr>
         <div style="text-align: center;">Select type of Calculation:<br> Sample Size for Hypothesis testing for
@@ -21,10 +21,25 @@
             </select>
         </div>
         <hr>
-        <p id="z1aby2p">Alpha Error =&nbsp; <input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
-        <p id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
-
-
+        <p id="z1aby2p" hidden> Alpha Error =
+            <select id="z1aby2" class="CF">
+                <option>80%</option>
+                <option>85%</option>
+                <option>90%</option>
+                <option selected="selected">95%</option>
+                <option>99%</option>
+                <option>99.5%</option>
+                <option>99.9%</option>
+            </select>
+        </p>
+        <p id="z1-bp" hidden> Power =
+            <select id="z1-b" class="CF">
+                <option selected="selected">80%</option>
+                <option>90%</option>
+                <option>95%</option>
+                <option>99%</option>
+            </select>
+        </p>
         <p id="μ1p">μ<sub>1</sub> = <input id="μ1" placeholder="Pre-test mean" type="tel"></p>
         <p id="μ2p">μ<sub>2</sub> = <input id="μ2" placeholder="Post-test mean" type="tel"></p>
         <p id="σ1p">σ<sub>1</sub> = <input id="σ1" placeholder="SD in the pre-test" type="tel"></p>
@@ -65,8 +80,9 @@
         </div>
     </div><br>
         <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-        <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io<br>
-        <a href="LICENSE">Copyright Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="Privacy%20Notice.html">Privacy Notice</a></footer>
+        <footer>
+            Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io
+        </footer>
       </article>
     </body>
   </div>

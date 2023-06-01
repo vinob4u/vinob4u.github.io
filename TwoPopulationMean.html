@@ -10,11 +10,28 @@
     <body >
       <article>
         <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-        <button onclick="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
+        <button onclick="location.assign('./index.html')" style="float: left;"> Back to home </button><br>
         <h1>Sample Size for Hypothesis testing for two population mean</h1>
         <hr>
-        <p id="z1aby2p">Alpha Error =&nbsp; <input id="z1aby2" placeholder="0.05" required="required" type="tel"></p>
-        <p id="z1-bp">Power =&nbsp;<input id="z1-b" placeholder="0.8" type="tel"></p>
+        <p id="z1aby2p"> Alpha Error =
+          <select id="z1aby2" class="CF">
+              <option>80%</option>
+              <option>85%</option>
+              <option>90%</option>
+              <option selected="selected">95%</option>
+              <option>99%</option>
+              <option>99.5%</option>
+              <option>99.9%</option>
+          </select>
+      </p>
+      <p id="z1-bp"> Power =
+          <select id="z1-b" class="CF">
+              <option selected="selected">80%</option>
+              <option>90%</option>
+              <option>95%</option>
+              <option>99%</option>
+          </select>
+      </p>
         <p id="S1p">S<sub>1 </sub>= <input id="S1" placeholder="Please enter value" required="required" type="tel"> </p>
         <p id="S2p">S<sub>2 </sub>= <input id="S2" placeholder="Please enter value" required="required" type="tel"></p>
         <p id="Mdp">μ<sub>d </sub>= <input id="Md" placeholder="Mean Difference" required="required" type="tel"> </p>
@@ -22,7 +39,7 @@
         <div id= "resultDiv"><span>Result:</span>
             <span id="result"> Result will appear here once you enter parameters. </span>
         </div>
-        <br><div hidden id="variableshower">
+        <br><div id="variableshower">
         <label class="switch">
             <input type="checkbox" onfocus="toggled()">
             <span class="slider round"></span>
@@ -37,8 +54,9 @@
         </p>
       </div>
       <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-      <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io<br>
-      <a href="LICENSE">Copyright Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="Privacy%20Notice.html">Privacy Notice</a></footer>
+      <footer>
+          Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io
+      </footer>
       </article>
     </body>
   </div>

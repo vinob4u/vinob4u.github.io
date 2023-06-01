@@ -10,7 +10,7 @@
     <body >
       <article>
         <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-        <button onfocus="location.replace('./index.html')" style="float: left;"> Back to home </button><br>
+        <button onfocus="location.assign('./index.html')" style="float: left;"> Back to home </button><br>
         <h1>Random Number Generator</h1>
         <hr>
         <p id="minValuep">Minimum Value (inclusive):&nbsp; <input id="minValue" placeholder="Please enter value" required="required" type='tel'></p>
@@ -50,8 +50,9 @@
             <strong><u>File Name Pattern</u></strong><br>
             <span>Valid File Name Pattern can include English alphabets A to Z, a to z and numbers 0 to 9 and the characters _, -, . and (space) </span></div><hr>
         <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-        <footer > Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io<br>
-        <a href="LICENSE">Copyright Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="Privacy%20Notice.html">Privacy Notice</a></footer>
+        <footer>
+            Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io
+        </footer>
       </article>
     </body></div>
 <script src="RandomNumbers.js"></script>
