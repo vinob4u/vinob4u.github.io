@@ -1,4 +1,12 @@
 let mainTableTd = 0;
+function toggled(){
+  let c = document.getElementById("variables");
+  if (c.hasAttribute("hidden")){
+    document.getElementById('variables').removeAttribute('hidden');
+  }
+  else{
+    document.getElementById('variables').setAttribute('hidden', "");}
+}
 function PrAbsPShow(){
   document.getElementById("labelCF").setAttribute("hidden", "");
   document.getElementById("CF").setAttribute("hidden", "");
@@ -14,6 +22,8 @@ function PrAbsPShow(){
   document.getElementById("SD").setAttribute("hidden", "");
   document.getElementById("labelMean").setAttribute("hidden", "");
   document.getElementById("mean").setAttribute("hidden", "");
+  document.getElementById("formulaImage").setAttribute("src", "./ProportionAbsolutePrecision.png");
+  document.getElementById("variableshower").removeAttribute("hidden");
   mainTableTd = 1;
   return mainTableTd;
 }
@@ -29,7 +39,9 @@ function PrRelPShow(){
   document.getElementById("labelSD").setAttribute("hidden", "");
   document.getElementById("SD").setAttribute("hidden", "");
   document.getElementById("labelMean").setAttribute("hidden", "");
-  document.getElementById("mean").setAttribute("hidden", "")
+  document.getElementById("mean").setAttribute("hidden", "");
+  document.getElementById("formulaImage").setAttribute("src", "./ProportionRelativePrecision.png");
+  document.getElementById("variableshower").removeAttribute("hidden");
   mainTableTd = 2;
   return mainTableTd;
 }
@@ -46,6 +58,8 @@ function MAbsPShow(){
   document.getElementById("prevalence").setAttribute("hidden", "");
   document.getElementById("labelMean").setAttribute("hidden", "");
   document.getElementById("mean").setAttribute("hidden", "");
+  document.getElementById("formulaImage").setAttribute("src", "./MeanAbsolutePrecision.png");
+  document.getElementById("variableshower").removeAttribute("hidden");
   mainTableTd = 3;
   return mainTableTd;
 }
@@ -62,6 +76,8 @@ function MRelPShow(){
   document.getElementById("prevalence").setAttribute("hidden", "");
   document.getElementById("mean").removeAttribute("hidden");
   document.getElementById("labelMean").removeAttribute("hidden");
+  document.getElementById("formulaImage").setAttribute("src", "./MeanRelativePrecision.png");
+  document.getElementById("variableshower").removeAttribute("hidden");
   mainTableTd = 4;
   return mainTableTd;
 }
@@ -278,6 +294,7 @@ function startAgain(){
   document.getElementById("labelMean").setAttribute("hidden", "");
   document.getElementById("mean").setAttribute("hidden", "");
   document.getElementById("mean").value="";
+  document.getElementById('variableshower').setAttribute('hidden', "");
   mainTableTd=0;
   return mainTableTd;
 }

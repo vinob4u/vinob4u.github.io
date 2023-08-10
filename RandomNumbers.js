@@ -4,7 +4,8 @@
       document.getElementById('help').removeAttribute('hidden');
     }
     else{
-      document.getElementById('help').setAttribute('hidden', "");}
+      document.getElementById('help').setAttribute('hidden', "");
+    }
     document.getElementById("favone").blur();
   }
   function startAgain(){
@@ -51,14 +52,7 @@
     if (c>1000){document.getElementById("resultDiv").innerHTML="Maximum count of random numbers that can be generated at once is 1000, this is to prevent system overload and crashes"; return false;}
     let q = parseInt(document.getElementById("decimalsNumber").value);
     let q1;
-    switch (q){
-      case 1: q1=10; break;
-      case 2: q1=100; break;
-      case 3: q1=1000; break;
-      case 4: q1=10000; break;
-      case 5: q1=100000; break;
-      default: document.getElementById("resultDiv").innerHTML="Please report this error to developers"; return false; break;
-    }
+    q1= Math.pow(10, q);
     if (isNaN(m * M * c)||(!Number.isInteger(c))||M<m||c<0){
       document.getElementById("resultDiv").innerHTML="Please enter valid parameters";return false;}
     else{

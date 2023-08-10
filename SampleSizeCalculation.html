@@ -69,13 +69,18 @@
         <button id="Calculate" onfocus="calculate()"> Calculate </button> <hr>
         <br><div id= "resultDiv"><span>Result:</span>
         <span id="result"> Result will appear here once you enter parameters. </span>
-        </div><br><br>
+        </div><br><div hidden id="variableshower">
+            <label class="switch">
+                <input type="checkbox" onfocus="toggled()">
+                <span class="slider round"></span>
+            </label>&nbsp;&nbsp;Formula
+            <div hidden id="variables">
+                <img id="formulaImage" src="">
+            </div>
+        </div><br>
         <button id="strtagn" onfocus="startAgain()">Start Again</button><hr>
       </article>
     </body>
   </div>
-<footer>
-    Developer contact:<br> Dr. Vinoth Kumar Kalidoss, Abhishek Das G H<br>Online resource available at vinob4u.github.io
-</footer>
 <script src="SampleSizeCalculation.js"></script>
 </html>

@@ -71,7 +71,7 @@ footer{
 #strtagn{ margin-bottom:80px;}
 
 button {
-  background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
+  background-color: #c0ffee;
   padding: 8px 20px;
   border:5px solid black;
   border-radius: 12px;
@@ -87,7 +87,7 @@ button:hover {
 
 input[type='tel'], input[type="text"]{
   width: 55vw;
-  background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
+  background-color:#c0ffee;
   padding: 8px 20px;
   border:5px solid black;
   border-radius: 16px;
@@ -98,7 +98,6 @@ input[type='tel'], input[type="text"]{
 
 input[type="range"]{
   width: 80vW;
-  background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
   padding: 0px 0px;
   border:0px solid black;
   border-radius: 16px;
@@ -108,14 +107,6 @@ input[type="range"]{
 }
 
 input[type="radio"]{
-  width: 1.5rem;
-  background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
-  padding: 0 0;
-  border: 0px solid black;
-  border-radius: 0px;
-  font-weight: bold;
-  transition: all 0.2s ease-in-out;
-  color: black;
   -ms-transform: scale(1.5);
   -webkit-transform: scale(1.5);
   transform: scale(1.5);
@@ -231,6 +222,8 @@ img {height: 20vh; width:80vw}
 #fifthButton{ border: 5px solid black; color: black;}
 
 #sixthButton{ border: 5px solid #783114; color: #783114;}
+
+#lastButton{ border: 5px solid rgb(49, 49, 49); color: rgb(49, 49, 49);}
 
 #lastHr{ margin-bottom:80px}
 
