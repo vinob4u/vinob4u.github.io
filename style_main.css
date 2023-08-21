@@ -46,8 +46,7 @@ article{flex:1; font-size:110%;}
     color:red;
 }
 a {
-    font-size:inherit; 
-    color:yellow;
+    font-size:inherit;
 }
 
 hr {
@@ -114,7 +113,7 @@ input[type="radio"]{
 
 select{
   width: 80vw;
-  background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% ) ;
+  background-color:transparent;
   padding: 8px 20px;
   border:5px solid black;
   border-radius: 16px;
@@ -237,10 +236,103 @@ img {height: 20vh; width:80vw}
 }
 
 #mainTable td{
-  background-image:linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% );
+  background-color:transparent;
   padding: 8px 20px;
   border:5px solid black;
   border-radius: 16px;
   font-weight: bold;
   color: black;
+}
+@media (prefers-color-scheme: dark) {
+  html{
+    background-image: linear-gradient( 95.2deg, rgba(63,3,2,1) 26.8%, rgba(44,7,0,1) 64% ); 
+    color: whitesmoke;
+  }
+  #resultDiv{
+    background-color:black; 
+    color:whitesmoke;
+  }
+  #resultDiv table{
+    border: solid 1px lightblue; 
+  }
+  #resultDiv table tr td{
+    border: solid 1px rgb(255, 128, 128);
+  }
+  #javascriptDisabled {
+    background-color:whitesmoke; 
+    color:red;
+  }
+
+  hr {
+    border-top: 3px dashed rgb(255, 128, 128);
+  }
+
+  button {
+    background-color: transparent;
+    border:5px solid whitesmoke;
+    color: whitesmoke;
+  }
+
+  button:hover {
+    color: #dddddd;
+  }
+
+  input[type='tel'], input[type="text"]{
+    background-color: transparent;
+    border:5px solid whitesmoke;
+    color: whitesmoke;
+  }
+
+  input[type="range"]{
+    border:0px solid whitesmoke;
+    color: whitesmoke;
+  }
+
+  select{
+    background-color: transparent;
+    border:5px solid whitesmoke;
+    color: whitesmoke;
+  }
+
+
+  .slider {
+    background-color: #333;
+  }
+
+  .slider:before {
+    background-color: black;
+  }
+
+  input:checked + .slider {
+    background-color: #de690c;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #de690c;
+  }
+
+  .blockLabel{
+    background-color: brown;
+    color: wheat;
+  }
+
+  #firstButton{ border: 5px solid lightblue; color: lightblue;}
+
+  #secondButton{ border: 5px solid #ffbbba; color: #ffbbba;}
+
+  #thirdButton{ border: 5px solid #cbc3e3; color: #cbc3e3;}
+
+  #fourthButton{ border: 5px solid #b2b3b4; color: #b2b3b4;}
+
+  #fifthButton{ border: 5px solid whitesmoke; color: whitesmoke;}
+
+  #sixthButton{ border: 5px solid #c0ffee; color: #c0ffee;}
+
+  #lastButton{ border: 5px solid rgb(207, 207, 207); color: rgb(207, 207, 207);}
+
+  #mainTable td{
+    background-color: transparent;
+    border:5px solid whitesmoke;
+    color: whitesmoke;
+  }
 }
