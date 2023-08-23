@@ -4,7 +4,7 @@ html{
     font-family: sans-serif; 
     text-align: center; 
     vertical-align: middle; 
-    background-image: linear-gradient( 95.2deg, rgba(193,252,254,1) 26.8%, rgba(212,249,256,1) 64% ); 
+    background-color: #c0ffee;
     color: black; 
     font-weight:bold;
 }
@@ -208,7 +208,7 @@ input:checked + .slider:before {
   margin: 0;
 }
 
-img {height: 20vh; width:80vw}      
+img {height: 20vh; width:80vw}
 
 #firstButton{ border: 5px solid blue; color: blue;}
 
@@ -245,21 +245,21 @@ img {height: 20vh; width:80vw}
 }
 @media (prefers-color-scheme: dark) {
   html{
-    background-image: linear-gradient( 95.2deg, rgba(63,3,2,1) 26.8%, rgba(44,7,0,1) 64% ); 
+    background-color: black;
     color: whitesmoke;
   }
   #resultDiv{
-    background-color:black; 
+    background-color:black;
     color:whitesmoke;
   }
   #resultDiv table{
-    border: solid 1px lightblue; 
+    border: solid 1px lightblue;
   }
   #resultDiv table tr td{
     border: solid 1px rgb(255, 128, 128);
   }
   #javascriptDisabled {
-    background-color:whitesmoke; 
+    background-color:whitesmoke;
     color:red;
   }
 
