@@ -322,13 +322,13 @@ img {height: 20vh; width:80vw}
 
   #thirdButton{ border: 5px solid #cbc3e3; color: #cbc3e3;}
 
-  #fourthButton{ border: 5px solid #b2b3b4; color: #b2b3b4;}
+  #fourthButton{ border: 5px solid #e1e2e3; color: #e1e1e1;}
 
   #fifthButton{ border: 5px solid whitesmoke; color: whitesmoke;}
 
   #sixthButton{ border: 5px solid #c0ffee; color: #c0ffee;}
 
-  #lastButton{ border: 5px solid rgb(207, 207, 207); color: rgb(207, 207, 207);}
+  #lastButton{ border: 5px solid #cfcfcf; color: #cfcfcf;}
 
   #mainTable td{
     background-color: transparent;
