@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-in">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style_main.css">
+    <title>No Internet Connection</title>
+    <style>
+      h1{font-size:2rem}
+      h2{font-size:1.75rem}
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center;"><b>No Internet Connection!</b></h1>
+    <p style="text-align: center;"><b><br>
+      </b></p>
+    <h2 style="text-align: center;"><b>Please make sure you have an active
+        internet connection!</b></h2>
+    <p> Current Status:</p>
+    <p id="status">Offline</p>
+    <p> Connection status is checked every 5 seconds</p>
+    <p> This also happens if you have Android webview version less than 55, for example, in an Android 7 phone. In that case, please try updating your phone.</p>
+    <p> If you think this is an mistake, please click the below button to load feedback form.</p>
+    <button onfocus="location.replace('./Feedback.html')"> Click here if redirect didn't work.</button>
+  </body>
+<script>
+let checkOnlineStatus = async() => {
+  try {
+    let online = await fetch("https://vinob4u.github.io/google3b6cef4103de9430.html");
+    return online.status >= 200 && online.status < 300;
+  } catch (err) {
+    return false;
+  }
+}
+async function loader(){
+  let result = await checkOnlineStatus();
+  let statusDisplay = document.getElementById("status");
+  statusDisplay.textContent = result ? "Back Online" : "Still Offline";
+  OnlineChecker();
+}
+setInterval(loader, 5000);
+
+function OnlineChecker() {
+    let o = document.getElementById("status").innerText;
+    if (o === "Back Online") {
+    	location.replace("./Feedback.html");
+    }
+}
+loader();
+</script>
+</html>

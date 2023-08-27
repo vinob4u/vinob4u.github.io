@@ -222,7 +222,7 @@ img {height: 20vh; width:80vw}
 
 #sixthButton{ border: 5px solid #783114; color: #783114;}
 
-#lastButton{ border: 5px solid rgb(49, 49, 49); color: rgb(49, 49, 49);}
+#lastButton, #secondLastButton{ border: 5px solid rgb(49, 49, 49); color: rgb(49, 49, 49);}
 
 #lastHr{ margin-bottom:80px}
 
@@ -328,11 +328,15 @@ img {height: 20vh; width:80vw}
 
   #sixthButton{ border: 5px solid #c0ffee; color: #c0ffee;}
 
-  #lastButton{ border: 5px solid #cfcfcf; color: #cfcfcf;}
+  #lastButton, #secondLastButton{ border: 5px solid #cfcfcf; color: #cfcfcf;}
 
   #mainTable td{
     background-color: transparent;
     border:5px solid whitesmoke;
     color: whitesmoke;
+  }
+
+  a {
+    color: yellow;
   }
 }
