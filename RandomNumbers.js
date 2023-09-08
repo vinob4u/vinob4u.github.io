@@ -14,7 +14,11 @@ function startAgain(){
   document.getElementById("maxValue").value="";
   document.getElementById("javascriptDisabled").setAttribute("hidden", "");
   document.getElementById("countRandom").value="";
-  document.getElementById("print").setAttribute("hidden", "");
+  document.getElementById("printCSV").setAttribute("hidden", "");
+  try {
+      window.JSInterface.hidePrintAsPDF();
+    }
+    catch (error){/*do nothing*/}
 }
 startAgain();
 let decimalsBoolean=2;
@@ -44,22 +48,19 @@ function columnShow(){
 }
 function uniqueYes(){unique=1; return unique;}
 function uniqueNo(){unique=0; return unique;}
-let printString=`
-<button id="showCSVoptions" onfocus="showCSVoptions()">
+let printString=`<table id="printAsCSVTable"><tr><td>
+<h2>
   <strong>Save the results as a CSV file</strong>
-</button><br>
-CSV stands for Comma Seperated Values which can be opened in any spreadsheet software including Excel.<br>
-<p id="CSVfileName" hidden>
+</h2>
+<p id="CSVfileName">
   <label for="fileNameCSV"> Please enter the file name:</label>
-  <input id="fileNameCSV" type="text" placeholder="Random Number Generator-Result" /><strong>.csv</strong><br>
+  <input id="fileNameCSV" type="text" placeholder="Random Number Generator-Result" /><strong>&nbsp;.csv</strong><br>
   <button id="printAsCSV" onfocus="printAsCSV()">
-    Generate CSV file
-  </button>
-  <br>
+    Generate CSV file and download
+  </button><br>
 </p>
 <div id="printingStatus"></div>
-<div id='Miscellaneous'></div>
-<hr>`;
+<div id='Miscellaneous'></div></td></tr></table><hr>`;
 function generate(){
   let m = parseFloat(document.getElementById("minValue").value);
   let M = parseFloat(document.getElementById("maxValue").value);
@@ -73,7 +74,7 @@ function generate(){
     return false;
   }
   if (column===0){
-    let n = "";
+    let n = "<u>Results</u><br>";
     let array = [];
     switch (decimalsBoolean){
       case 2:
@@ -120,12 +121,12 @@ function generate(){
     let realIndex=0;
     array.forEach(element => {
       if (realIndex===(array.length - 1)){
-        n+="<span>"+(element.toString())+"&nbsp;</span>"}
-        else{n+="<span>"+(element.toString()+",&nbsp;</span>");
+        n+="<span>"+(element.toString())+"</span>"}
+        else{n+="<span>"+(element.toString()+",</span>");
       }
       realIndex++;
     });
-    document.getElementById("resultDiv").innerHTML=n;
+    document.getElementById("resultDiv").innerHTML=n+"<hr>";
   }
   else{
     let n = "<table><caption>Results<caption><tr>";
@@ -188,28 +189,30 @@ function generate(){
       counter++;
     });
     n+="</tr></table>";
-    document.getElementById("resultDiv").innerHTML = n;
+    document.getElementById("resultDiv").innerHTML = n+"<hr>";
   }
-  document.getElementById("print").innerHTML=printString;
+  document.getElementById("printCSV").innerHTML=printString;
   if (column===0){
-    document.getElementById("print").setAttribute("hidden", "");
+    document.getElementById("printCSV").setAttribute("hidden", "");
   }
   else{
-    document.getElementById("print").removeAttribute("hidden");
+    document.getElementById("printCSV").removeAttribute("hidden");
     document.getElementById("printAsCSV").removeAttribute("hidden");
   }
   document.getElementById("Generate").blur();
-  return true;
-}
-function showCSVoptions(){
-  var table = document.getElementById("resultDiv").querySelectorAll("table");
-  if (table.length===0){
-    document.getElementById('Miscellaneous').innerHTML="No results found!";
-    return null;
+  try {
+    window.JSInterface.showPrintAsPDF();
+  } catch (error) {
+    if(document.getElementById("printAsPDFButton")) {
+      document.getElementById("printPDF").innerHTML = "";
+    }
+    let printAsPDFButton = document.createElement("button");
+    printAsPDFButton.setAttribute("id", "printAsPDFButton");
+    printAsPDFButton.setAttribute("onfocus", "window.print()");
+    printAsPDFButton.innerText="Print Results/ Save as PDF";
+    document.getElementById("printPDF").appendChild(printAsPDFButton);
   }
-  document.getElementById('fileNameCSV').removeAttribute('hidden');
-  document.getElementById('CSVfileName').removeAttribute('hidden');
-  document.getElementById("showCSVoptions").blur();
+  return true;
 }
 let link;
 function printAsCSV(){
@@ -230,14 +233,9 @@ function printAsCSV(){
         content += !(i===rows.length-1) ? "\n," : "\n";
     }
   });
-  var csv;
+  let csv;
   csv = new Blob([content],{type: "text/csv"});
   link = document.createElement("a");
-  let blobtodata = new FileReader();
-  blobtodata.readAsDataURL(csv);
-  blobtodata.onload = () => {
-    link.href = blobtodata.result;
-  }
   var fileName1;
   if (document.getElementById("fileNameCSV").value===""){
     fileName1 = "Random Number Generator-Result.csv";
@@ -251,8 +249,14 @@ function printAsCSV(){
     }
   }
   link.download = fileName1;
+  let blobtodata = new FileReader();
+  blobtodata.readAsDataURL(csv);
+  blobtodata.onload = () => {
+    link.href = blobtodata.result;
+    link.click();
+  }
   link.innerHTML = "<button>Download!</button>";
-  document.getElementById("printingStatus").innerHTML+="File generation successfull.<br>"
+  document.getElementById("printingStatus").innerHTML+="File generation successfull. If the download didn't start automatically, please click on the button below to download.<br>"
   document.getElementById("printingStatus").appendChild(link);
   document.getElementById("printAsCSV").blur();
   document.getElementById("printAsCSV").setAttribute("hidden","");

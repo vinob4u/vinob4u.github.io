@@ -6,53 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style_main.css">
 </head>
-<div id="holder">
-    <body >
-      <article>
-        <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-        <h1>Pre- and Post- Studies</h1>
-        <hr>
-        <div style="text-align: center;">Select type of Calculation:<br> Sample Size for Hypothesis testing for
-            <select id="TypeOfCalculation" required="required" width="85%" onchange="typeOfCalculation()">
-                <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-                <option> Paired Mean</option>
-                <option> Paired Proportion</option>
-            </select>
-        </div>
-        <hr>
-        <p id="z1aby2p" hidden> Alpha Error =
-            <select id="z1aby2" class="CF">
-                <option>80%</option>
-                <option>85%</option>
-                <option>90%</option>
-                <option selected="selected">95%</option>
-                <option>99%</option>
-                <option>99.5%</option>
-                <option>99.9%</option>
-            </select>
-        </p>
-        <p id="z1-bp" hidden> Power =
-            <select id="z1-b" class="CF">
-                <option selected="selected">80%</option>
-                <option>90%</option>
-                <option>95%</option>
-                <option>99%</option>
-            </select>
-        </p>
-        <p id="μ1p">μ<sub>1</sub> = <input id="μ1" placeholder="Pre-test mean" type="tel"></p>
-        <p id="μ2p">μ<sub>2</sub> = <input id="μ2" placeholder="Post-test mean" type="tel"></p>
-        <p id="σ1p">σ<sub>1</sub> = <input id="σ1" placeholder="SD in the pre-test" type="tel"></p>
-        <p id="σ2p">σ<sub>2</sub> = <input id="σ2" placeholder="SD in the post-test" type="tel"></p>
 
-        <p id="Sp">s = <input id="S" placeholder="Please enter value" required="required" type="tel"> </p>
-        <p id="Tp">t = <input id="T" placeholder="Please enter value" required="required" type="tel"></p>
-        <p id="Npairsp">n<sub>pairs </sub> = <input id="Npairs" placeholder="Total pairs" required="required" type="tel"> </p>
+<body >
+    <article>
+    <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
+    <h1>Pre- and Post- Studies</h1>
+    <hr>
+    <div style="text-align: center;">Select type of Calculation:<br> Sample Size for Hypothesis testing for
+        <select id="TypeOfCalculation" required="required" width="85%" onchange="typeOfCalculation()">
+            <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+            <option> Paired Mean</option>
+            <option> Paired Proportion</option>
+        </select>
+    </div>
+    <hr>
+    <p id="z1aby2p" hidden> Alpha Error =
+        <select id="z1aby2" class="CF">
+            <option>80%</option>
+            <option>85%</option>
+            <option>90%</option>
+            <option selected="selected">95%</option>
+            <option>99%</option>
+            <option>99.5%</option>
+            <option>99.9%</option>
+        </select>
+    </p>
+    <p id="z1-bp" hidden> Power =
+        <select id="z1-b" class="CF">
+            <option selected="selected">80%</option>
+            <option>90%</option>
+            <option>95%</option>
+            <option>99%</option>
+        </select>
+    </p>
+    <p id="μ1p">μ<sub>1</sub> = <input id="μ1" placeholder="Pre-test mean" type="tel"></p>
+    <p id="μ2p">μ<sub>2</sub> = <input id="μ2" placeholder="Post-test mean" type="tel"></p>
+    <p id="σ1p">σ<sub>1</sub> = <input id="σ1" placeholder="SD in the pre-test" type="tel"></p>
+    <p id="σ2p">σ<sub>2</sub> = <input id="σ2" placeholder="SD in the post-test" type="tel"></p>
 
-        <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
-        <div id= "resultDiv"><span>Result:</span>
-            <span id="result"> Result will appear here once you enter parameters. </span>
-        </div>
-        <br><div hidden id="variableshower">
+    <p id="Sp">s = <input id="S" placeholder="Please enter value" required="required" type="tel"> </p>
+    <p id="Tp">t = <input id="T" placeholder="Please enter value" required="required" type="tel"></p>
+    <p id="Npairsp">n<sub>pairs </sub> = <input id="Npairs" placeholder="Total pairs" required="required" type="tel"> </p>
+
+    <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
+    <div id= "resultDiv"><span>Result:</span>
+        <span id="result"> Result will appear here once you enter parameters. </span>
+    </div>
+    <br><div hidden id="variableshower">
         <label class="switch">
             <input type="checkbox" onfocus="toggled()">
             <span class="slider round"></span>
@@ -78,9 +78,9 @@
             </p>
         </div>
     </div><br>
-        <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-      </article>
-    </body>
-  </div>
+    <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
+    </article>
+</body>
+
 <script src="SampleSizeHypothesisTesting.js"></script>
 </html>

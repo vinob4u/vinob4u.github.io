@@ -6,31 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" >
     <link rel="stylesheet" href="style_main.css">
 </head>
-<div id="holder">
-    <body>
-      <article>
-        <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-        <h1> Study Design </h1><hr>
-            <button id="firstButton" onclick="location.assign('./SampleSizeCalculation.html')"> Descriptive Studies </button>
-            <hr>
-            <button id="secondButton" onclick="location.assign('./Formula_Hypothesis.html')"> Analytical Studies </button>
-            <hr>
-            <button id="thirdButton" onclick="location.assign('./SampleSizeHypothesisTesting.html')"> Pre and Post studies </button>
-            <hr>
-            <button id="fourthButton" onclick="location.assign('./TwoPopulationMean.html')"> Sample Size for Hypothesis testing for two population mean</button>
-            <hr>
-            <button id="fifthButton" onclick="location.assign('./RandomNumbers.html')"> Random Number Generator</button>
-            <hr>
-            <button id="sixthButton" onclick="location.assign('./BlockRandom.html')"> Blocks of Random Numbers Generator</button>
-            <hr>
-            <button id="secondLastButton" onclick="location.assign('./NoInternetConnection.html')"> Feedback</button>
-            <hr>
-            <button id="lastButton" onclick="location.assign('./AboutUs.html')"> About Us</button>
-            <hr id="lastHr">
-      </article>
-    </body>
-</div>
+
+<body>
+  <article>
+    <div id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</div>         <!-- shows only when javascript is disabled -->
+      <div id="myDiv"></div>
+      <h1> Study Design </h1><hr>
+        <button id="firstButton" onclick="location.assign('./SampleSizeCalculation.html')"> Descriptive Studies </button>
+        <hr>
+        <button id="secondButton" onclick="location.assign('./Formula_Hypothesis.html')"> Analytical Studies </button>
+        <hr>
+        <button id="thirdButton" onclick="location.assign('./SampleSizeHypothesisTesting.html')"> Pre and Post studies </button>
+        <hr>
+        <button id="fourthButton" onclick="location.assign('./TwoPopulationMean.html')"> Sample Size for Hypothesis testing for two population mean</button>
+        <hr>
+        <button id="fifthButton" onclick="location.assign('./RandomNumbers.html')"> Random Number Generator</button>
+        <hr>
+        <button id="sixthButton" onclick="location.assign('./BlockRandom.html')"> Blocks of Random Numbers Generator</button>
+        <hr id="lastHr">
+  </article>
+</body>
+
 <script>
-document.getElementById("javascriptDisabled").setAttribute("hidden", "");
+  document.getElementById("javascriptDisabled").setAttribute("hidden", "");
 </script>
 </html>

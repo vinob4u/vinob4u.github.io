@@ -5,56 +5,71 @@
     <title>Blocks of Random Numbers Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style_main.css">
+    <style>
+        @media print {
+            * { background: white; }
+            .nonPrintable {
+                display: none;
+            }
+        }
+    </style>
 </head>
-<div id="holder">
-    <body>
-      <article>
-        <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-        <h1>Blocks of Random Numbers Generator</h1>
+
+<body>
+    <article>
+    <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
+    <h1>Blocks of Random Numbers Generator</h1>
+    <hr>
+    <div class="nonPrintable">
+        <div id="countBlockp">Count of blocks Needed:&nbsp;<input id="countBlock" placeholder="Only Integers" type="tel"></div>
+        <div id="minValuep">Minimum Value (inclusive):&nbsp; <input id="minValue" placeholder="Please enter value" required="required" type="tel"></div>
+        <div id="maxValuep">Maximum Value (inclusive):&nbsp; <input id="maxValue" placeholder="Please enter value" required="required" type="tel"> </div>
+        <div id="countRandomp">Count of Random Numbers per block:&nbsp;<input id="countRandom" placeholder="Only Integers" type="tel"></div>
         <hr>
-        <p id="countBlockp">Count of blocks Needed:&nbsp;<input id="countBlock" placeholder="Only Integers" type="tel"></p>
-        <p id="minValuep">Minimum Value (inclusive):&nbsp; <input id="minValue" placeholder="Please enter value" required="required" type="tel"></p>
-        <p id="maxValuep">Maximum Value (inclusive):&nbsp; <input id="maxValue" placeholder="Please enter value" required="required" type="tel"> </p>
-        <p id="countRandomp">Count of Random Numbers per block:&nbsp;<input id="countRandom" placeholder="Only Integers" type="tel"></p>
-        <hr>
-        <p id="decimalsBoolean">Do you want Decimals?&nbsp;<br><input id="Yes" name="typeOfCalculation" type="radio" onfocus="decimalYes()"><label for="Yes">Yes</label>
-            <input id="No" name="typeOfCalculation" type="radio" onfocus="decimalNo()" checked><label for="No">No</label></p>
+        <div id="decimalsBoolean">Do you want Decimals?&nbsp;<br>
+            <table><tr><td><input id="Yes" name="typeOfCalculation" type="radio" onfocus="decimalYes()"></td><td><label for="Yes">&nbsp;Yes</label></td></tr>
+            <tr><td><input id="No" name="typeOfCalculation" type="radio" onfocus="decimalNo()" checked></td><td><label for="No">&nbsp;No</label></td></tr></table>
+        </div>
         <div id="decimalsNumberp" hidden>
             <label for="decimalsNumber">Level of decimal points:</label><br>
-            <input type="range" id="decimalsNumber" min="1" max="5" step="1" value="1" onchange="decimalNumberChecker()">
-            <div class="rangeticks"><span>0.1</span><span>0.12</span><span>0.123</span><span>0.1234</span><span>0.12345</span></div><br></div>
-        <hr>
-        <p id="uniqueBoolean">Do you want Unique Random Numbers per block?&nbsp;<br>
-            <input id="Yes1" name="UniqueBoolean" type="radio" onfocus="uniqueYes()"><label for="Yes1">Yes</label>
-            <input id="No1" name="UniqueBoolean" type="radio" onfocus="uniqueNo()" checked><label for="No1">No</label></p>
-        <hr>
-        <p id="uniqueBlockBoolean">Do you want Unique Blocks?&nbsp;<br>
-            <input id="Yes2" name="UniqueBlockBoolean" type="radio" onfocus="uniqueBlockYes()"><label for="Yes2">Yes.</label>
-            <input id="No2" name="UniqueBlockBoolean" type="radio" onfocus="uniqueBlockNo()" checked> <label for="No2">No.</label>
-        </p>
-        <p id="uniqueBlockOrderBoolean" hidden>Do you want blocks to be unique despite order of numbers?&nbsp;<br>
-            <input id="Yes3" name="UniqueBlockOrderBoolean" type="radio" onfocus="uniqueBlockOrderYes()"><label for="Yes3">Yes.</label>
-            <input id="No3" name="UniqueBlockOrderBoolean" type="radio" onfocus="uniqueBlockOrderNo()" checked><label for="No3"> No. </label>
-        </p>
-        <hr>
-        <p id="sortingp">Do you want the random numbers to be sorted?&nbsp;<br>
-            <input id="Yes4.1" name="sorting" type="radio" onfocus="sortingAsc()"><label for="Yes4.1">Yes, Ascending order.</label>
-            <input id="Yes4.2" name="sorting" type="radio" onfocus="sortingDesc()"><label for="Yes4.2">Yes, Descending order.</label>
-            <input id="No4" name="sorting" type="radio" onfocus="sortingNo()" checked><label for="No4"> No.</label>
-        </p>
-        <hr>
-        <p id="tableBoolean">Do you want results in each block to be formatted to a table?&nbsp;<br>
-            <input id="Yes5" name="TableBoolean" type="radio" onfocus="tableYes()"><label for="Yes5">Yes</label>
-            <input id="No5" name="TableBoolean" type="radio" onfocus="tableNo()" checked><label for="No5">No</label></p>
+            <input type="range" id="decimalsNumber" min="1" max="5" step="1" value="2" onchange="decimalNumberChecker()">
+            <div class="rangeticks"><span>0.1</span><span>0.12</span><span>0.123</span><span>0.1234</span><span>0.12345</span></div><br>
+        </div><hr>
+        <div id="uniqueBoolean">Do you want Unique Random Numbers per block?&nbsp;<br>
+            <table><tr><td><input id="Yes1" name="UniqueBoolean" type="radio" onfocus="uniqueYes()"></td><td><label for="Yes1">&nbsp;Yes</label></td></tr>
+            <tr><td><input id="No1" name="UniqueBoolean" type="radio" onfocus="uniqueNo()" checked></td><td><label for="No1">&nbsp;No</label></td></tr></table>
+        </div><hr>
+        <div id="uniqueBlockBoolean">Do you want Unique Blocks?&nbsp;<br>
+            <table><tr><td><input id="Yes2" name="UniqueBlockBoolean" type="radio" onfocus="uniqueBlockYes()"></td><td><label for="Yes2">&nbsp;Yes.</label></td></tr>
+            <tr><td><input id="No2" name="UniqueBlockBoolean" type="radio" onfocus="uniqueBlockNo()" checked></td><td><label for="No2">&nbsp;No</label></td></tr></table>
+        </div>
+        <div id="uniqueBlockOrderBoolean" hidden>Do you want blocks to be unique despite order of numbers?&nbsp;<br>
+            <table><tr><td><input id="Yes3" name="UniqueBlockOrderBoolean" type="radio" onfocus="uniqueBlockOrderYes()"></td><td><label for="Yes3">&nbsp;Yes.</label></td></tr>
+            <tr><td><input id="No3" name="UniqueBlockOrderBoolean" type="radio" onfocus="uniqueBlockOrderNo()" checked></td><td><label for="No3">&nbsp;No</label></td></tr></table>
+        </div><hr>
+        <div id="sortingp">Do you want the random numbers to be sorted?&nbsp;<br>
+            <table><tr><td><input id="Yes4.1" name="sorting" type="radio" onfocus="sortingAsc()"></td><td><label for="Yes4.1">&nbsp;Yes, Ascending order.</label></td></tr>
+            <tr><td><input id="Yes4.2" name="sorting" type="radio" onfocus="sortingDesc()"></td><td><label for="Yes4.2">&nbsp;Yes, Descending order.</label></td></tr>
+            <tr><td><input id="No4" name="sorting" type="radio" onfocus="sortingNo()" checked></td><td><label for="No4">&nbsp;No.</label></td></tr></table>
+        </div><hr>
+        <div id="tableBoolean">Do you want results in each block to be formatted to a table?&nbsp;<br>
+            <table><tr><td><input id="Yes5" name="TableBoolean" type="radio" onfocus="tableYes()"></td><td><label for="Yes5">&nbsp;Yes</label></td></tr>
+            <tr><td><input id="No5" name="TableBoolean" type="radio" onfocus="tableNo()" checked></td><td><label for="No5">&nbsp;No</label></td></tr></table>
+        </div>
         <div id="tableColumnsp" hidden>Format to how many columns?&nbsp;<br>
-            <input id="tableColumns" onchange="columnShow()" type="range" min="1" max="8" step="1" value="1" />
-            <div class="rangeticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><br></div>
-        <hr>
+            <input id="tableColumns" onchange="columnShow()" type="range" min="1" max="8" step="1" value="2" />
+            <div class="rangeticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><br>
+        </div><hr>
         <button id="Generate" onfocus="generateMain()">Generate</button><hr>
-        <div id= "resultDiv">
-        </div>
-        <div id="print" hidden>
-        </div>
+    </div>
+    <div id= "resultDiv">
+    </div>
+    <div class="nonPrintable">
+            <div id="print">
+                <div id="printCSV" hidden="hidden"></div>
+                <div id="printPDF"></div>
+            </div>
+        <hr>
         <label class="switch">
             <input type="checkbox" onfocus="toggled()">
             <span class="slider round"></span>
@@ -71,8 +86,9 @@
         </div>
         <hr>
         <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-      </article>
-    </body>
-</div>
+    </div>
+    </article>
+</body>
+
 <script src="BlockRandom.js"></script>
 </html>

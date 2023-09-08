@@ -6,96 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style_main.css">
 </head>
-<div id="holder">
-    <body >
-      <article>
-        <h1>Analytical Studies</h1>
-        <hr>
-        <div style="text-align: center;">Select type of study:
-            <select id="TypeOfStudy" required="required" onchange="typeOfStudy()">
-                <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-                <option value="CrossSectional">Cross Sectional Study</option>
-                <option value="CaseControl">Case Control Study</option>
-                <option value="Cohort/RCT">Cohort Study/RCT</option>
-            </select>
-        </div>
-        <hr>
-        <p id="z1aby2p" hidden> Alpha Error =
-        <select id="z1aby2" class="CF">
-            <option>80%</option>
-            <option>85%</option>
-            <option>90%</option>
-            <option selected="selected">95%</option>
-            <option>99%</option>
-            <option>99.5%</option>
-            <option>99.9%</option>
+
+<body >
+    <article>
+    <h1>Analytical Studies</h1>
+    <hr>
+    <div style="text-align: center;">Select type of study:
+        <select id="TypeOfStudy" required="required" onchange="typeOfStudy()">
+            <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+            <option value="CrossSectional">Cross Sectional Study</option>
+            <option value="CaseControl">Case Control Study</option>
+            <option value="Cohort/RCT">Cohort Study/RCT</option>
         </select>
-        </p>
-        <p id="z1-bp" hidden> Power =
-            <select id="z1-b" class="CF">
-                <option selected="selected">80%</option>
-                <option>90%</option>
-                <option>95%</option>
-                <option>99%</option>
-            </select>
-        </p>
-        <p hidden id="ORP1P2p">Please select parameters you have:
-            <select id="ORP1P2Select" onchange="ORP1P2Selected()">
-                <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-                <option value="ODP1">Odds ratio and P2*</option>
-                <option value="P1P2">P1* and P2*</option>
-            </select>
-        </p>
-        <p hidden id="p1*p">P<sub>1</sub>* = <input id="P1*" placeholder="0.50" type="tel"></p>
-        <p hidden id="p2*p">P<sub>2</sub>* = <input id="P2*" placeholder="0.40" type="tel"></p>
-        <p hidden id="RRP1P2p">Please select parameters you have:
-            <select id="RRP1P2Select" onchange="RRP1P2Selected()">
-                <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-                <option value="ODP1">Relative Risk and P2</option>
-                <option value="P1P2">P1 and P2</option>
-            </select>
-        </p>
-        <p hidden id="ORp">Odds Ratio = <input id="OR" placeholder="2" type="tel"></p>
-        <p hidden id="p1p">P<sub>1 </sub>= <input id="P1" placeholder="0.50" required="required" type="tel"> </p>
-        <p hidden id="p2p">P<sub>2 </sub>= <input id="P2" placeholder="0.40" required="required" type="tel"></p>
-        <p hidden id="RRp">Relative Risk = <input id="RR" placeholder="Relative Risk" type="tel"></p>
-        <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
-        <div id= "resultDiv"><span>Result:</span>
-            <span id="result"> Result will appear here once you enter parameters. </span>
-        </div><br>
-        <div hidden id="variableshower">
-            <label class="switch">
-                <input type="checkbox" onfocus="toggled()">
-                <span class="slider round"></span>
-            </label>&nbsp;&nbsp;Know what the parameters stand for
-            <div hidden id="variables">
-                <ul hidden id="CrossSectionalVariables">
-                    <li> P<sub>1</sub> = Proportion in the first group</li>
-                    <li> P<sub>2</sub> = Proportion in the second group</li>
-                    <li> α = Significance level </li>
-                    <li> 1-β = Power</li>
-                    <li> <img src="crossSect.png"></li>
-                </ul>
-                <ul hidden id="CaseControlVariables">
-                    <li> P<sub>2</sub>* = Probability of the exposure given disease is absent</li>
-                    <li> P<sub>1</sub>* = Probability of the exposure given disease is present</li>
-                    <li> α = Significance level </li>
-                    <li> 1-β = Power</li>
-                    <li> <img src="caseControl.png"></li>
-                </ul>
-                <ul hidden id="CohortVariables">
-                    <li> P<sub>2</sub> = Proportion(incidence) of disease present in the unexposed group</li>
-                    <li> P<sub>2</sub> = Proportion(incidence) of disease present in the exposed group</li>
-                    <li> α = Significance level </li>
-                    <li> 1-β = Power</li>
-                    <li> <img src="cohort.png"></li>
-                </ul>
-            </div>
+    </div>
+    <hr>
+    <p id="z1aby2p" hidden> Alpha Error =
+    <select id="z1aby2" class="CF">
+        <option>80%</option>
+        <option>85%</option>
+        <option>90%</option>
+        <option selected="selected">95%</option>
+        <option>99%</option>
+        <option>99.5%</option>
+        <option>99.9%</option>
+    </select>
+    </p>
+    <p id="z1-bp" hidden> Power =
+        <select id="z1-b" class="CF">
+            <option selected="selected">80%</option>
+            <option>90%</option>
+            <option>95%</option>
+            <option>99%</option>
+        </select>
+    </p>
+    <p hidden id="ORP1P2p">Please select parameters you have:
+        <select id="ORP1P2Select" onchange="ORP1P2Selected()">
+            <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+            <option value="ODP1">Odds ratio and P2*</option>
+            <option value="P1P2">P1* and P2*</option>
+        </select>
+    </p>
+    <p hidden id="p1*p">P<sub>1</sub>* = <input id="P1*" placeholder="0.50" type="tel"></p>
+    <p hidden id="p2*p">P<sub>2</sub>* = <input id="P2*" placeholder="0.40" type="tel"></p>
+    <p hidden id="RRP1P2p">Please select parameters you have:
+        <select id="RRP1P2Select" onchange="RRP1P2Selected()">
+            <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
+            <option value="ODP1">Relative Risk and P2</option>
+            <option value="P1P2">P1 and P2</option>
+        </select>
+    </p>
+    <p hidden id="ORp">Odds Ratio = <input id="OR" placeholder="2" type="tel"></p>
+    <p hidden id="p1p">P<sub>1 </sub>= <input id="P1" placeholder="0.50" required="required" type="tel"> </p>
+    <p hidden id="p2p">P<sub>2 </sub>= <input id="P2" placeholder="0.40" required="required" type="tel"></p>
+    <p hidden id="RRp">Relative Risk = <input id="RR" placeholder="Relative Risk" type="tel"></p>
+    <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
+    <div id= "resultDiv"><span>Result:</span>
+        <span id="result"> Result will appear here once you enter parameters. </span>
+    </div><br>
+    <div hidden id="variableshower">
+        <label class="switch">
+            <input type="checkbox" onfocus="toggled()">
+            <span class="slider round"></span>
+        </label>&nbsp;&nbsp;Know what the parameters stand for
+        <div hidden id="variables">
+            <ul hidden id="CrossSectionalVariables">
+                <li> P<sub>1</sub> = Proportion in the first group</li>
+                <li> P<sub>2</sub> = Proportion in the second group</li>
+                <li> α = Significance level </li>
+                <li> 1-β = Power</li>
+                <li> <img src="crossSect.png"></li>
+            </ul>
+            <ul hidden id="CaseControlVariables">
+                <li> P<sub>2</sub>* = Probability of the exposure given disease is absent</li>
+                <li> P<sub>1</sub>* = Probability of the exposure given disease is present</li>
+                <li> α = Significance level </li>
+                <li> 1-β = Power</li>
+                <li> <img src="caseControl.png"></li>
+            </ul>
+            <ul hidden id="CohortVariables">
+                <li> P<sub>2</sub> = Proportion(incidence) of disease present in the unexposed group</li>
+                <li> P<sub>2</sub> = Proportion(incidence) of disease present in the exposed group</li>
+                <li> α = Significance level </li>
+                <li> 1-β = Power</li>
+                <li> <img src="cohort.png"></li>
+            </ul>
         </div>
-        <br>
-        <button onfocus="startAgain()" id="strtagn">Start Again</button><br><hr>
-      </article>
-    </body>
-</div>
+    </div>
+    <br>
+    <button onfocus="startAgain()" id="strtagn">Start Again</button><br><hr>
+    </article>
+</body>
+
 <script src="Formula_Hypothesis.js"></script>
 </html>

@@ -1,52 +1,71 @@
 *{font-size: inherit;}
 html{
-    font-size:110%;
-    font-family: sans-serif; 
-    text-align: center; 
-    vertical-align: middle; 
-    background-color: #c0ffee;
-    color: black; 
-    font-weight:bold;
+  font-size:110%;
+  font-family: sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #c0ffee;
+  color: black;
+  font-weight:bold;
 }
-#holder { 
-    display:flex; 
-    flex-direction:column;
-    min-height: 100vh;
-}
-body{ 
-    margin:0; 
-    padding:0;
-    position: relative;
+body{
+  display:flex;
+  flex-direction:column;
+  min-height: 100vh;
+  margin:0;
+  padding:0;
+  position: relative;
 }
 article{flex:1; font-size:110%;}
 #resultDiv{
-    background-color:white; 
-    color:black; 
-    font-weight:bold; 
-    width:99vw; 
-    min-height: 7vh; 
-    text-align:center;
+  background-color:white;
+  color:black;
+  font-weight:bold;
+  width:99vw;
+  min-height: 7vh;
+  text-align:center;
 }
 #resultDiv table{
-    margin:0 auto; 
-    width:95vw; 
-    border: solid 1px blue; 
-    border-spacing:0;
+  margin:0 auto;
+  width:95vw;
+  border: solid 1px blue;
+  border-spacing:0;
 }
 #resultDiv table tr td{
-    margin:0 auto;
-    border: solid 1px red;
+  margin:0 auto;
+  border: solid 1px red;
 }
-#resultDiv span{display: inline-block;}
+div.nonPrintable{
+  text-align: center;
+}
+div.nonPrintable table{
+  margin:0 auto;
+  width:fit-content;
+}
+div.nonPrintable table tr td{
+  text-align: start;
+}
+#printAsCSVTable{
+  margin:0 auto;
+  width: 95vw;
+  border: solid 3px red;
+}
+#printAsCSVTable tr td{
+  text-align: center;
+}
+#resultDiv span{
+  display: inline-block;
+  margin-right: 1ch;
+}
 #javascriptDisabled {
-    background-color:black; 
-    font-size:60px; 
-    text-align: center; 
-    vertical-align: middle; 
-    color:red;
+  background-color:black;
+  font-size:60px;
+  text-align: center;
+  vertical-align: middle;
+  color:red;
 }
 a {
-    font-size:inherit;
+  font-size:inherit;
 }
 
 hr {
@@ -122,7 +141,9 @@ select{
   color: black;
 }
 
-h1{font-size:2rem}
+h1{font-size: 2rem}
+
+h2{font-size: 1.6rem}
 
 .switch {
   position: relative;
@@ -222,8 +243,6 @@ img {height: 20vh; width:80vw}
 
 #sixthButton{ border: 5px solid #783114; color: #783114;}
 
-#lastButton, #secondLastButton{ border: 5px solid rgb(49, 49, 49); color: rgb(49, 49, 49);}
-
 #lastHr{ margin-bottom:80px}
 
 .CF{width: 50vw;}
@@ -243,6 +262,7 @@ img {height: 20vh; width:80vw}
   font-weight: bold;
   color: black;
 }
+
 @media (prefers-color-scheme: dark) {
   html{
     background-color: black;
@@ -328,12 +348,14 @@ img {height: 20vh; width:80vw}
 
   #sixthButton{ border: 5px solid #c0ffee; color: #c0ffee;}
 
-  #lastButton, #secondLastButton{ border: 5px solid #cfcfcf; color: #cfcfcf;}
-
   #mainTable td{
     background-color: transparent;
     border:5px solid whitesmoke;
     color: whitesmoke;
+  }
+
+  #printAsCSVTable{
+    border: solid 3px rgb(255, 128, 128);
   }
 
   a {
