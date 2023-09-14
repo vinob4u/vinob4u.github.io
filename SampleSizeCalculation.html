@@ -8,42 +8,41 @@
 </head>
 
 <body>
-    <article>
+<header id="header"></header>
+<article>
     <h1> Descriptive Studies </h1>
     <div id="mainTableTdDiv">
         <table id="mainTable" style="width: 100%; border: 1">
             <tbody>
             <tr>
-                <td><input id="ProportionAbsPrecision" name="mainTableTd" value="Proportion with Absolute Precision"
-                            type="radio" onfocus="PrAbsPShow()"><label for="ProportionAbsPrecision"><br>Proportion with
-                    Absolute Precision</label><br>
+                <td><input id="ProportionAbsPrecision" name="mainTableTd" value="Proportion with Absolute Precision" type="radio" onfocus="PrAbsPShow()">
+                    <label for="ProportionAbsPrecision"><br>Proportion with Absolute Precision</label><br>
                 </td>
-                <td><input id="ProportionRelPrecision" name="mainTableTd" value="Proportion with Relative Precision"
-                            type="radio" onfocus="PrRelPShow()"><label for="ProportionRelPrecision"><br>Proportion with
-                    Relative Precision</label><br>
+                <td><input id="ProportionRelPrecision" name="mainTableTd" value="Proportion with Relative Precision" type="radio" onfocus="PrRelPShow()">
+                    <label for="ProportionRelPrecision"><br>Proportion with Relative Precision</label><br>
                 </td>
             </tr>
             <tr>
-                <td><input id="MeanAbsPrecision" name="mainTableTd" value="Mean with Absolute Precision"
-                            type="radio" onfocus="MAbsPShow()"><label for="MeanAbsPrecision"><br>Mean with Absolute
-                    Precision</label><br>
+                <td><input id="MeanAbsPrecision" name="mainTableTd" value="Mean with Absolute Precision" type="radio" onfocus="MAbsPShow()">
+                    <label for="MeanAbsPrecision"><br>Mean with Absolute Precision</label><br>
                 </td>
-                <td><input id="MeanRelPrecision" name="mainTableTd" value="Mean with Relative Precision"
-                            type="radio" onfocus="MRelPShow()"><label for="MeanRelPrecision"><br>Mean with Relative
-                    Precision</label><br>
+                <td><input id="MeanRelPrecision" name="mainTableTd" value="Mean with Relative Precision" type="radio" onfocus="MRelPShow()">
+                    <label for="MeanRelPrecision"><br>Mean with Relative Precision</label><br>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <hr>
+    <br>
     <div id="labelPrevalence" hidden>
-        <label for="prevalence">Enter expected prevalence: </label> <input hidden id="prevalence"
-                                                                            name="Prevalence" placeholder="12" required="" type="tel"> %</div>
+        <label for="prevalence">Expected prevalence: </label>
+        <input hidden id="prevalence" name="Prevalence" placeholder="12" required="" type="number" step="any"> %
+    </div>
     <div id="labelSD" hidden>
-        <label for="SD">Enter expected Standard Deviation: </label> <input hidden id="SD"
-                                                                            name="Prevalence" placeholder="SD" required="" type="tel">%</div>
-
+        <label for="SD">Expected Standard Deviation: </label>
+        <input hidden id="SD" name="Prevalence" placeholder="SD" required="" type="number" step="any">%
+    </div>
+    <br>
     <label id="labelCF" for="CF" hidden> Confidence Interval: </label>
     <select id="CF" class="CF" hidden>
         <option>80%</option>
@@ -54,32 +53,40 @@
         <option>99.5%</option>
         <option>99.9%</option>
     </select>
-
+    <br><br>
     <div  id="labelAbsPrecision" hidden>
-        <label for="AbsPrecision">Enter absolute precision: </label> <input hidden id="AbsPrecision"
-                                                                            name="d" placeholder="Absolute Precision" required="" type="tel">%</div>
+        <label for="AbsPrecision">Absolute precision: </label>
+        <input hidden id="AbsPrecision" name="d" placeholder="Absolute Precision" required="" type="number" step="any">%
+        <br><br>
+    </div>
     <div hidden id="labelRelPrecision">
-        <label for="RelPrecision">Enter relative precision: </label> <input hidden id="RelPrecision"
-                                                                            name="e" placeholder="Relative Precision" required="" type="tel">%</div>
-    <p>
-        <label id="labelMean" hidden for="mean">Enter expected mean: </label> <input hidden id="mean"
-                                                                                        name="Mean" placeholder="Mean" required="" type="tel">
-    </p>
-    <button id="Calculate" onfocus="calculate()"> Calculate </button> <hr>
-    <br><div id= "resultDiv"><span>Result:</span>
-    <span id="result"> Result will appear here once you enter parameters. </span>
-    </div><br><div hidden id="variableshower">
+        <label for="RelPrecision">Relative precision: </label>
+        <input hidden id="RelPrecision" name="e" placeholder="Relative Precision" required="" type="number" step="any">%
+        <br><br>
+    </div>
+    <div id="labelMean" hidden>
+        <label for="mean">Expected mean: </label>
+        <input hidden id="mean" name="Mean" placeholder="Mean" required="" type="number" step="any">
+        <br><br>
+    </div>
+    <button id="Calculate" onfocus="calculate()"> Calculate </button>
+    <br><br>
+    <div id= "resultDiv"><span>Result:</span>
+        <span id="result"> Result will appear here once you enter parameters. </span>
+    </div><br>
+    <br><div hidden id="variableshower">
         <label class="switch">
             <input type="checkbox" onfocus="toggled()">
             <span class="slider round"></span>
         </label>&nbsp;&nbsp;Formula
         <div hidden id="variables">
             <img id="formulaImage" src="">
+            <div id="variableHint"></div>
         </div>
     </div><br>
-    <button id="strtagn" onfocus="startAgain()">Start Again</button><hr>
-    </article>
+    <button id="strtagn" onfocus="startAgain()">Start Again</button>
+</article>
 </body>
-
+<script src="header.js"></script>
 <script src="SampleSizeCalculation.js"></script>
 </html>

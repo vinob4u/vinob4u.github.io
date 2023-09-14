@@ -8,9 +8,9 @@
 </head>
 
 <body >
-    <article>
+<header id="header"></header>
+<article>
     <h1>Analytical Studies</h1>
-    <hr>
     <div style="text-align: center;">Select type of study:
         <select id="TypeOfStudy" required="required" onchange="typeOfStudy()">
             <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
@@ -19,17 +19,16 @@
             <option value="Cohort/RCT">Cohort Study/RCT</option>
         </select>
     </div>
-    <hr>
     <p id="z1aby2p" hidden> Alpha Error =
-    <select id="z1aby2" class="CF">
-        <option>80%</option>
-        <option>85%</option>
-        <option>90%</option>
-        <option selected="selected">95%</option>
-        <option>99%</option>
-        <option>99.5%</option>
-        <option>99.9%</option>
-    </select>
+        <select id="z1aby2" class="CF">
+            <option>80%</option>
+            <option>85%</option>
+            <option>90%</option>
+            <option selected="selected">95%</option>
+            <option>99%</option>
+            <option>99.5%</option>
+            <option>99.9%</option>
+        </select>
     </p>
     <p id="z1-bp" hidden> Power =
         <select id="z1-b" class="CF">
@@ -46,8 +45,8 @@
             <option value="P1P2">P1* and P2*</option>
         </select>
     </p>
-    <p hidden id="p1*p">P<sub>1</sub>* = <input id="P1*" placeholder="0.50" type="tel"></p>
-    <p hidden id="p2*p">P<sub>2</sub>* = <input id="P2*" placeholder="0.40" type="tel"></p>
+    <p hidden id="p1*p">P<sub>1</sub>* = <input id="P1*" placeholder="0.50" type="number" step="any"></p>
+    <p hidden id="p2*p">P<sub>2</sub>* = <input id="P2*" placeholder="0.40" type="number" step="any"></p>
     <p hidden id="RRP1P2p">Please select parameters you have:
         <select id="RRP1P2Select" onchange="RRP1P2Selected()">
             <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
@@ -55,14 +54,14 @@
             <option value="P1P2">P1 and P2</option>
         </select>
     </p>
-    <p hidden id="ORp">Odds Ratio = <input id="OR" placeholder="2" type="tel"></p>
-    <p hidden id="p1p">P<sub>1 </sub>= <input id="P1" placeholder="0.50" required="required" type="tel"> </p>
-    <p hidden id="p2p">P<sub>2 </sub>= <input id="P2" placeholder="0.40" required="required" type="tel"></p>
-    <p hidden id="RRp">Relative Risk = <input id="RR" placeholder="Relative Risk" type="tel"></p>
-    <button id="Calculate" onfocus="calculate()">Calculate</button><hr>
+    <p hidden id="ORp">Odds Ratio = <input id="OR" placeholder="2" type="number" step="any"></p>
+    <p hidden id="p1p">P<sub>1 </sub>= <input id="P1" placeholder="0.50" required="required" type="number" step="any"> </p>
+    <p hidden id="p2p">P<sub>2 </sub>= <input id="P2" placeholder="0.40" required="required" type="number" step="any"></p>
+    <p hidden id="RRp">Relative Risk = <input id="RR" placeholder="Relative Risk" type="number" step="any"></p>
+    <button id="Calculate" onfocus="calculate()">Calculate</button><br><br>
     <div id= "resultDiv"><span>Result:</span>
         <span id="result"> Result will appear here once you enter parameters. </span>
-    </div><br>
+    </div><br><br><br>
     <div hidden id="variableshower">
         <label class="switch">
             <input type="checkbox" onfocus="toggled()">
@@ -93,9 +92,9 @@
         </div>
     </div>
     <br>
-    <button onfocus="startAgain()" id="strtagn">Start Again</button><br><hr>
-    </article>
+    <button onfocus="startAgain()" id="strtagn">Start Again</button><br>
+</article>
 </body>
-
+<script src="header.js"></script>
 <script src="Formula_Hypothesis.js"></script>
 </html>

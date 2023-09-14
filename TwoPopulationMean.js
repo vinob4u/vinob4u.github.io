@@ -67,9 +67,12 @@ function calculate(){
     let  n = e3/e4;
     if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
     else{document.getElementById("result").innerHTML= Math.ceil(n);}
+  document.getElementById("resultDiv").style.display="inline-block";
   }
 function startAgain(){
     document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";
     document.getElementById("javascriptDisabled").setAttribute("hidden", "");
+    document.getElementById("resultDiv").style.display="none";
+    document.querySelectorAll("input").forEach((element)=>element.value = "");
   }
 startAgain();

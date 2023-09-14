@@ -27,6 +27,8 @@ function typeOfStudy(){
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
   }
+  document.getElementById("Calculate").style.display = "inline-block";
+  document.getElementById("strtagn").style.display = "inline-block";
   document.getElementById("variableshower").removeAttribute("hidden");
 }
 function CrossSectionalShow(){
@@ -132,6 +134,7 @@ function calculate(){
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
   }
+  document.getElementById("resultDiv").style.display = "inline-block";
 }
 function CrossSectionalCalculate(){
   z1= document.getElementById("z1aby2");
@@ -370,5 +373,8 @@ function startAgain(){
   document.getElementById("ORP1P2Select").selectedIndex = 0;
   document.getElementById("RRP1P2Select").selectedIndex = 0;
   document.getElementById("variableshower").setAttribute("hidden", "");
+  document.getElementById('Calculate').style.display="none";
+  document.getElementById("resultDiv").style.display="none";
+  document.getElementById("strtagn").style.display="none";
 }
 startAgain();

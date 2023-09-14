@@ -17,7 +17,13 @@ function startAgain(){
   document.getElementById("printCSV").setAttribute("hidden", "");
   try {
     window.JSInterface.hidePrintAsPDF();
-  } catch (error){/*do nothing*/}
+  } catch (error){
+    try {
+      document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+    } catch (error) {
+      /*means first time; do nothing */
+    }
+  }
 }
 startAgain();
 let typeOfCalculation = 2;
@@ -76,7 +82,7 @@ function generateNumbers(blockNumber){
               while(array.length < c){
                 var r = (m+(Math.round(Math.random()*(M-m))));
                 if(array.indexOf(r) === -1) {array.push(r)};
-              }  
+              }
             }
             else{document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";}
           }
@@ -197,6 +203,20 @@ function generateMain(){
   let C = parseFloat(document.getElementById("countBlock").value);
   let a=[];
   let valid= validityChecker();
+  if (!valid) {
+    try {
+      window.JSInterface.hidePrintAsPDF();
+    }
+    catch (error){
+      try {
+        document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+      } catch (error) {
+        /*do nothing */
+      }
+    }
+    document.getElementById("printCSV").setAttribute("hidden", "");
+    return null;
+  }
   let blockNumber=1;
   if (uniqueBlock===1){
     if (uniqueOrder===0){
@@ -261,7 +281,7 @@ function generateMain(){
   if (column===0){document.getElementById("printCSV").setAttribute("hidden", "");}
   else{document.getElementById("printCSV").removeAttribute("hidden");document.getElementById("printAsCSV").removeAttribute("hidden");}
   try {
-    window.JSInterface.showPrintAsPDF(); 
+    window.JSInterface.showPrintAsPDF();
   } catch (error) {
     if(document.getElementById("printAsPDFButton")) {
       document.getElementById("printPDF").innerHTML = "";
@@ -279,8 +299,16 @@ function validityChecker(){
   let M = parseFloat(document.getElementById("maxValue").value);
   let c = parseFloat(document.getElementById("countRandom").value);
   let C = parseFloat(document.getElementById("countBlock").value);
+  if (C%1 != 0) {
+    document.getElementById("resultDiv").innerText = "Count of blocks must be a natural number";
+    return false;
+  }
+  if (c%1 != 0) {
+    document.getElementById("resultDiv").innerText = "Count of random numbers must be a natural number";
+    return false;
+  }
   if (c>100||C>100||(c*C)>1024){
-    document.getElementById("resultDiv").innerHTML="<span>Count of random numbers and blocks must not be too high</span> <span>(maximum 100 and their product less than 1024)</span<";
+    document.getElementById("resultDiv").innerHTML="<span>Count of random numbers and blocks must not be too high</span> <span>(maximum 100 and their product less than 1024)</span>";
     return false;
   }
   if (isNaN(m * M * c)||(!Number.isInteger(c))||M<m||c<0||C<0){
@@ -288,7 +316,7 @@ function validityChecker(){
     return false;
   }
   if (uniqueOrder===1 && c>5){
-    document.getElementById("resultDiv").innerHTML="<span>Numbers per block requested should be less than</span> 6 <span> if you choose unique blocks despite order of numbers.";
+    document.getElementById("resultDiv").innerHTML="<span>Numbers per block requested should be less than</span> 6 <span> if you choose unique blocks despite order of numbers.</span>";
     return false;
   }
   let q =parseInt(document.getElementById("decimalsNumber").value);

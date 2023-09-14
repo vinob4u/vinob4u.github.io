@@ -4,7 +4,7 @@ html{
   font-family: sans-serif;
   text-align: center;
   vertical-align: middle;
-  background-color: #c0ffee;
+  background-color: #ffffff;
   color: black;
   font-weight:bold;
 }
@@ -14,16 +14,23 @@ body{
   min-height: 100vh;
   margin:0;
   padding:0;
-  position: relative;
 }
-article{flex:1; font-size:110%;}
+article{
+  flex:1;
+  font-size:110%;
+}
 #resultDiv{
-  background-color:white;
+  display: block;
   color:black;
   font-weight:bold;
-  width:99vw;
+  width:100%;
   min-height: 7vh;
   text-align:center;
+}
+#resultDiv span{
+  display: inline-block;
+  margin-right: 1ch;
+  vertical-align: middle;
 }
 #resultDiv table{
   margin:0 auto;
@@ -37,6 +44,7 @@ article{flex:1; font-size:110%;}
 }
 div.nonPrintable{
   text-align: center;
+  padding: 0 0 0 0;
 }
 div.nonPrintable table{
   margin:0 auto;
@@ -53,10 +61,6 @@ div.nonPrintable table tr td{
 #printAsCSVTable tr td{
   text-align: center;
 }
-#resultDiv span{
-  display: inline-block;
-  margin-right: 1ch;
-}
 #javascriptDisabled {
   background-color:black;
   font-size:60px;
@@ -69,44 +73,28 @@ a {
 }
 
 hr {
-  border-top: 3px dashed red;
-}
-
-footer{
-  margin-top:auto;
-  left: 0; right: 0;
-  display:block;
-  background-color: black; color: white;
-  font-size:0.63rem;
-  text-align: center;
-  bottom: 0;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  min-height: 7vh;
+  border-top: 3px dashed #FAA32B;
 }
 
 #strtagn{ margin-bottom:80px;}
 
 button {
-  background-color: #c0ffee;
+  background-color: transparent;
   padding: 8px 20px;
+  max-width: 96vw;
   border:5px solid black;
   border-radius: 12px;
   font-weight: bold;
   transition: all 0.2s ease-in-out;
   color: black;
+  box-shadow: 0 0.2vh 10px 0 #000000AA;
 }
 
-button:hover {
-  color: #222222;
-  box-shadow: 0 5px 25px rgba(145, 102, 182, .4);
-}
-
-input[type='tel'], input[type="text"]{
+input[type='number'], input[type="text"]{
   width: 55vw;
-  background-color:#c0ffee;
+  background-color: transparent;
   padding: 8px 20px;
+  margin: 1vw;
   border:5px solid black;
   border-radius: 16px;
   font-weight: bold;
@@ -130,10 +118,15 @@ input[type="radio"]{
   transform: scale(1.5);
 }
 
+select > option{
+  color: black;
+}
+
 select{
   width: 80vw;
-  background-color:transparent;
+  background-color: transparent;
   padding: 8px 20px;
+  margin: 1vw;
   border:5px solid black;
   border-radius: 16px;
   font-weight: bold;
@@ -141,9 +134,13 @@ select{
   color: black;
 }
 
-h1{font-size: 2rem}
+h1{
+  font-size: 2em;
+}
 
-h2{font-size: 1.6rem}
+h2{
+  font-size: 1.6em
+}
 
 .switch {
   position: relative;
@@ -205,7 +202,7 @@ input:checked + .slider:before {
 }
 
 .blockLabel{
-  background-color: cyan;
+  background-color: #F2F2F1;
   color: red;
   font-weight: bolder;
   padding: 0.5vw;
@@ -243,8 +240,6 @@ img {height: 20vh; width:80vw}
 
 #sixthButton{ border: 5px solid #783114; color: #783114;}
 
-#lastHr{ margin-bottom:80px}
-
 .CF{width: 50vw;}
 
 #mainTableTd {
@@ -263,20 +258,33 @@ img {height: 20vh; width:80vw}
   color: black;
 }
 
+header{
+  background-color: transparent;
+  text-align: right;
+  height: min-content;
+  width: 90vw;
+  margin: 0 5vw 0 5vw;
+}
+header button{
+  height: min-content;
+  padding: 0 1vw;
+  margin: 0 1vw;
+  vertical-align: middle;
+}
+
 @media (prefers-color-scheme: dark) {
   html{
     background-color: black;
     color: whitesmoke;
   }
   #resultDiv{
-    background-color:black;
     color:whitesmoke;
   }
   #resultDiv table{
     border: solid 1px lightblue;
   }
   #resultDiv table tr td{
-    border: solid 1px rgb(255, 128, 128);
+    border: solid 1px #ff8080;
   }
   #javascriptDisabled {
     background-color:whitesmoke;
@@ -284,20 +292,17 @@ img {height: 20vh; width:80vw}
   }
 
   hr {
-    border-top: 3px dashed rgb(255, 128, 128);
+    border-top: 3px dashed #ff8080;
   }
 
   button {
     background-color: transparent;
     border:5px solid whitesmoke;
     color: whitesmoke;
+    box-shadow: 0 0.2vh 10px 0 #FFFFFFAA;
   }
 
-  button:hover {
-    color: #dddddd;
-  }
-
-  input[type='tel'], input[type="text"]{
+  input[type='number'], input[type="text"]{
     background-color: transparent;
     border:5px solid whitesmoke;
     color: whitesmoke;
@@ -308,12 +313,17 @@ img {height: 20vh; width:80vw}
     color: whitesmoke;
   }
 
+  select > option{
+    background-color: black;
+    color: whitesmoke;
+    font-weight: bold;
+  }
+
   select{
     background-color: transparent;
     border:5px solid whitesmoke;
     color: whitesmoke;
   }
-
 
   .slider {
     background-color: #333;

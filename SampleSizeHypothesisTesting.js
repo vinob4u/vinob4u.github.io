@@ -22,6 +22,7 @@ function typeOfCalculation(){
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
   }
+  document.getElementById("Calculate").style.display = "inline-block";
   document.getElementById("variableshower").removeAttribute("hidden");
 }
 
@@ -72,6 +73,7 @@ function calculate(){
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
   }
+  document.getElementById("resultDiv").style.display = "inline-block";
 }
 
 function PairedMeanCalculate(){
@@ -223,5 +225,7 @@ function startAgain(){
   document.getElementById("strtagn").setAttribute("hidden", "");
   document.getElementById("javascriptDisabled").setAttribute("hidden", "");
   document.getElementById("variableshower").setAttribute("hidden", "");
+  document.getElementById("Calculate").style.display = "none";
+  document.getElementById("resultDiv").style.display = "none";
 }
 startAgain();

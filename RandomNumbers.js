@@ -16,9 +16,15 @@ function startAgain(){
   document.getElementById("countRandom").value="";
   document.getElementById("printCSV").setAttribute("hidden", "");
   try {
-      window.JSInterface.hidePrintAsPDF();
+    window.JSInterface.hidePrintAsPDF();
+  }
+  catch (error){
+    try {
+      document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+    } catch (error) {
+      /*means first time; do nothing */
     }
-    catch (error){/*do nothing*/}
+  }
 }
 startAgain();
 let decimalsBoolean=2;
@@ -61,16 +67,56 @@ let printString=`<table id="printAsCSVTable"><tr><td>
 </p>
 <div id="printingStatus"></div>
 <div id='Miscellaneous'></div></td></tr></table><hr>`;
-function generate(){
+function generate(){  
   let m = parseFloat(document.getElementById("minValue").value);
   let M = parseFloat(document.getElementById("maxValue").value);
   let c = parseFloat(document.getElementById("countRandom").value);
-  if (c>1000){document.getElementById("resultDiv").innerHTML="Maximum count of random numbers that can be generated at once is 1000, this is to prevent system overload and crashes"; return false;}
+  if (c>1000){
+    document.getElementById("resultDiv").innerHTML="Maximum count of random numbers that can be generated at once is 1000, this is to prevent system overload and crashes";
+    try {
+      window.JSInterface.hidePrintAsPDF();
+    }
+    catch (error){
+      try {
+        document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+      } catch (error) {
+        /*do nothing */
+      }
+    }
+    document.getElementById("printCSV").setAttribute("hidden", "");
+    return false;
+  }
+  if (c%1 != 0) {
+    document.getElementById("resultDiv").innerText = "Count of random numbers must be a natural number";
+    try {
+      window.JSInterface.hidePrintAsPDF();
+    }
+    catch (error){
+      try {
+        document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+      } catch (error) {
+        /*do nothing */
+      }
+    }
+    document.getElementById("printCSV").setAttribute("hidden", "");
+    return false;
+  }
   let q = parseInt(document.getElementById("decimalsNumber").value);
   let q1;
   q1= Math.pow(10, q);
   if (isNaN(m * M * c)||(!Number.isInteger(c))||M<m||c<0) {
     document.getElementById("resultDiv").innerHTML="Please enter valid parameters";
+    try {
+      window.JSInterface.hidePrintAsPDF();
+    }
+    catch (error){
+      try {
+        document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+      } catch (error) {
+        /*do nothing */
+      }
+    }
+    document.getElementById("printCSV").setAttribute("hidden", "");
     return false;
   }
   if (column===0){
@@ -85,7 +131,21 @@ function generate(){
               if(array.indexOf(r) === -1) {array.push(r)};
             }
           }
-          else{document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>"; return false;}
+          else{
+            document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>"; 
+            try {
+              window.JSInterface.hidePrintAsPDF();
+            }
+            catch (error){
+              try {
+                document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+              } catch (error) {
+                /*do nothing */
+              }
+            }
+            document.getElementById("printCSV").setAttribute("hidden", "");
+            return false;
+          }
         }
         if (unique===0){
           for(let i=0;i < c;  i++) {
@@ -102,7 +162,21 @@ function generate(){
               if(array.indexOf(r) === -1) {array.push(r)};
             }
           }
-          else{document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";return false;}
+          else{
+            document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";
+            try {
+              window.JSInterface.hidePrintAsPDF();
+            }
+            catch (error){
+              try {
+                document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+              } catch (error) {
+                /*do nothing */
+              }
+            }
+            document.getElementById("printCSV").setAttribute("hidden", "");
+            return false;
+          }
         }
         if (unique===0){
           for(let i=0;i < c;  i++) {
@@ -143,6 +217,17 @@ function generate(){
           }
           else{
             document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";
+            try {
+              window.JSInterface.hidePrintAsPDF();
+            }
+            catch (error){
+              try {
+                document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+              } catch (error) {
+                /*do nothing */
+              }
+            }
+            document.getElementById("printCSV").setAttribute("hidden", "");
             return null;
           }
         }
@@ -163,6 +248,17 @@ function generate(){
           }
           else{
             document.getElementById("resultDiv").innerHTML="<span>Unique random number </span> <span> generation not possible </span> <span> with the given parameters</span>";
+            try {
+              window.JSInterface.hidePrintAsPDF();
+            }
+            catch (error){
+              try {
+                document.getElementById("printAsPDFButton").setAttribute("hidden", "");
+              } catch (error) {
+                /*do nothing */
+              }
+            }
+            document.getElementById("printCSV").setAttribute("hidden", "");
             return null;
           }
         }

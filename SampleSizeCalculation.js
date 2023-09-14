@@ -23,7 +23,14 @@ function PrAbsPShow(){
   document.getElementById("labelMean").setAttribute("hidden", "");
   document.getElementById("mean").setAttribute("hidden", "");
   document.getElementById("formulaImage").setAttribute("src", "./ProportionAbsolutePrecision.png");
+  document.getElementById("variableHint").innerHTML = `
+  Z<sub>1-α</sub> = Z value of Alpha Error<br>
+  p = Expected Prevalence<br>
+  q = 1-p <br>
+  d = Absolute Precision<br>`
   document.getElementById("variableshower").removeAttribute("hidden");
+  document.getElementById('Calculate').style.display="inline-block";
+  document.getElementById('strtagn').style.display="inline-block";
   mainTableTd = 1;
   return mainTableTd;
 }
@@ -40,8 +47,15 @@ function PrRelPShow(){
   document.getElementById("SD").setAttribute("hidden", "");
   document.getElementById("labelMean").setAttribute("hidden", "");
   document.getElementById("mean").setAttribute("hidden", "");
+  document.getElementById("variableHint").innerHTML = `
+  Z<sub>1-α</sub> = Z value of Alpha Error<br>
+  p = Expected Prevalence<br>
+  q = 1-p <br>
+  ε = Relative Precision<br>`
   document.getElementById("formulaImage").setAttribute("src", "./ProportionRelativePrecision.png");
   document.getElementById("variableshower").removeAttribute("hidden");
+  document.getElementById('Calculate').style.display="inline-block";
+  document.getElementById('strtagn').style.display="inline-block";
   mainTableTd = 2;
   return mainTableTd;
 }
@@ -58,8 +72,14 @@ function MAbsPShow(){
   document.getElementById("prevalence").setAttribute("hidden", "");
   document.getElementById("labelMean").setAttribute("hidden", "");
   document.getElementById("mean").setAttribute("hidden", "");
+  document.getElementById("variableHint").innerHTML = `
+  Z<sub>1-α</sub> = Z value of Alpha Error<br>
+  σ = Expected Standard Deviation<br>
+  d = Absolute Precision<br>`;
   document.getElementById("formulaImage").setAttribute("src", "./MeanAbsolutePrecision.png");
   document.getElementById("variableshower").removeAttribute("hidden");
+  document.getElementById('Calculate').style.display="inline-block";
+  document.getElementById('strtagn').style.display="inline-block";
   mainTableTd = 3;
   return mainTableTd;
 }
@@ -76,37 +96,45 @@ function MRelPShow(){
   document.getElementById("prevalence").setAttribute("hidden", "");
   document.getElementById("mean").removeAttribute("hidden");
   document.getElementById("labelMean").removeAttribute("hidden");
+  document.getElementById("variableHint").innerHTML = `
+  Z<sub>1-α</sub> = Z value of Alpha Error<br>
+  σ = Expected Standard Deviation<br>
+  ε = Relative Precision<br>
+  μ = Expected Mean`;
   document.getElementById("formulaImage").setAttribute("src", "./MeanRelativePrecision.png");
   document.getElementById("variableshower").removeAttribute("hidden");
+  document.getElementById('Calculate').style.display="inline-block";
+  document.getElementById('strtagn').style.display="inline-block";
   mainTableTd = 4;
   return mainTableTd;
 }
 
 function calculate(){
   if (document.getElementById('prevalence').value>100 || document.getElementById('AbsPrecision').value>100 || document.getElementById('RelPrecision').value>100 || document.getElementById('SD').value>100||document.getElementById('prevalence').value<0 || document.getElementById('AbsPrecision').value<0 || document.getElementById('RelPrecision').value<0 || document.getElementById('SD').value<0){
-    document.getElementById('result').innerHTML= "Please enter valid parameters"
+    document.getElementById('result').innerHTML= "Please enter valid parameters";
   }
   else{
-  let z= document.getElementById("CF");
-  switch(mainTableTd){
-    case 0:
-      document.getElementById('result').innerHTML= "Please Select Type of Calculation"
-      break;
-    case 1:
-      PrAbsPCalculate()
-      break;
-    case 2:
-      PrRelPCalculate()
-      break;
-    case 3:
-      MAbsPCalculate()
-      break;
-    case 4:
-      MRelPCalculate()
-      break;
-    default:
-      document.getElementById('result').innerHTML= "Please report this error to developer"
-  }
+    let z= document.getElementById("CF");
+    switch(mainTableTd){
+      case 0:
+        document.getElementById('result').innerHTML= "Please Select Type of Calculation"
+        break;
+      case 1:
+        PrAbsPCalculate()
+        break;
+      case 2:
+        PrRelPCalculate()
+        break;
+      case 3:
+        MAbsPCalculate()
+        break;
+      case 4:
+        MRelPCalculate()
+        break;
+      default:
+        document.getElementById('result').innerHTML= "Please report this error to developer";
+    }
+    document.getElementById('resultDiv').style.display="inline-block";
   }
 }
 function PrAbsPCalculate(){
@@ -136,7 +164,7 @@ function PrAbsPCalculate(){
     case '99.9%':
       z1=3.291
       break;
-    default:document.getElementById('result').innerHTML= "Please report this error to developer"
+    default:document.getElementById('result').innerHTML= "Please report this error to developer";
       break;
     }
   let z12 = z1*z1;
@@ -295,6 +323,10 @@ function startAgain(){
   document.getElementById("mean").setAttribute("hidden", "");
   document.getElementById("mean").value="";
   document.getElementById('variableshower').setAttribute('hidden', "");
+  document.getElementById('Calculate').style.display="none";
+  document.getElementById("resultDiv").style.display="none";
+  document.getElementById("strtagn").style.display="none";
   mainTableTd=0;
   return mainTableTd;
 }
+startAgain();

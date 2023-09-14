@@ -15,64 +15,65 @@
     </style>
 </head>
 
-    <body >
-      <article>
-        <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
-        <h1>Random Number Generator</h1>
+<body >
+<header id="header" class=".nonPrintable"></header>
+<article>
+    <p id="javascriptDisabled">Warning!!!<br> Please Enable Javascript for functionality</p>         <!-- shows only when javascript is disabled -->
+    <h1>Random Number Generator</h1>
+    <hr>
+    <div class="nonPrintable">
+        <div id="minValuep">Minimum Value (inclusive):&nbsp; <input id="minValue" placeholder="Please enter value" required="required" type="number" step="any"></div>
+        <div id="maxValuep">Maximum Value (inclusive):&nbsp; <input id="maxValue" placeholder="Please enter value" required="required" type="number" step="any"> </div>
+        <div id="countRandomp">Count of Random Numbers:&nbsp;<input id="countRandom" placeholder="Only natural numbers" type='number'></div>
         <hr>
-        <div class="nonPrintable">
-            <div id="minValuep">Minimum Value (inclusive):&nbsp; <input id="minValue" placeholder="Please enter value" required="required" type='tel'></div>
-            <div id="maxValuep">Maximum Value (inclusive):&nbsp; <input id="maxValue" placeholder="Please enter value" required="required" type='tel'> </div>
-            <div id="countRandomp">Count of Random Numbers:&nbsp;<input id="countRandom" placeholder="Only Integers" type='tel'></div>
-            <hr>
-            <div id="decimalsBoolean">Do you want Decimals?&nbsp;<br>
-                <table><tr><td><input id="Yes" name="decimalsBoolean" type="radio" onfocus="decimalYes()"></td><td><label for="Yes">&nbsp;Yes</label></td></tr>
+        <div id="decimalsBoolean">Do you want Decimals?&nbsp;<br>
+            <table><tr><td><input id="Yes" name="decimalsBoolean" type="radio" onfocus="decimalYes()"></td><td><label for="Yes">&nbsp;Yes</label></td></tr>
                 <tr><td><input id="No" name="decimalsBoolean" type="radio" onfocus="decimalNo()" checked></td><td><label for="No">&nbsp;No</label></td></tr></table>
-            </div>
-            <div id="decimalsNumberp" hidden>
-                <label for="decimalsNumber">Level of decimal points (between 1 and 5):</label><br>
-                <input type="range" id="decimalsNumber" min="1" max="5" step="1" value="2" onchange="decimalNumberChecker()">
-                <div class="rangeticks"><span>0.1</span><span>0.12</span><span>0.123</span><span>0.1234</span><span>0.12345</span></div><br>
-            </div><hr>
-            <div id="uniqueBoolean">Do you want Unique Random Numbers?&nbsp;<br>
-                <table><tr><td><input id="Yes1" name="UniqueBoolean" type="radio" onfocus="uniqueYes()"></td><td><label for="Yes1">&nbsp;Yes</label></td></tr>
+        </div>
+        <div id="decimalsNumberp" hidden>
+            <label for="decimalsNumber">Level of decimal points (between 1 and 5):</label><br>
+            <input type="range" id="decimalsNumber" min="1" max="5" step="1" value="2" onchange="decimalNumberChecker()">
+            <div class="rangeticks"><span>0.1</span><span>0.12</span><span>0.123</span><span>0.1234</span><span>0.12345</span></div><br>
+        </div><hr>
+        <div id="uniqueBoolean">Do you want Unique Random Numbers?&nbsp;<br>
+            <table><tr><td><input id="Yes1" name="UniqueBoolean" type="radio" onfocus="uniqueYes()"></td><td><label for="Yes1">&nbsp;Yes</label></td></tr>
                 <tr><td><input id="No1" name="UniqueBoolean" type="radio" onfocus="uniqueNo()" checked></td><td><label for="No1">&nbsp;No</label></td></tr></table>
-            </div><hr>
-            <div id="sortingp">Do you want the random numbers to be sorted?&nbsp;<br>
-                <table><tr><td><input id="Yes4.1" name="sorting" type="radio" onfocus="sortingAsc()"></td><td><label for="Yes4.1">&nbsp;Yes, Ascending order.</label></td></tr>
+        </div><hr>
+        <div id="sortingp">Do you want the random numbers to be sorted?&nbsp;<br>
+            <table><tr><td><input id="Yes4.1" name="sorting" type="radio" onfocus="sortingAsc()"></td><td><label for="Yes4.1">&nbsp;Yes, Ascending order.</label></td></tr>
                 <tr><td><input id="Yes4.2" name="sorting" type="radio" onfocus="sortingDesc()"></td><td><label for="Yes4.2">&nbsp;Yes, Descending order.</label></td></tr>
                 <tr><td><input id="No4" name="sorting" type="radio" onfocus="sortingNo()" checked></td><td><label for="No4">&nbsp;No.</label></td></tr></table>
-            </div><hr>
-            <div id="tableBoolean">Do you want results to be formatted to a table?&nbsp;<br>
-                <table><tr><td><input id="Yes3" name="TableBoolean" type="radio" onfocus="tableYes()"></td><td><label for="Yes3">&nbsp;Yes</label></td></tr>
+        </div><hr>
+        <div id="tableBoolean">Do you want results to be formatted to a table?&nbsp;<br>
+            <table><tr><td><input id="Yes3" name="TableBoolean" type="radio" onfocus="tableYes()"></td><td><label for="Yes3">&nbsp;Yes</label></td></tr>
                 <tr><td><input id="No3" name="TableBoolean" type="radio" onfocus="tableNo()" checked></td><td><label for="No3">&nbsp;No</label></td></tr></table>
-            </div>
-            <div id="tableColumnsp" hidden>Format to how many columns?&nbsp;<br>
-                <input id="tableColumns" onchange="columnShow()" type="range" min="1" max="8" step="1" value="2" />
-                <div class="rangeticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><br>
-            </div><hr>
-            <button id="Generate" onfocus="generate()">Generate</button><hr>
         </div>
-        <div id= "resultDiv">
-            <span id="result"> Result will appear here once you enter parameters. </span>
+        <div id="tableColumnsp" hidden>Format to how many columns?&nbsp;<br>
+            <input id="tableColumns" onchange="columnShow()" type="range" min="1" max="8" step="1" value="2" />
+            <div class="rangeticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><br>
+        </div><hr>
+        <button id="Generate" onfocus="generate()">Generate</button><hr>
+    </div>
+    <div id= "resultDiv">
+        <span id="result"> Result will appear here once you enter parameters. </span>
+    </div>
+    <div class="nonPrintable">
+        <div id="print">
+            <div id="printCSV" hidden="hidden"></div>
+            <div id="printPDF"></div>
         </div>
-        <div class="nonPrintable">
-            <div id="print">
-                <div id="printCSV" hidden="hidden"></div>
-                <div id="printPDF"></div>
-            </div>
-            <hr>
-            <label class="switch">
-                <input id="favone" type="checkbox" onfocus="toggled()">
-                <span class="slider round"></span>
-            </label>&nbsp;&nbsp;Help
-            <div id="help" hidden>
-                <strong><u>File Name Pattern</u></strong><br>
-                <span>Valid File Name Pattern can include English alphabets A to Z, a to z and numbers 0 to 9 and the characters _, -, . and (space) </span></div><hr>
-            <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
-        </div>
-      </article>
-    </body>
-
+        <hr>
+        <label class="switch">
+            <input id="favone" type="checkbox" onfocus="toggled()">
+            <span class="slider round"></span>
+        </label>&nbsp;&nbsp;Help
+        <div id="help" hidden>
+            <strong><u>File Name Pattern</u></strong><br>
+            <span>Valid File Name Pattern can include English alphabets A to Z, a to z and numbers 0 to 9 and the characters _, -, . and (space) </span></div><hr>
+        <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
+    </div>
+</article>
+</body>
+<script src="header.js"></script>
 <script src="RandomNumbers.js"></script>
 </html>
