@@ -34,7 +34,7 @@ article{
 }
 #resultDiv table{
   margin:0 auto;
-  width:95vw;
+  width:95%;
   border: solid 1px blue;
   border-spacing:0;
 }
@@ -55,18 +55,11 @@ div.nonPrintable table tr td{
 }
 #printAsCSVTable{
   margin:0 auto;
-  width: 95vw;
+  width: 95%;
   border: solid 3px red;
 }
 #printAsCSVTable tr td{
   text-align: center;
-}
-#javascriptDisabled {
-  background-color:black;
-  font-size:60px;
-  text-align: center;
-  vertical-align: middle;
-  color:red;
 }
 a {
   font-size:inherit;
@@ -81,7 +74,7 @@ hr {
 button {
   background-color: transparent;
   padding: 8px 20px;
-  max-width: 96vw;
+  max-width: 96%;
   border:5px solid black;
   border-radius: 12px;
   font-weight: bold;
@@ -91,10 +84,10 @@ button {
 }
 
 input[type='number'], input[type="text"]{
-  width: 55vw;
+  width: 55%;
   background-color: transparent;
   padding: 8px 20px;
-  margin: 1vw;
+  margin: 1%;
   border:5px solid black;
   border-radius: 16px;
   font-weight: bold;
@@ -103,7 +96,7 @@ input[type='number'], input[type="text"]{
 }
 
 input[type="range"]{
-  width: 80vW;
+  width: 80%;
   padding: 0px 0px;
   border:0px solid black;
   border-radius: 16px;
@@ -123,10 +116,10 @@ select > option{
 }
 
 select{
-  width: 80vw;
+  width: 80%;
   background-color: transparent;
   padding: 8px 20px;
-  margin: 1vw;
+  margin: 1%;
   border:5px solid black;
   border-radius: 16px;
   font-weight: bold;
@@ -205,12 +198,12 @@ input:checked + .slider:before {
   background-color: #F2F2F1;
   color: red;
   font-weight: bolder;
-  padding: 0.5vw;
+  padding: 0.5%;
 }
 
 .rangeticks {
   margin: auto;
-  width: 79vW;
+  width: 79%;
   display: flex;
   justify-content: space-between;
 }
@@ -219,14 +212,14 @@ input:checked + .slider:before {
   display: flex;
   justify-content: center;
   text-align: center;
-  width: 0.25vw;
+  width: 0.25%;
   background: black;
   height: 10px;
   line-height: 40px;
   margin: 0;
 }
 
-img {height: 20vh; width:80vw}
+img {height: 20vh; width:80%}
 
 #firstButton{ border: 5px solid blue; color: blue;}
 
@@ -240,10 +233,10 @@ img {height: 20vh; width:80vw}
 
 #sixthButton{ border: 5px solid #783114; color: #783114;}
 
-.CF{width: 50vw;}
+.CF{width: 50%;}
 
 #mainTableTd {
-  width: 23vw;
+  width: 23%;
   -ms-transform: scale(1.5);
   -webkit-transform: scale(1.5);
   transform: scale(1.5);
@@ -262,13 +255,13 @@ header{
   background-color: transparent;
   text-align: right;
   height: min-content;
-  width: 90vw;
-  margin: 0 5vw 0 5vw;
+  width: 90%;
+  margin: 0 5% 0 5%;
 }
 header button{
   height: min-content;
-  padding: 0 1vw;
-  margin: 0 1vw;
+  padding: 0 1%;
+  margin: 0 1%;
   vertical-align: middle;
 }
 
@@ -286,11 +279,6 @@ header button{
   #resultDiv table tr td{
     border: solid 1px #ff8080;
   }
-  #javascriptDisabled {
-    background-color:whitesmoke;
-    color:red;
-  }
-
   hr {
     border-top: 3px dashed #ff8080;
   }
@@ -323,6 +311,10 @@ header button{
     background-color: transparent;
     border:5px solid whitesmoke;
     color: whitesmoke;
+  }
+
+  h1{
+	background: #000011;
   }
 
   .slider {

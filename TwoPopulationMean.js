@@ -70,9 +70,8 @@ function calculate(){
   document.getElementById("resultDiv").style.display="inline-block";
   }
 function startAgain(){
-    document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";
-    document.getElementById("javascriptDisabled").setAttribute("hidden", "");
-    document.getElementById("resultDiv").style.display="none";
-    document.querySelectorAll("input").forEach((element)=>element.value = "");
-  }
+  document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";
+  document.getElementById("resultDiv").style.display="none";
+  document.querySelectorAll("input").forEach((element)=>element.value = "");
+}
 startAgain();

@@ -2,14 +2,20 @@ function increaseFontSize (){
     if(parseFloat(document.getElementsByTagName("article")[0].style.fontSize)<155){
         document.getElementsByTagName("article")[0].style.fontSize = (parseFloat(document.getElementsByTagName("article")[0].style.fontSize) + 7.5) + '%';
     }
+    return document.getElementsByTagName("article")[0].style.fontSize;
 }
 function decreaseFontSize (){
     if (parseFloat(document.getElementsByTagName("article")[0].style.fontSize)>80){
         document.getElementsByTagName("article")[0].style.fontSize = (parseFloat(document.getElementsByTagName("article")[0].style.fontSize) - 7.5) + '%';
     }
+    return document.getElementsByTagName("article")[0].style.fontSize;
 }
 function initialFontSize (){
     document.getElementsByTagName("article")[0].style.fontSize = `110%`;
+    return document.getElementsByTagName("article")[0].style.fontSize;
+}
+function setFontSize (string) {
+    document.getElementsByTagName("article")[0].style.fontSize = string;
 }
 if(!window.JSInterface){
     let increaseFontSizeButton = document.createElement("button");

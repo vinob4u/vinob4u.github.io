@@ -12,7 +12,6 @@ function startAgain(){
   document.getElementById("resultDiv").innerHTML= " Result will appear here once you enter parameters. ";
   document.getElementById("minValue").value="";
   document.getElementById("maxValue").value="";
-  document.getElementById("javascriptDisabled").setAttribute("hidden", "");
   document.getElementById("countRandom").value="";
   document.getElementById("printCSV").setAttribute("hidden", "");
   try {
@@ -304,9 +303,10 @@ function generate(){
     }
     let printAsPDFButton = document.createElement("button");
     printAsPDFButton.setAttribute("id", "printAsPDFButton");
-    printAsPDFButton.setAttribute("onfocus", "window.print()");
+    printAsPDFButton.setAttribute("onfocus", "window.print(); document.getElementById('printAsPDFButton').blur();");
     printAsPDFButton.innerText="Print Results/ Save as PDF";
     document.getElementById("printPDF").appendChild(printAsPDFButton);
+    document.getElementById("printPDF").innerHTML += "<hr>";
   }
   return true;
 }

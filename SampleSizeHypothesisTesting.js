@@ -223,7 +223,6 @@ function startAgain(){
   document.getElementById("result").innerHTML= " Result will appear here once you enter parameters. ";
   document.getElementById("TypeOfCalculation").selectedIndex = 0;
   document.getElementById("strtagn").setAttribute("hidden", "");
-  document.getElementById("javascriptDisabled").setAttribute("hidden", "");
   document.getElementById("variableshower").setAttribute("hidden", "");
   document.getElementById("Calculate").style.display = "none";
   document.getElementById("resultDiv").style.display = "none";
