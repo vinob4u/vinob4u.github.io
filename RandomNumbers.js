@@ -1,13 +1,3 @@
-function toggled(){
-  let c = document.getElementById("help");
-  if (c.hasAttribute("hidden")){
-    document.getElementById('help').removeAttribute('hidden');
-  }
-  else{
-    document.getElementById('help').setAttribute('hidden', "");
-  }
-  document.getElementById("favone").blur();
-}
 function startAgain(){
   document.getElementById("resultDiv").innerHTML= " Result will appear here once you enter parameters. ";
   document.getElementById("minValue").value="";

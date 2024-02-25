@@ -1,12 +1,5 @@
 let mainTableTd = 0;
-function toggled(){
-  let c = document.getElementById("variables");
-  if (c.hasAttribute("hidden")){
-    document.getElementById('variables').removeAttribute('hidden');
-  }
-  else{
-    document.getElementById('variables').setAttribute('hidden', "");}
-}
+
 function PrAbsPShow(){
   document.getElementById("labelCF").setAttribute("hidden", "");
   document.getElementById("CF").setAttribute("hidden", "");

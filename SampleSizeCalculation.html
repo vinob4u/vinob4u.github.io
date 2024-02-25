@@ -74,16 +74,14 @@
     <div id= "resultDiv"><span>Result:</span>
         <span id="result"> Result will appear here once you enter parameters. </span>
     </div><br>
-    <br><div hidden id="variableshower">
-        <label class="switch">
-            <input type="checkbox" onfocus="toggled()">
-            <span class="slider round"></span>
-        </label>&nbsp;&nbsp;Formula
-        <div hidden id="variables">
+    <br>
+    <details hidden id="variableshower">
+        <summary>&nbsp;&nbsp;Formula</summary>
+        <div id="variables">
             <img id="formulaImage" src="">
             <div id="variableHint"></div>
         </div>
-    </div><br>
+    </details><br>
     <button id="strtagn" onfocus="startAgain()">Start Again</button>
 </article>
 </body>

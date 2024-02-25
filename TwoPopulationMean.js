@@ -1,13 +1,5 @@
-function toggled(){
-    let c = document.getElementById("variables");
-    if (c.hasAttribute("hidden")){
-      document.getElementById('variables').removeAttribute('hidden');
-    }
-    else{
-      document.getElementById('variables').setAttribute('hidden', "");}
-  }
 function calculate(){
-    z1= document.getElementById("z1aby2");
+  z1= document.getElementById("z1aby2");
   var z01 = z1.options[z1.selectedIndex].text;
   let Za= 1.96;
   switch(z01){

@@ -1,15 +1,6 @@
 let s="NotYetSelected";
 let s1="NotYetSelected";
 
-function toggled(){
-  let c = document.getElementById("variables");
-  if (c.hasAttribute("hidden")){
-    document.getElementById('variables').removeAttribute('hidden');
-  }
-  else{
-    document.getElementById('variables').setAttribute('hidden', "");}
-}
-
 function typeOfStudy(){
   s= document.getElementById("TypeOfStudy");
   s1= s.options[s.selectedIndex].text;

@@ -70,20 +70,19 @@
             <div id="printPDF"></div>
         </div>
         <hr>
-        <label class="switch">
-            <input type="checkbox" onfocus="toggled()">
-            <span class="slider round"></span>
-        </label>&nbsp;&nbsp;Help
-        <div id="help" hidden>
-            <strong><u> Unique blocks: </u></strong><br>
-            <span>"Unique blocks" means if [2,3] is generated as one of the results,</span> <span>[2,3] won't repeat but [3,2] can be generated as another result.</span><br><br>
-            <strong><u> Unique blocks despite order of numbers: </u></strong><br>
-            <span>"Unique blocks despite order of numbers" means if [2,3] is generated as one of the results,</span> <span> both [2,3] and [3,2] wont repeat as another result.</span><br>
-            <strong><u>Warning:</u></strong><br>
-            <span>To prevent crashes, count of Random Numbers per Block is restricted to a maximum of 5 in case of Unique blocks despite order of numbers.</span><br>
-            <strong><u>File Name Pattern</u></strong><br>
-            <span>Valid File Name Pattern can include English alphabets A to Z, a to z and numbers 0 to 9 and the characters _, -, . and (space) </span>
-        </div>
+        <details>
+            <summary>&nbsp;&nbsp;Help</summary>
+            <div id="help">
+                <strong><u> Unique blocks: </u></strong><br>
+                <span>"Unique blocks" means if [2,3] is generated as one of the results,</span> <span>[2,3] won't repeat but [3,2] can be generated as another result.</span><br><br>
+                <strong><u> Unique blocks despite order of numbers: </u></strong><br>
+                <span>"Unique blocks despite order of numbers" means if [2,3] is generated as one of the results,</span> <span> both [2,3] and [3,2] wont repeat as another result.</span><br>
+                <strong><u>Warning:</u></strong><br>
+                <span>To prevent crashes, count of Random Numbers per Block is restricted to a maximum of 5 in case of Unique blocks despite order of numbers.</span><br>
+                <strong><u>File Name Pattern while downloading CSV file</u></strong><br>
+                <span>Valid File Name Pattern can include English alphabets A to Z, a to z and numbers 0 to 9 and the characters _, -, . and (space) </span>
+            </div>
+        </details>
         <hr>
         <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
     </div>

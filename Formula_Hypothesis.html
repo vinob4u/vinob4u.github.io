@@ -62,12 +62,9 @@
     <div id= "resultDiv"><span>Result:</span>
         <span id="result"> Result will appear here once you enter parameters. </span>
     </div><br><br><br>
-    <div hidden id="variableshower">
-        <label class="switch">
-            <input type="checkbox" onfocus="toggled()">
-            <span class="slider round"></span>
-        </label>&nbsp;&nbsp;Know what the parameters stand for
-        <div hidden id="variables">
+    <details hidden id="variableshower">
+        <summary>Know what the parameters stand for</summary>
+        <div id="variables">
             <ul hidden id="CrossSectionalVariables">
                 <li> P<sub>1</sub> = Proportion in the first group</li>
                 <li> P<sub>2</sub> = Proportion in the second group</li>
@@ -90,7 +87,7 @@
                 <li> <img src="cohort.png"></li>
             </ul>
         </div>
-    </div>
+    </details>
     <br>
     <button onfocus="startAgain()" id="strtagn">Start Again</button><br>
 </article>

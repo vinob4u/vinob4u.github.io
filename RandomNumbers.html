@@ -61,13 +61,14 @@
             <div id="printCSV" hidden="hidden"></div>
             <div id="printPDF"></div>
         </div>
-        <label class="switch">
-            <input id="favone" type="checkbox" onfocus="toggled()">
-            <span class="slider round"></span>
-        </label>&nbsp;&nbsp;Help
-        <div id="help" hidden>
-            <strong><u>File Name Pattern</u></strong><br>
-            <span>Valid File Name Pattern can include English alphabets A to Z, a to z and numbers 0 to 9 and the characters _, -, . and (space) </span></div><hr>
+        <details>
+            <summary>&nbsp;&nbsp;Help</summary>
+            <div id="help">
+                <strong><u>File Name Pattern while downloading CSV file</u></strong><br>
+                <span>Valid File Name Pattern can include English alphabets A to Z, a to z and numbers 0 to 9 and the characters _, -, . and (space) </span>
+            </div>
+        </details>
+        <hr>
         <button onfocus="startAgain()" id="strtagn">Start Again</button><hr>
     </div>
 </article>

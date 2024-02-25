@@ -15,19 +15,38 @@
 <body>
   <header id="header"></header>
   <article>
-    <h1 style="margin-bottom: 4vh;"> Study Design </h1>
-    <button id="firstButton" onclick="location.assign('./SampleSizeCalculation.html')"> Descriptive Studies </button>
-    <br>
-    <button id="secondButton" onclick="location.assign('./Formula_Hypothesis.html')"> Analytical Studies </button>
-    <br>
-    <button id="thirdButton" onclick="location.assign('./SampleSizeHypothesisTesting.html')"> Pre and Post studies </button>
-    <br>
-    <button id="fourthButton" onclick="location.assign('./TwoPopulationMean.html')"> Sample Size for Hypothesis testing for two population mean</button>
-    <br>
-    <button id="fifthButton" onclick="location.assign('./RandomNumbers.html')"> Random Number Generator</button>
-    <br>
-    <button id="sixthButton" onclick="location.assign('./BlockRandom.html')"> Blocks of Random Numbers Generator</button>
-    <br>
+    <h1 style="margin-bottom: 4vh;"> Welcome to nCalculator </h1>
+    <div class="indexDiv">
+      <details id="firstIndexDiv" onclick="document.querySelector('#secondIndexDiv').removeAttribute('open')">
+        <summary>
+          <div> Sample Size Calculator </div>
+          Quickly calculate minimum sample size for your research. 
+        </summary>
+        <button id="firstButton" onclick="location.assign('./SampleSizeCalculation.html')"> Descriptive Studies </button>
+        <br>
+        <button id="secondButton" onclick="location.assign('./Formula_Hypothesis.html')"> Analytical Studies </button>
+        <br>
+        <button id="thirdButton" onclick="location.assign('./SampleSizeHypothesisTesting.html')"> Pre and Post studies </button>
+        <br>
+        <button id="fourthButton" onclick="location.assign('./TwoPopulationMean.html')"> Sample Size for Hypothesis testing for two population mean</button>
+        <br>
+      </details>
+    </div>
+    <div class="indexDiv">
+      <details id="secondIndexDiv" onclick="document.querySelector('#firstIndexDiv').removeAttribute('open')">
+        <summary>
+          <div> Random Number Generator </div>
+          Feature-rich and powerful random number generator and random number blocks generator.
+        </summary>
+        <button id="fifthButton" onclick="location.assign('./RandomNumbers.html')"> Random Number Generator</button>
+        <br>
+        <button id="sixthButton" onclick="location.assign('./BlockRandom.html')"> Blocks of Random Numbers Generator</button>
+        <br>
+      </details>
+    </div>
+    <div style="border: solid 1px black;width: 95vw;height: fit-content;font-size: 72%;">
+      Resource is available as a website at <a href="https://vinob4u.github.io/">vinob4u.github.io</a>
+    </div>
   </article>
 </body>
 <script src="header.js"></script>

@@ -1,13 +1,6 @@
 let O="NotYetSelected";
 let O1="NotYetSelected";
-function toggled(){
-  let c = document.getElementById("variables");
-  if (c.hasAttribute("hidden")){
-    document.getElementById('variables').removeAttribute('hidden');
-  }
-  else{
-    document.getElementById('variables').setAttribute('hidden', "");}
-}
+
 function typeOfCalculation(){
   O= document.getElementById("TypeOfCalculation");
   O1= O.options[O.selectedIndex].text;

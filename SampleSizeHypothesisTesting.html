@@ -51,32 +51,30 @@
     <div id= "resultDiv"><span>Result:</span>
         <span id="result"> Result will appear here once you enter parameters. </span>
     </div>
-    <br><div hidden id="variableshower">
-    <label class="switch">
-        <input type="checkbox" onfocus="toggled()">
-        <span class="slider round"></span>
-    </label>&nbsp;&nbsp;Know what the parameters stand for
-    <div hidden id="variables">
-        <p hidden id="PairedMeanVariables">
-            <br> μ<sub>1</sub> = Pre-test mean
-            <br> μ<sub>2</sub> = Post-test mean
-            <br> σ<sub>1</sub> = Standard deviation in the Pre-test
-            <br> σ<sub>2</sub> = Standard deviation in the Post-test
-            <br> Δ = Effect size
-            <br> α = Significance level
-            <br> 1-β = Power
-            <br> <img src="pairedMean.png">
-        </p>
-        <p hidden id="PairedProportionVariables">
-            <br> s = Number of cases exposed and control not exposed
-            <br> t = Number of cases not exposed and control exposed
-            <br> n<sub>pairs</sub>= Total pairs
-            <br> α = Significance level
-            <br> 1-β = Power
-            <br> <img src="pairedProportion.png">
-        </p>
-    </div>
-</div><br>
+    <br>
+    <details hidden id="variableshower">
+        <summary>&nbsp;&nbsp;Know what the parameters stand for</summary>
+        <div id="variables">
+            <p hidden id="PairedMeanVariables">
+                <br> μ<sub>1</sub> = Pre-test mean
+                <br> μ<sub>2</sub> = Post-test mean
+                <br> σ<sub>1</sub> = Standard deviation in the Pre-test
+                <br> σ<sub>2</sub> = Standard deviation in the Post-test
+                <br> Δ = Effect size
+                <br> α = Significance level
+                <br> 1-β = Power
+                <br> <img src="pairedMean.png">
+            </p>
+            <p hidden id="PairedProportionVariables">
+                <br> s = Number of cases exposed and control not exposed
+                <br> t = Number of cases not exposed and control exposed
+                <br> n<sub>pairs</sub>= Total pairs
+                <br> α = Significance level
+                <br> 1-β = Power
+                <br> <img src="pairedProportion.png">
+            </p>
+        </div>
+    </details><br>
     <button onfocus="startAgain()" id="strtagn">Start Again</button>
 </article>
 </body>

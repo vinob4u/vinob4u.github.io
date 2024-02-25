@@ -38,20 +38,18 @@
     <div id= "resultDiv"><span>Result:</span>
         <span id="result"> Result will appear here once you enter parameters. </span>
     </div>
-    <br><div id="variableshower">
-    <label class="switch">
-        <input type="checkbox" onfocus="toggled()">
-        <span class="slider round"></span>
-    </label>&nbsp;&nbsp;Know what the parameters stand for
-    <p hidden id="variables">
-        <br> S<sub>1</sub> = Standard deviation in the first group
-        <br> S<sub>2</sub> = Standard deviation in the second group
-        <br> μ<sub>d</sub> = Mean difference between the samples
-        <br> α = Significance level
-        <br> 1-β = Power
-        <br> <img src="twoPopMean.png">
-    </p>
-</div>
+    <br>
+    <details id="variableshower">
+        <summary>&nbsp;&nbsp;Know what the parameters stand for</summary>
+        <p id="variables">
+            <br> S<sub>1</sub> = Standard deviation in the first group
+            <br> S<sub>2</sub> = Standard deviation in the second group
+            <br> μ<sub>d</sub> = Mean difference between the samples
+            <br> α = Significance level
+            <br> 1-β = Power
+            <br> <img src="twoPopMean.png">
+        </p>
+    </details>
 <br><br>
 <button onfocus="startAgain()" id="strtagn">Start Again</button>
 </article>
