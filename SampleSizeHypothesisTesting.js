@@ -17,6 +17,8 @@ function typeOfCalculation(){
   }
   document.getElementById("Calculate").style.display = "inline-block";
   document.getElementById("variableshower").removeAttribute("hidden");
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
 }
 
 function PairedMeanShow(){
@@ -66,6 +68,8 @@ function calculate(){
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
   }
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
   document.getElementById("resultDiv").style.display = "inline-block";
 }
 
@@ -195,6 +199,16 @@ function PairedProportionCalculate(){
   let n  = e3/e4;
   if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
   else{document.getElementById("result").innerHTML= Math.ceil(n);}
+}
+function finiteCalculate(){
+  let popSize = document.getElementById('popSize').value;
+  let infiniteResult = document.getElementById('result').innerText;
+  let finiteResult = infiniteResult / (1+ ((infiniteResult - 1)/popSize));
+  let finiteSpan = document.getElementById('finiteResult');
+  document.getElementById("finiteResultSpan").style.display = "inline-block";
+  document.getElementById("finiteResultSpan").innerText = "Result for "+ popSize +" population:";
+  finiteSpan.innerText = Math.ceil(finiteResult);
+  finiteSpan.style.display = "inline-block";
 }
 function startAgain(){
   document.getElementById("z1aby2p").setAttribute("hidden", "");

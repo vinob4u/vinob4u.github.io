@@ -36,6 +36,8 @@ function CrossSectionalShow(){
   document.getElementById("CrossSectionalVariables").removeAttribute("hidden");
   document.getElementById("CaseControlVariables").setAttribute("hidden", "");
   document.getElementById("CohortVariables").setAttribute("hidden", "");
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
 }
 function CaseControlShow(){
   document.getElementById("z1aby2p").removeAttribute("hidden");
@@ -51,6 +53,8 @@ function CaseControlShow(){
   document.getElementById("CaseControlVariables").removeAttribute("hidden");
   document.getElementById("CrossSectionalVariables").setAttribute("hidden", "");
   document.getElementById("CohortVariables").setAttribute("hidden", "");
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
 }
 function CohortShow(){
   document.getElementById("z1aby2p").removeAttribute("hidden");
@@ -66,6 +70,8 @@ function CohortShow(){
   document.getElementById("CohortVariables").removeAttribute("hidden");
   document.getElementById("CrossSectionalVariables").setAttribute("hidden", "");
   document.getElementById("CaseControlVariables").setAttribute("hidden", "");
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
 }
 function ORP1P2Selected(){
   let s2=document.getElementById("ORP1P2Select");
@@ -125,6 +131,8 @@ function calculate(){
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
   }
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
   document.getElementById("resultDiv").style.display = "inline-block";
 }
 function CrossSectionalCalculate(){
@@ -200,6 +208,9 @@ function CaseControlCalculate(){
       break;
     case "P1* and P2*":
       P1 = parseFloat(document.getElementById("P1*").value);
+      break;
+    case "Please select":
+      document.getElementById("result").innerHTML="Please select and enter parameters you have"
       break;
     default:
       document.getElementById("result").innerHTML="Please report this error to developer"
@@ -278,6 +289,9 @@ function CohortCalculate(){
     case "P1 and P2":
       P1 = parseFloat(document.getElementById("P1").value);
       break;
+    case "Please select":
+      document.getElementById("result").innerHTML="Please select and enter parameters you have"
+      break;
     default:
       document.getElementById("result").innerHTML="Please report this error to developer"
       return null;
@@ -341,6 +355,16 @@ function CohortCalculate(){
   let  n = e3/e4;
   if(isNaN(n) || RR === 0){document.getElementById("result").innerHTML= "Please enter valid parameters";}
   else{document.getElementById("result").innerHTML= Math.ceil(n);}
+}
+function finiteCalculate(){
+  let popSize = document.getElementById('popSize').value;
+  let infiniteResult = document.getElementById('result').innerText;
+  let finiteResult = infiniteResult / (1+ ((infiniteResult - 1)/popSize));
+  let finiteSpan = document.getElementById('finiteResult');
+  document.getElementById("finiteResultSpan").style.display = "inline-block";
+  document.getElementById("finiteResultSpan").innerText = "Result for "+ popSize +" population:";
+  finiteSpan.innerText = Math.ceil(finiteResult);
+  finiteSpan.style.display = "inline-block";
 }
 function startAgain(){
   document.getElementById("z1aby2p").setAttribute("hidden", "");

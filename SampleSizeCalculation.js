@@ -20,10 +20,13 @@ function PrAbsPShow(){
   Z<sub>1-α</sub> = Z value of Alpha Error<br>
   p = Expected Prevalence<br>
   q = 1-p <br>
-  d = Absolute Precision<br>`
+  d = Absolute Precision<br>`;
+  document.getElementById('percent1').style.display = "inline-block";
   document.getElementById("variableshower").removeAttribute("hidden");
   document.getElementById('Calculate').style.display="inline-block";
   document.getElementById('strtagn').style.display="inline-block";
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
   mainTableTd = 1;
   return mainTableTd;
 }
@@ -49,6 +52,8 @@ function PrRelPShow(){
   document.getElementById("variableshower").removeAttribute("hidden");
   document.getElementById('Calculate').style.display="inline-block";
   document.getElementById('strtagn').style.display="inline-block";
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
   mainTableTd = 2;
   return mainTableTd;
 }
@@ -69,10 +74,13 @@ function MAbsPShow(){
   Z<sub>1-α</sub> = Z value of Alpha Error<br>
   σ = Expected Standard Deviation<br>
   d = Absolute Precision<br>`;
+  document.getElementById("percent1").style.display = "none";
   document.getElementById("formulaImage").setAttribute("src", "./MeanAbsolutePrecision.png");
   document.getElementById("variableshower").removeAttribute("hidden");
   document.getElementById('Calculate').style.display="inline-block";
   document.getElementById('strtagn').style.display="inline-block";
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
   mainTableTd = 3;
   return mainTableTd;
 }
@@ -98,6 +106,8 @@ function MRelPShow(){
   document.getElementById("variableshower").removeAttribute("hidden");
   document.getElementById('Calculate').style.display="inline-block";
   document.getElementById('strtagn').style.display="inline-block";
+  document.getElementById('finiteResultSpan').style.display= "none";
+  document.getElementById('finiteResult').innerHTML= "";
   mainTableTd = 4;
   return mainTableTd;
 }
@@ -127,6 +137,8 @@ function calculate(){
       default:
         document.getElementById('result').innerHTML= "Please report this error to developer";
     }
+    document.getElementById('finiteResultSpan').style.display= "none";
+    document.getElementById('finiteResult').innerHTML= "";
     document.getElementById('resultDiv').style.display="inline-block";
   }
 }
@@ -282,7 +294,7 @@ function MRelPCalculate(){
     }
   let z42 = z4*z4;
   let p42= p4*p4;
-  let d4= document.getElementById('RelPrecision').value;
+  let d4= (document.getElementById('RelPrecision').value)/100;
   let m4= document.getElementById('mean').value;
   let d42= d4*d4*m4*m4;
   let r4= z42*p42/d42;
@@ -290,6 +302,16 @@ function MRelPCalculate(){
   if (isNaN(r40)){document.getElementById('result').innerHTML= "Please enter valid parameters";}
   else{
   document.getElementById('result').innerHTML= r40;}
+}
+function finiteCalculate(){
+  let popSize = document.getElementById('popSize').value;
+  let infiniteResult = document.getElementById('result').innerText;
+  let finiteResult = infiniteResult / (1+ ((infiniteResult - 1)/popSize));
+  let finiteSpan = document.getElementById('finiteResult');
+  document.getElementById("finiteResultSpan").style.display = "inline-block";
+  document.getElementById("finiteResultSpan").innerText = "Result for "+ popSize +" population:";
+  finiteSpan.innerText = Math.ceil(finiteResult);
+  finiteSpan.style.display = "inline-block";
 }
 function startAgain(){
   document.getElementById("ProportionAbsPrecision").checked = false;

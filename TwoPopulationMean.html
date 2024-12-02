@@ -35,10 +35,15 @@
     <p id="Mdp">μ<sub>d </sub>= <input id="Md" placeholder="Mean Difference" required="required" type="number" step="any"> </p>
     <button id="Calculate" onfocus="calculate()">Calculate</button>
     <br><br>
-    <div id= "resultDiv"><span>Result:</span>
-        <span id="result"> Result will appear here once you enter parameters. </span>
+    <div id= "resultDiv"><span>Result for infinte population:</span>
+        <span id="result"> Result will appear here once you enter parameters. </span><br><br>
+        <span>If you have finite population:</span><br>
+        <label for="popSize">Total population: </label>
+        <input id="popSize" name="popSizeName" placeholder="Total population size" required="" type="number" step="any"><br>
+        <button id="finiteCalculate" onfocus="finiteCalculate()">Calculate for finite population</button><br><br>
+        <span id="finiteResultSpan"> Result for finite population:</span><span id="finiteResult" style="display: none;"> Result for finite population will appear here</span>
     </div>
-    <br>
+    <br><br>
     <details id="variableshower">
         <summary>&nbsp;&nbsp;Know what the parameters stand for</summary>
         <p id="variables">
@@ -49,6 +54,12 @@
             <br> 1-β = Power
             <br> <img src="twoPopMean.png">
         </p>
+        <img src="./nFinite.png">
+            <div>
+                N<sub>finite</sub> = Sample size for a finite population size <br>
+                n<sub>∞</sub> = Sample size for infinite population size <br>
+                N = Population size
+            </div>
     </details>
 <br><br>
 <button onfocus="startAgain()" id="strtagn">Start Again</button>
