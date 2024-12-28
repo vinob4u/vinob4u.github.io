@@ -113,7 +113,7 @@ function MRelPShow(){
 }
 
 function calculate(){
-  if (document.getElementById('prevalence').value>100 || document.getElementById('AbsPrecision').value>100 || document.getElementById('RelPrecision').value>100 || document.getElementById('SD').value>100||document.getElementById('prevalence').value<0 || document.getElementById('AbsPrecision').value<0 || document.getElementById('RelPrecision').value<0 || document.getElementById('SD').value<0){
+  if (document.getElementById('prevalence').value>100 || document.getElementById('AbsPrecision').value>100 || document.getElementById('RelPrecision').value>100 || document.getElementById('prevalence').value<0 || document.getElementById('AbsPrecision').value<0 || document.getElementById('RelPrecision').value<0 || document.getElementById('SD').value<0){
     document.getElementById('result').innerHTML= "Please enter valid parameters";
   }
   else{
