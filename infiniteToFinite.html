@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Sample size for finite population</title>
+    <meta name="viewport" content="width=device-width, user-scalable=1" />
+    <link rel="stylesheet" href="style_main.css">
+</head>
+
+<body>
+    <header id="header"></header>
+    <article>
+        <h1>Sample size for finite population</h1>
+        <p id="infiniteNP">Sample size for infinte population = <input id="infiniteN" placeholder="Please enter value" required="required" type="number" step="1"> </p>
+        <p id="popP">Total population = <input id="pop" placeholder="Please enter value" required="required" type="number" step="1"></p>
+        <button id="Calculate" onfocus="calculate()">Calculate</button>
+        <div id= "resultDiv">
+            <span id="finiteResultSpan"> Sample size for finite population:</span><span id="finiteResult" style="display: none;"> Result for finite population will appear here</span>
+        </div>
+        <br><br>
+        <details id="variableshower">
+            <summary>&nbsp;&nbsp;Know what the parameters stand for</summary>
+            <img src="./nFinite.png">
+            <div>
+                N<sub>finite</sub> = Sample size for a finite population size <br>
+                n<sub>∞</sub> = Sample size for infinite population size <br>
+                N = Population size
+            </div>
+        </details>
+        <br><br>
+        <button onfocus="startAgain()" id="strtagn">Start Again</button>
+    </article>
+    <script src="header.js"></script>
+    <script src="infiniteToFinite.js"></script>
+</body>
+</html>

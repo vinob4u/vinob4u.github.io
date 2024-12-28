@@ -182,7 +182,7 @@ h2{
 
 img {height: 20vh; width:80%}
 
-#firstButton{ border: 5px solid blue; color: blue;}
+#firstButton, #seventhButton{ border: 5px solid blue; color: blue;}
 
 #secondButton{ border: 5px solid red; color: red;}
 
@@ -295,7 +295,7 @@ header button{
     color: wheat;
   }
 
-  #firstButton{ border: 5px solid lightblue; color: lightblue;}
+  #firstButton, #seventhButton{ border: 5px solid lightblue; color: lightblue;}
 
   #secondButton{ border: 5px solid #ffbbba; color: #ffbbba;}
 
