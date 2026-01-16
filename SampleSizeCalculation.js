@@ -315,8 +315,16 @@ function finiteCalculate(){
   }
   let finiteSpan = document.getElementById('finiteResult');
   document.getElementById("finiteResultSpan").style.display = "inline-block";
-  document.getElementById("finiteResultSpan").innerText = "Result for "+ popSize +" population:";
-  finiteSpan.innerText = Math.ceil(finiteResult);
+  let finiteText = document.getElementById("finiteCheckbox").checked ? "for "+ popSize +" population" : "";
+  let nonResponseText = "";
+  if(document.getElementById("nonResponseRateCheckbox").checked){
+    nonResponseText = " after adjusting for non-response rate of "+ document.getElementById('nonResponseRate').value + "%";
+  }
+  if(document.getElementById("finiteCheckbox").checked && (Math.ceil(finiteResult) > popSize)) {
+    finiteSpan.innerHTML = " Sample size required is higher than the total population. Non-response rate is too high."
+  } else {
+    finiteSpan.innerHTML = " Sample size required is "+ Math.ceil(finiteResult) + " " + finiteText + nonResponseText + "."
+  }
   finiteSpan.style.display = "inline-block";
 }
 function startAgain(){
