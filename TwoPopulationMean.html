@@ -33,17 +33,101 @@
     <p id="S1p">S<sub>1 </sub>= <input id="S1" placeholder="Please enter value" required="required" type="number" step="any"> </p>
     <p id="S2p">S<sub>2 </sub>= <input id="S2" placeholder="Please enter value" required="required" type="number" step="any"></p>
     <p id="Mdp">μ<sub>d </sub>= <input id="Md" placeholder="Mean Difference" required="required" type="number" step="any"> </p>
-    <button id="Calculate" onfocus="calculate()">Calculate</button>
+    <button id="Calculate" onclick="calculate()" ontouch="calculate()">Calculate</button>
     <br><br>
     <div id= "resultDiv"><span>Result for infinte population:</span>
         <span id="result"> Result will appear here once you enter parameters. </span><br><br>
-        <span>If you have finite population:</span><br>
-        <label for="popSize">Total population: </label>
-        <input id="popSize" name="popSizeName" placeholder="Total population size" required="" type="number" step="any"><br>
-        <button id="finiteCalculate" onfocus="finiteCalculate()">Calculate for finite population</button><br><br>
-        <span id="finiteResultSpan"> Result for finite population:</span><span id="finiteResult" style="display: none;"> Result for finite population will appear here</span>
-    </div>
-    <br><br>
+        <span> <input type="checkbox" id="finiteCheckbox" style="margin-right: 2vw;"><label for="finiteCheckbox">I have finite population </label></span><br>
+        <span> <input type="checkbox" id="nonResponseRateCheckbox" style="margin-right: 2vw;"><label for="nonResponseRateCheckbox">Adjust for anticipated non-response rate</label></span><br>
+        <div style=" display: none;" id="finitePopSizeDiv">
+            <label for="popSize">Total population: </label>
+            <input id="popSize" name="popSizeName" placeholder="Total population size" required="" type="number" step="any">
+        </div><br>
+        <div style="display: none;" id="nonResponseRateDiv">
+            <label for="nonResponseRate">Anticipated non-response rate: </label>
+            <input id="nonResponseRate" name="nonResponseRateName" placeholder="Non-response rate" required="" type="number" step="any"> %
+        </div>
+        <button id="finiteCalculate"  style="display: none;" onclick="finiteCalculate()" ontouch="finiteCalculate()">Calculate for finite population</button><br><br>
+        <span id="finiteResultSpan"> </span><span id="finiteResult" style="display: none;"> Result for finite population will appear here</span>
+        <script>
+            document.getElementById("finiteCheckbox").addEventListener("click", () => {
+                if(document.getElementById("finiteCheckbox").checked){
+                    document.getElementById("finitePopSizeDiv").style.display = "block";
+                    if(document.getElementById("nonResponseRateCheckbox").checked){
+                        document.getElementById("finiteCalculate").textContent= "Calculate for finite population with non-response rate";
+                    } else {
+                        document.getElementById("finiteCalculate").textContent= "Calculate for finite population";
+                    }
+                    document.getElementById("finiteCalculate").style.display= "inline-block";
+                } else {
+                    document.getElementById("finitePopSizeDiv").style.display = "none";
+                    if(document.getElementById("nonResponseRateCheckbox").checked){
+                        document.getElementById("finiteCalculate").textContent= "Calculate with non-response rate";
+                        document.getElementById("finiteCalculate").style.display= "inline-block";
+                    } else {
+                        document.getElementById("finiteCalculate").style.display= "none";
+                    }
+                }
+            })
+            document.getElementById("finiteCheckbox").addEventListener("touch", () => {
+                if(document.getElementById("finiteCheckbox").checked){
+                    document.getElementById("finitePopSizeDiv").style.display = "block";
+                    if(document.getElementById("nonResponseRateCheckbox").checked){
+                        document.getElementById("finiteCalculate").textContent= "Calculate for finite population with non-response rate";
+                    } else {
+                        document.getElementById("finiteCalculate").textContent= "Calculate for finite population";
+                    }
+                    document.getElementById("finiteCalculate").style.display= "inline-block";
+                } else {
+                    document.getElementById("finitePopSizeDiv").style.display = "none";
+                    if(document.getElementById("nonResponseRateCheckbox").checked){
+                        document.getElementById("finiteCalculate").textContent= "Calculate with non-response rate";
+                        document.getElementById("finiteCalculate").style.display= "inline-block";
+                    } else {
+                        document.getElementById("finiteCalculate").style.display= "none";
+                    }
+                }
+            })
+            document.getElementById("nonResponseRateCheckbox").addEventListener("click", () => {
+                if(document.getElementById("nonResponseRateCheckbox").checked){
+                    document.getElementById("nonResponseRateDiv").style.display = "block";
+                    if(document.getElementById("finiteCheckbox").checked){
+                        document.getElementById("finiteCalculate").textContent= "Calculate for finite population with non-response rate";
+                    } else {
+                        document.getElementById("finiteCalculate").textContent= "Calculate with non-response rate";
+                    }
+                    document.getElementById("finiteCalculate").style.display= "inline-block";
+                } else {
+                    document.getElementById("nonResponseRateDiv").style.display = "none";
+                    if(document.getElementById("finiteCheckbox").checked){
+                        document.getElementById("finiteCalculate").textContent= "Calculate for finite population";
+                        document.getElementById("finiteCalculate").style.display= "inline-block";
+                    } else {
+                        document.getElementById("finiteCalculate").style.display= "none";
+                    }
+                }
+            })
+            document.getElementById("nonResponseRateCheckbox").addEventListener("touch", () => {
+                if(document.getElementById("nonResponseRateCheckbox").checked){
+                    document.getElementById("nonResponseRateDiv").style.display = "block";
+                    if(document.getElementById("finiteCheckbox").checked){
+                        document.getElementById("finiteCalculate").textContent= "Calculate for finite population with non-response rate";
+                    } else {
+                        document.getElementById("finiteCalculate").textContent= "Calculate with non-response rate";
+                    }
+                    document.getElementById("finiteCalculate").style.display= "inline-block";
+                } else {
+                    document.getElementById("nonResponseRateDiv").style.display = "none";
+                    if(document.getElementById("finiteCheckbox").checked){
+                        document.getElementById("finiteCalculate").textContent= "Calculate for finite population";
+                        document.getElementById("finiteCalculate").style.display= "inline-block";
+                    } else {
+                        document.getElementById("finiteCalculate").style.display= "none";
+                    }
+                }
+            })
+        </script>
+    </div><br><br>
     <details id="variableshower">
         <summary>&nbsp;&nbsp;Know what the parameters stand for</summary>
         <p id="variables">
@@ -62,7 +146,7 @@
             </div>
     </details>
 <br><br>
-<button onfocus="startAgain()" id="strtagn">Start Again</button>
+<button onclick="startAgain()" ontouch="startAgain()" id="strtagn">Start Again</button>
 </article>
 </body>
 <script src="header.js"></script>

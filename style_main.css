@@ -120,7 +120,7 @@ input[type="range"]{
   color: black;
 }
 
-input[type="radio"]{
+input[type="radio"], input[type="checkbox"]{
   -ms-transform: scale(1.5);
   -webkit-transform: scale(1.5);
   transform: scale(1.5);
@@ -184,7 +184,7 @@ img {height: 20vh; width:80%}
 
 #firstButton, #seventhButton{ border: 5px solid blue; color: blue;}
 
-#secondButton{ border: 5px solid red; color: red;}
+#secondButton, #eighthButton{ border: 5px solid red; color: red;}
 
 #thirdButton{ border: 5px solid purple; color: purple;}
 
@@ -297,7 +297,7 @@ header button{
 
   #firstButton, #seventhButton{ border: 5px solid lightblue; color: lightblue;}
 
-  #secondButton{ border: 5px solid #ffbbba; color: #ffbbba;}
+  #secondButton, #eighthButton{ border: 5px solid #ffbbba; color: #ffbbba;}
 
   #thirdButton{ border: 5px solid #cbc3e3; color: #cbc3e3;}
 

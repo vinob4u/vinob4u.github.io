@@ -201,13 +201,32 @@ function PairedProportionCalculate(){
   else{document.getElementById("result").innerHTML= Math.ceil(n);}
 }
 function finiteCalculate(){
+  if(document.getElementById('nonResponseRate').value == "" && document.getElementById("nonResponseRateCheckbox").checked){
+    document.getElementById('nonResponseRate').value = 0;
+  }
   let popSize = document.getElementById('popSize').value;
   let infiniteResult = document.getElementById('result').innerText;
-  let finiteResult = infiniteResult / (1+ ((infiniteResult - 1)/popSize));
+  let finiteResult = infiniteResult;
+  if(document.getElementById("finiteCheckbox").checked){
+    finiteResult = infiniteResult / (1+ ((infiniteResult - 1)/popSize));
+  } else finiteResult = infiniteResult;
+  if(document.getElementById("nonResponseRateCheckbox").checked){
+    finiteResult = (finiteResult * 100)/ (100- (document.getElementById('nonResponseRate').value));
+  }
   let finiteSpan = document.getElementById('finiteResult');
   document.getElementById("finiteResultSpan").style.display = "inline-block";
-  document.getElementById("finiteResultSpan").innerText = "Result for "+ popSize +" population:";
-  finiteSpan.innerText = Math.ceil(finiteResult);
+  let finiteText = document.getElementById("finiteCheckbox").checked ? "for "+ popSize +" population" : "";
+  let nonResponseText = "";
+  if(document.getElementById("nonResponseRateCheckbox").checked){
+    nonResponseText = " after adjusting for non-response rate of "+ document.getElementById('nonResponseRate').value + "%";
+  }
+  if(document.getElementById("finiteCheckbox").checked && (Math.ceil(finiteResult) > popSize)) {
+    finiteSpan.innerHTML = " Sample size required is higher than the total population. Non-response rate is too high."
+  } else if(Math.ceil(finiteResult) <=0 || isNaN(finiteResult)|| document.getElementById('nonResponseRate').value > 100 || isNaN(document.getElementById('nonResponseRate').value)){
+    finiteSpan.innerHTML = " Please enter valid parameters to calculate sample size."
+  } else {
+    finiteSpan.innerHTML = " Sample size required is "+ Math.ceil(finiteResult) + " " + finiteText + nonResponseText + "."
+  }
   finiteSpan.style.display = "inline-block";
 }
 function startAgain(){

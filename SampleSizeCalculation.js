@@ -304,6 +304,9 @@ function MRelPCalculate(){
   document.getElementById('result').innerHTML= r40;}
 }
 function finiteCalculate(){
+  if(document.getElementById('nonResponseRate').value == "" && document.getElementById("nonResponseRateCheckbox").checked){
+    document.getElementById('nonResponseRate').value = 0;
+  }
   let popSize = document.getElementById('popSize').value;
   let infiniteResult = document.getElementById('result').innerText;
   let finiteResult = infiniteResult;
@@ -322,6 +325,8 @@ function finiteCalculate(){
   }
   if(document.getElementById("finiteCheckbox").checked && (Math.ceil(finiteResult) > popSize)) {
     finiteSpan.innerHTML = " Sample size required is higher than the total population. Non-response rate is too high."
+  } else if(Math.ceil(finiteResult) <=0 || isNaN(finiteResult)|| document.getElementById('nonResponseRate').value > 100 || isNaN(document.getElementById('nonResponseRate').value)){
+    finiteSpan.innerHTML = " Please enter valid parameters to calculate sample size."
   } else {
     finiteSpan.innerHTML = " Sample size required is "+ Math.ceil(finiteResult) + " " + finiteText + nonResponseText + "."
   }

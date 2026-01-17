@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Sample size for finite population</title>
+    <title>Sample size with non-response rate adjustment</title>
     <meta name="viewport" content="width=device-width, user-scalable=1" />
     <link rel="stylesheet" href="style_main.css">
 </head>
@@ -10,12 +10,12 @@
 <body>
     <header id="header"></header>
     <article>
-        <h1>Sample size for finite population</h1>
-        <p id="infiniteNP">Sample size for infinte population = <input id="infiniteN" placeholder="Please enter value" required="required" type="number" step="1"> </p>
-        <p id="popP">Total population = <input id="pop" placeholder="Please enter value" required="required" type="number" step="1"></p>
+        <h1>Sample size with non-response rate adjustment</h1>
+        <p id="oldNP">Sample size with 0% non-response rate = <input id="oldN" placeholder="Please enter value" required="required" type="number" step="1"> </p>
+        <p id="nonResponseRateP">Anticipated non-response rate = <input id="nonResponseRate" placeholder="Please enter value" required="required" type="number" step="1">&nbsp;%</p>
         <button id="Calculate" onclick="calculate()" ontouch="calculate()">Calculate</button>
         <div id= "resultDiv">
-            <span id="finiteResultSpan"> Sample size for finite population:</span><span id="finiteResult" style="display: none;"> Result for finite population will appear here</span>
+            <span id="resultSpan"> Sample size for with given non-response rate:</span><span id="result" style="display: none;"> Result with non-response rate adjustment will appear here</span>
         </div>
         <br><br>
         <details id="variableshower">
@@ -31,6 +31,6 @@
         <button onclick="startAgain()" ontouch="startAgain()" id="strtagn">Start Again</button>
     </article>
     <script src="header.js"></script>
-    <script src="infiniteToFinite.js"></script>
+    <script src="nrrAdjustment.js"></script>
 </body>
 </html>
