@@ -5,7 +5,7 @@ function typeOfStudy(){
   s= document.getElementById("TypeOfStudy");
   s1= s.options[s.selectedIndex].text;
   switch(s1){
-    case "Cross Sectional Study":
+    case "Analytical Cross Sectional Study":
       CrossSectionalShow()
       break;
     case "Case Control Study":
@@ -115,7 +115,7 @@ function calculate(){
   s= document.getElementById("TypeOfStudy");
   s1= s.options[s.selectedIndex].text;
   switch(s1){
-    case "Cross Sectional Study":
+    case "Analytical Cross Sectional Study":
       CrossSectionalCalculate()
       break;
     case "Case Control Study":
@@ -130,6 +130,13 @@ function calculate(){
     default:
       document.getElementById("result").innerHTML="Please report this error to developer"
       break;
+  }
+  if(
+    !isNaN(document.getElementById("result").innerText)
+  ){
+    document.getElementById("resultTail").innerHTML= " per group";
+  } else { 
+    document.getElementById("resultTail").innerHTML= "";
   }
   document.getElementById('finiteResultSpan').style.display= "none";
   document.getElementById('finiteResult').innerHTML= "";
@@ -194,7 +201,10 @@ function CrossSectionalCalculate(){
   let e4 = (P1-P2)*(P1-P2);
   let  n = e3/e4;
   if(isNaN(n)){document.getElementById("result").innerHTML= "Please enter valid parameters";}
-  else{document.getElementById("result").innerHTML= Math.ceil(n);}
+  else{
+    document.getElementById("result").innerHTML= Math.ceil(n);
+  }
+
 }
 function CaseControlCalculate(){
   let t  = document.getElementById("ORP1P2Select")
@@ -381,7 +391,7 @@ function finiteCalculate(){
   } else if(Math.ceil(finiteResult) <=0 || isNaN(finiteResult)|| document.getElementById('nonResponseRate').value > 100 || isNaN(document.getElementById('nonResponseRate').value)){
     finiteSpan.innerHTML = " Please enter valid parameters to calculate sample size."
   } else {
-    finiteSpan.innerHTML = " Sample size required is "+ Math.ceil(finiteResult) + " " + finiteText + nonResponseText + "."
+    finiteSpan.innerHTML = " Sample size required is "+ Math.ceil(finiteResult) + " " + document.getElementById("resultTail").innerText + " " + finiteText + nonResponseText + " " + document.getElementById("resultTail").innerText + ".";
   }
   finiteSpan.style.display = "inline-block";
 }

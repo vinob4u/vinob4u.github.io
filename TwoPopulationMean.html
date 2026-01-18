@@ -36,16 +36,7 @@
     <button id="Calculate" onclick="calculate()" ontouch="calculate()">Calculate</button>
     <br><br>
     <div id= "resultDiv"><span>Result for infinte population:</span>
-    <div>
-            N<sub>finite</sub> = Sample size for a finite population size <br>
-            n<sub>∞</sub> = Sample size for infinite population size <br>
-            N = Population size
-        </div>
-        <img src="./nAdjusted.png">
-        <div>
-            N<sub>adjusted</sub> = Sample size after considering non-response rate<br>
-            N = Sample size with 0% non-response rate<br>
-            <span id="result"> Result will appear here once you enter parameters. </span><br><br>
+        <span id="result"> Result will appear here once you enter parameters. </span><br><br>
         <span> <input type="checkbox" id="finiteCheckbox" style="margin-right: 2vw;"><label for="finiteCheckbox">I have finite population </label></span><br>
         <span> <input type="checkbox" id="nonResponseRateCheckbox" style="margin-right: 2vw;"><label for="nonResponseRateCheckbox">Adjust for anticipated non-response rate</label></span><br>
         <div style=" display: none;" id="finitePopSizeDiv">

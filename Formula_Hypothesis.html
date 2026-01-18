@@ -14,7 +14,7 @@
     <div style="text-align: center;">Select type of study:
         <select id="TypeOfStudy" required="required" onchange="typeOfStudy()">
             <option value="none" class="noneSelected" disabled="disabled" selected="selected">Please select</option>
-            <option value="CrossSectional">Cross Sectional Study</option>
+            <option value="CrossSectional">Analytical Cross Sectional Study</option>
             <option value="CaseControl">Case Control Study</option>
             <option value="Cohort/RCT">Cohort Study/RCT</option>
         </select>
@@ -60,7 +60,7 @@
     <p hidden id="RRp">Relative Risk = <input id="RR" placeholder="Relative Risk" type="number" step="any"></p>
     <button id="Calculate" onclick="calculate()" ontouch="calculate()">Calculate</button><br><br>
     <div id= "resultDiv"><span>Result for infinte population:</span>
-        <span id="result"> Result will appear here once you enter parameters. </span><br><br>
+        <span id="result"> Result will appear here once you enter parameters. </span><span id="resultTail"></span><br><br>
         <span> <input type="checkbox" id="finiteCheckbox" style="margin-right: 2vw;"><label for="finiteCheckbox">I have finite population </label></span><br>
         <span> <input type="checkbox" id="nonResponseRateCheckbox" style="margin-right: 2vw;"><label for="nonResponseRateCheckbox">Adjust for anticipated non-response rate</label></span><br>
         <div style=" display: none;" id="finitePopSizeDiv">
