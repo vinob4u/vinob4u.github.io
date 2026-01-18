@@ -391,7 +391,7 @@ function finiteCalculate(){
   } else if(Math.ceil(finiteResult) <=0 || isNaN(finiteResult)|| document.getElementById('nonResponseRate').value > 100 || isNaN(document.getElementById('nonResponseRate').value)){
     finiteSpan.innerHTML = " Please enter valid parameters to calculate sample size."
   } else {
-    finiteSpan.innerHTML = " Sample size required is "+ Math.ceil(finiteResult) + " " + document.getElementById("resultTail").innerText + " " + finiteText + nonResponseText + " " + document.getElementById("resultTail").innerText + ".";
+    finiteSpan.innerHTML = " Sample size required is "+ Math.ceil(finiteResult) + " " + document.getElementById("resultTail").innerText + " " + finiteText + " " + (finiteText!="" ? document.getElementById("resultTail").innerText : "") + nonResponseText + ".";
   }
   finiteSpan.style.display = "inline-block";
 }

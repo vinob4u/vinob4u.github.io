@@ -33,7 +33,7 @@
     <p id="S1p">S<sub>1 </sub>= <input id="S1" placeholder="Please enter value" required="required" type="number" step="any"> </p>
     <p id="S2p">S<sub>2 </sub>= <input id="S2" placeholder="Please enter value" required="required" type="number" step="any"></p>
     <p id="Mdp">μ<sub>d </sub>= <input id="Md" placeholder="Mean Difference" required="required" type="number" step="any"> </p>
-    <button id="Calculate" onclick="calculate()" ontouch="calculate()">Calculate</button>
+    <button id="Calculate" onclick="calculate()" ontouchstart="calculate()">Calculate</button>
     <br><br>
     <div id= "resultDiv"><span>Result for infinte population:</span>
         <span id="result"> Result will appear here once you enter parameters. </span><br><br>
@@ -47,7 +47,7 @@
             <label for="nonResponseRate">Anticipated non-response rate: </label>
             <input id="nonResponseRate" name="nonResponseRateName" placeholder="Non-response rate" required="" type="number" step="any"> %
         </div>
-        <button id="finiteCalculate"  style="display: none;" onclick="finiteCalculate()" ontouch="finiteCalculate()">Calculate for finite population</button><br><br>
+        <button id="finiteCalculate"  style="display: none;" onclick="finiteCalculate()" ontouchstart="finiteCalculate()">Calculate for finite population</button><br><br>
         <span id="finiteResultSpan"> </span><span id="finiteResult" style="display: none;"> Result for finite population will appear here</span>
         <script>
             document.getElementById("finiteCheckbox").addEventListener("click", () => {
@@ -69,7 +69,7 @@
                     }
                 }
             })
-            document.getElementById("finiteCheckbox").addEventListener("touch", () => {
+            document.getElementById("finiteCheckbox").addEventListener("touchstart", () => {
                 if(document.getElementById("finiteCheckbox").checked){
                     document.getElementById("finitePopSizeDiv").style.display = "block";
                     if(document.getElementById("nonResponseRateCheckbox").checked){
@@ -107,7 +107,7 @@
                     }
                 }
             })
-            document.getElementById("nonResponseRateCheckbox").addEventListener("touch", () => {
+            document.getElementById("nonResponseRateCheckbox").addEventListener("touchstart", () => {
                 if(document.getElementById("nonResponseRateCheckbox").checked){
                     document.getElementById("nonResponseRateDiv").style.display = "block";
                     if(document.getElementById("finiteCheckbox").checked){
@@ -151,7 +151,7 @@
         </div>
     </details>
 <br><br>
-<button onclick="startAgain()" ontouch="startAgain()" id="strtagn">Start Again</button>
+<button onclick="startAgain()" ontouchstart="startAgain()" id="strtagn">Start Again</button>
 </article>
 </body>
 <script src="header.js"></script>
