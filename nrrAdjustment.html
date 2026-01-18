@@ -13,7 +13,7 @@
         <h1>Sample size with non-response rate adjustment</h1>
         <p id="oldNP">Sample size with 0% non-response rate = <input id="oldN" placeholder="Please enter value" required="required" type="number" step="1"> </p>
         <p id="nonResponseRateP">Anticipated non-response rate = <input id="nonResponseRate" placeholder="Please enter value" required="required" type="number" step="1">&nbsp;%</p>
-        <button id="Calculate" onclick="calculate()" ontouchstart="calculate()">Calculate</button>
+        <button id="Calculate" onclick="calculate()">Calculate</button>
         <div id= "resultDiv">
             <span id="resultSpan"> Sample size for with given non-response rate:</span><span id="result" style="display: none;"> Result with non-response rate adjustment will appear here</span>
         </div>
@@ -27,7 +27,7 @@
             </div>
         </details>
         <br><br>
-        <button onclick="startAgain()" ontouchstart="startAgain()" id="strtagn">Start Again</button>
+        <button onclick="startAgain()" id="strtagn">Start Again</button>
     </article>
     <script src="header.js"></script>
     <script src="nrrAdjustment.js"></script>

@@ -13,7 +13,7 @@
         <h1>Sample size for finite population</h1>
         <p id="infiniteNP">Sample size for infinte population = <input id="infiniteN" placeholder="Please enter value" required="required" type="number" step="1"> </p>
         <p id="popP">Total population = <input id="pop" placeholder="Please enter value" required="required" type="number" step="1"></p>
-        <button id="Calculate" onclick="calculate()" ontouchstart="calculate()">Calculate</button>
+        <button id="Calculate" onclick="calculate()">Calculate</button>
         <div id= "resultDiv">
             <span id="finiteResultSpan"> Sample size for finite population:</span><span id="finiteResult" style="display: none;"> Result for finite population will appear here</span>
         </div>
@@ -28,7 +28,7 @@
             </div>
         </details>
         <br><br>
-        <button onclick="startAgain()" ontouchstart="startAgain()" id="strtagn">Start Again</button>
+        <button onclick="startAgain()" id="strtagn">Start Again</button>
     </article>
     <script src="header.js"></script>
     <script src="infiniteToFinite.js"></script>
