@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>BMW Data Dashboard</title>
+  <title>Biomedical Waste Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Dashboard of BMW Group vehicle deliveries by brand and electric (BEV) deliveries over time.">
+  <meta name="description" content="Log and analyse daily biomedical waste (BMW) generated in a hospital by ward and colour category.">
   <style>
     :root {
       color-scheme: light;
@@ -16,8 +16,13 @@
       --grid: #e1e0d9;
       --baseline: #c3c2b7;
       --border: rgba(11, 11, 11, 0.10);
-      --series-1: #2a78d6;
+      --accent: #2a78d6;
       --accent-wash: #cde2fb;
+      --cat-yellow: #eda100;
+      --cat-blue: #2a78d6;
+      --cat-red: #e34948;
+      --cat-white: #8f8e88;
+      --hatch: rgba(255, 255, 255, 0.55);
       --good: #006300;
       --bad: #d03b3b;
     }
@@ -31,8 +36,13 @@
         --grid: #2c2c2a;
         --baseline: #383835;
         --border: rgba(255, 255, 255, 0.10);
-        --series-1: #3987e5;
+        --accent: #3987e5;
         --accent-wash: #104281;
+        --cat-yellow: #c98500;
+        --cat-blue: #3987e5;
+        --cat-red: #e66767;
+        --cat-white: #a8a7a0;
+        --hatch: rgba(26, 26, 25, 0.55);
         --good: #0ca30c;
         --bad: #e66767;
       }
@@ -46,8 +56,13 @@
       --grid: #2c2c2a;
       --baseline: #383835;
       --border: rgba(255, 255, 255, 0.10);
-      --series-1: #3987e5;
+      --accent: #3987e5;
       --accent-wash: #104281;
+      --cat-yellow: #c98500;
+      --cat-blue: #3987e5;
+      --cat-red: #e66767;
+      --cat-white: #a8a7a0;
+      --hatch: rgba(26, 26, 25, 0.55);
       --good: #0ca30c;
       --bad: #e66767;
     }
@@ -60,14 +75,15 @@
       line-height: 1.4;
     }
     main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
-    a { color: var(--series-1); }
+    a { color: var(--accent); }
     h1 { font-size: 1.6rem; margin: 0 0 4px; }
-    h2 { font-size: 1rem; margin: 0 0 2px; }
-    .sub { color: var(--text-secondary); margin: 0 0 20px; font-size: 0.9rem; }
-    .toolbar {
-      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-      margin-bottom: 16px;
+    h2 { font-size: 1rem; margin: 0; }
+    .sub { color: var(--text-secondary); margin: 0 0 16px; font-size: 0.9rem; }
+    .banner {
+      background: var(--accent-wash); border-radius: 8px; padding: 8px 12px; margin-bottom: 16px;
+      font-size: 0.875rem; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between;
     }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
     .segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
     .segmented button {
       border: 0; background: var(--surface); color: var(--text-secondary);
@@ -75,93 +91,148 @@
     }
     .segmented button + button { border-left: 1px solid var(--border); }
     .segmented button[aria-pressed="true"] { background: var(--accent-wash); color: var(--text-primary); font-weight: 600; }
+    select, input {
+      font: inherit; font-size: 0.875rem; color: var(--text-primary); background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; min-width: 0;
+    }
     .btn {
       border: 1px solid var(--border); background: var(--surface); color: var(--text-primary);
       padding: 6px 12px; border-radius: 8px; font: inherit; font-size: 0.875rem; cursor: pointer;
     }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+    .btn.link { border: 0; background: none; color: var(--accent); padding: 2px 4px; }
     .spacer { flex: 1; }
     .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-      padding: 16px; min-width: 0;
-    }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; min-width: 0; }
     .kpi-label { color: var(--text-secondary); font-size: 0.8rem; }
     .kpi-value { font-size: 1.75rem; font-weight: 600; margin: 4px 0; }
+    .kpi-value small { font-size: 0.9rem; font-weight: 400; color: var(--text-secondary); }
     .kpi-delta { font-size: 0.8rem; color: var(--text-secondary); }
-    .kpi-delta .up { color: var(--good); }
-    .kpi-delta .down { color: var(--bad); }
+    .up { color: var(--bad); }
+    .down { color: var(--good); }
+    .stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin-bottom: 16px; }
     .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; margin-bottom: 16px; }
-    .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+    .card-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
     .card-note { color: var(--text-muted); font-size: 0.75rem; }
-    .chart { position: relative; width: 100%; height: 260px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; flex: none; }
+    .sw.yellow { background: var(--cat-yellow); }
+    .sw.blue { background: var(--cat-blue); }
+    .sw.red { background: var(--cat-red); }
+    .sw.white { background: repeating-linear-gradient(45deg, var(--cat-white) 0 3px, var(--hatch) 3px 4px); }
+    .chart { position: relative; width: 100%; height: 280px; }
+    .chart.wards { height: auto; }
     .chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
     .chart text { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .chart text.label { fill: var(--text-primary); font-size: 12px; }
+    .chart text.value { fill: var(--text-secondary); font-size: 12px; }
+    .empty { color: var(--text-muted); font-size: 0.875rem; padding: 32px 0; text-align: center; }
     .tooltip {
       position: absolute; pointer-events: none; display: none; z-index: 2;
       background: var(--surface); color: var(--text-primary);
-      border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px;
-      font-size: 0.8rem; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px;
+      font-size: 0.8rem; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
-    .tooltip b { display: block; }
-    .tooltip span { color: var(--text-secondary); }
-    .mix-row { display: grid; grid-template-columns: 92px 1fr 88px; gap: 8px; align-items: center; margin: 10px 0; font-size: 0.875rem; }
-    .mix-track { height: 14px; border-radius: 4px; background: var(--grid); overflow: hidden; }
-    .mix-fill { height: 100%; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 2px; }
-    .mix-val { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+    .tooltip b { display: block; margin-bottom: 4px; }
+    .tooltip .row { display: flex; align-items: center; gap: 6px; }
+    .tooltip .row em { font-style: normal; margin-left: auto; padding-left: 12px; font-variant-numeric: tabular-nums; }
+    .cat-row { display: grid; grid-template-columns: minmax(90px, 140px) 1fr auto; gap: 8px; align-items: center; margin: 12px 0; font-size: 0.875rem; }
+    .cat-row .name { display: flex; gap: 6px; align-items: center; }
+    .cat-track { height: 14px; border-radius: 4px; background: var(--grid); overflow: hidden; }
+    .cat-fill { height: 100%; border-radius: 0 4px 4px 0; min-width: 2px; }
+    .cat-val { white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+    form.entry { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; align-items: end; }
+    form.entry label { display: flex; flex-direction: column; gap: 4px; font-size: 0.8rem; color: var(--text-secondary); }
+    form.entry label .name { display: flex; gap: 6px; align-items: center; }
+    form.entry .actions { display: flex; gap: 8px; }
+    #formMsg { font-size: 0.8rem; color: var(--text-secondary); margin-top: 8px; min-height: 1.2em; }
     .table-wrap { overflow-x: auto; }
     table { border-collapse: collapse; width: 100%; font-size: 0.875rem; font-variant-numeric: tabular-nums; }
     th, td { padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--grid); white-space: nowrap; }
-    th:first-child, td:first-child { text-align: left; }
+    th:nth-child(-n+2), td:nth-child(-n+2) { text-align: left; }
     th { color: var(--text-secondary); font-weight: 600; }
-    .footnote { color: var(--text-muted); font-size: 0.75rem; margin-top: 16px; }
+    td.total { font-weight: 600; }
+    .footnote { color: var(--text-muted); font-size: 0.75rem; margin: 8px 0 0; }
+    .footnote b { color: var(--text-secondary); }
+    .footnote code { overflow-wrap: anywhere; }
     #status { font-size: 0.8rem; color: var(--text-secondary); }
+    @media print {
+      .toolbar, .banner, #entryCard, .no-print, td .btn { display: none !important; }
+      body { background: #fff; }
+      .card { break-inside: avoid; }
+    }
   </style>
 </head>
 <body>
 <main>
-  <h1>BMW Data Dashboard</h1>
-  <p class="sub">BMW Group vehicle deliveries by brand, with fully electric (BEV) deliveries. <a href="./index.html">Back to nCalculator</a></p>
+  <h1>Biomedical Waste Dashboard</h1>
+  <p class="sub">Daily biomedical waste (BMW) generated in the hospital, by ward and colour category (BMW Management Rules, 2016). <a href="./index.html">Back to nCalculator</a></p>
+
+  <div class="banner" id="sampleBanner" hidden>
+    <span>You are viewing <b>sample data</b>. Enter your first day's figures below, or import a CSV, to start your own log.</span>
+    <button class="btn" type="button" id="clearSample">Clear sample data</button>
+  </div>
 
   <div class="toolbar">
-    <div class="segmented" id="brandFilter" role="group" aria-label="Brand"></div>
+    <div class="segmented" id="periodFilter" role="group" aria-label="Period"></div>
+    <select id="wardFilter" aria-label="Ward"></select>
     <span class="spacer"></span>
     <span id="status" role="status"></span>
     <label class="btn" for="csvInput">Import CSV</label>
     <input type="file" id="csvInput" accept=".csv,text/csv" hidden>
     <button class="btn" id="exportCsv" type="button">Export CSV</button>
+    <button class="btn" id="printBtn" type="button">Print report</button>
   </div>
 
   <section class="kpis" id="kpis" aria-label="Key figures"></section>
 
-  <section class="grid2">
+  <section class="stack">
     <div class="card">
-      <div class="card-head"><h2 id="lineTitle">Deliveries per year</h2><span class="card-note">units</span></div>
-      <div class="chart" id="lineChart"></div>
-    </div>
-    <div class="card">
-      <div class="card-head"><h2>Electric (BEV) deliveries</h2><span class="card-note">units · share of group</span></div>
-      <div class="chart" id="bevChart"></div>
+      <div class="card-head"><h2>Daily waste by category</h2><span class="card-note" id="dailyNote">kg per day</span></div>
+      <div class="legend" id="dailyLegend"></div>
+      <div class="chart" id="dailyChart"></div>
     </div>
   </section>
 
   <section class="grid2">
     <div class="card">
-      <div class="card-head"><h2 id="mixTitle">Brand mix</h2><span class="card-note">share of group deliveries</span></div>
-      <div id="mix"></div>
+      <div class="card-head"><h2>Ward-wise waste</h2><span class="card-note">kg in period</span></div>
+      <div class="chart wards" id="wardChart"></div>
     </div>
-  </section>
-
-  <section>
     <div class="card">
-      <div class="card-head"><h2>Data</h2><span class="card-note">all figures in units</span></div>
-      <div class="table-wrap"><table id="dataTable"></table></div>
+      <div class="card-head"><h2>Category split</h2><span class="card-note">kg · share of total</span></div>
+      <div id="catSplit"></div>
     </div>
   </section>
 
-  <p class="footnote" id="source"></p>
-  <p class="footnote">CSV import format: a header row with <code>year</code> plus any of <code>BMW</code>, <code>MINI</code>, <code>Rolls-Royce</code>, <code>BEV</code>, e.g. <code>year,BMW,MINI,Rolls-Royce,BEV</code>. Data stays in your browser.</p>
+  <section class="stack">
+    <div class="card" id="entryCard">
+      <div class="card-head"><h2>Add daily entry</h2><span class="card-note">weights in kg · same date + ward replaces the earlier entry</span></div>
+      <form class="entry" id="entryForm" autocomplete="off">
+        <label>Date<input type="date" name="date" required></label>
+        <label>Ward / department<input type="text" name="ward" list="wardList" required placeholder="e.g. ICU"></label>
+        <label><span class="name"><i class="sw yellow"></i>Yellow</span><input type="number" name="yellow" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
+        <label><span class="name"><i class="sw red"></i>Red</span><input type="number" name="red" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
+        <label><span class="name"><i class="sw white"></i>White (sharps)</span><input type="number" name="white" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
+        <label><span class="name"><i class="sw blue"></i>Blue</span><input type="number" name="blue" min="0" step="0.01" inputmode="decimal" placeholder="0"></label>
+        <label>Occupied beds<input type="number" name="beds" min="0" step="1" inputmode="numeric" placeholder="optional"></label>
+        <div class="actions"><button class="btn primary" type="submit">Save entry</button></div>
+      </form>
+      <datalist id="wardList"></datalist>
+      <div id="formMsg" role="status"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Daily log</h2><span class="card-note" id="logNote"></span></div>
+      <div class="table-wrap"><table id="logTable"></table></div>
+      <button class="btn link no-print" type="button" id="showAll" hidden>Show all rows</button>
+    </div>
+  </section>
+
+  <p class="footnote"><b>Yellow</b>: anatomical, soiled (dressings, plaster casts), expired/discarded medicines, chemical, microbiology and lab waste. <b>Red</b>: contaminated recyclable plastics (tubing, IV sets, catheters, urine bags, syringes without needles, gloves). <b>White</b>: sharps (needles, syringes with fixed needles, scalpels, blades) in puncture-proof translucent containers. <b>Blue</b>: glassware and metallic body implants.</p>
+  <p class="footnote">Data is saved only in this browser on this device. Use <b>Export CSV</b> to keep a backup or move it to another device. CSV columns: <code>date,ward,yellow_kg,red_kg,white_kg,blue_kg,occupied_beds</code> (dates as YYYY-MM-DD or DD-MM-YYYY).</p>
 </main>
-<script src="bmw_data.js"></script>
 <script src="BMWDashboard.js"></script>
 </body>
 </html>
