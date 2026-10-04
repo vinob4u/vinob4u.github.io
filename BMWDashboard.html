@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>BMW Data Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dashboard of BMW Group vehicle deliveries by brand and electric (BEV) deliveries over time.">
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f9f9f7;
+      --surface: #fcfcfb;
+      --text-primary: #0b0b0b;
+      --text-secondary: #52514e;
+      --text-muted: #898781;
+      --grid: #e1e0d9;
+      --baseline: #c3c2b7;
+      --border: rgba(11, 11, 11, 0.10);
+      --series-1: #2a78d6;
+      --accent-wash: #cde2fb;
+      --good: #006300;
+      --bad: #d03b3b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --page: #0d0d0d;
+        --surface: #1a1a19;
+        --text-primary: #ffffff;
+        --text-secondary: #c3c2b7;
+        --grid: #2c2c2a;
+        --baseline: #383835;
+        --border: rgba(255, 255, 255, 0.10);
+        --series-1: #3987e5;
+        --accent-wash: #104281;
+        --good: #0ca30c;
+        --bad: #e66767;
+      }
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #0d0d0d;
+      --surface: #1a1a19;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255, 255, 255, 0.10);
+      --series-1: #3987e5;
+      --accent-wash: #104281;
+      --good: #0ca30c;
+      --bad: #e66767;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text-primary);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.4;
+    }
+    main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+    a { color: var(--series-1); }
+    h1 { font-size: 1.6rem; margin: 0 0 4px; }
+    h2 { font-size: 1rem; margin: 0 0 2px; }
+    .sub { color: var(--text-secondary); margin: 0 0 20px; font-size: 0.9rem; }
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      margin-bottom: 16px;
+    }
+    .segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .segmented button {
+      border: 0; background: var(--surface); color: var(--text-secondary);
+      padding: 6px 12px; font: inherit; font-size: 0.875rem; cursor: pointer;
+    }
+    .segmented button + button { border-left: 1px solid var(--border); }
+    .segmented button[aria-pressed="true"] { background: var(--accent-wash); color: var(--text-primary); font-weight: 600; }
+    .btn {
+      border: 1px solid var(--border); background: var(--surface); color: var(--text-primary);
+      padding: 6px 12px; border-radius: 8px; font: inherit; font-size: 0.875rem; cursor: pointer;
+    }
+    .spacer { flex: 1; }
+    .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px; min-width: 0;
+    }
+    .kpi-label { color: var(--text-secondary); font-size: 0.8rem; }
+    .kpi-value { font-size: 1.75rem; font-weight: 600; margin: 4px 0; }
+    .kpi-delta { font-size: 0.8rem; color: var(--text-secondary); }
+    .kpi-delta .up { color: var(--good); }
+    .kpi-delta .down { color: var(--bad); }
+    .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+    .card-note { color: var(--text-muted); font-size: 0.75rem; }
+    .chart { position: relative; width: 100%; height: 260px; }
+    .chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .chart text { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .tooltip {
+      position: absolute; pointer-events: none; display: none; z-index: 2;
+      background: var(--surface); color: var(--text-primary);
+      border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px;
+      font-size: 0.8rem; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .tooltip b { display: block; }
+    .tooltip span { color: var(--text-secondary); }
+    .mix-row { display: grid; grid-template-columns: 92px 1fr 88px; gap: 8px; align-items: center; margin: 10px 0; font-size: 0.875rem; }
+    .mix-track { height: 14px; border-radius: 4px; background: var(--grid); overflow: hidden; }
+    .mix-fill { height: 100%; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 2px; }
+    .mix-val { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+    th, td { padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; }
+    th { color: var(--text-secondary); font-weight: 600; }
+    .footnote { color: var(--text-muted); font-size: 0.75rem; margin-top: 16px; }
+    #status { font-size: 0.8rem; color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+<main>
+  <h1>BMW Data Dashboard</h1>
+  <p class="sub">BMW Group vehicle deliveries by brand, with fully electric (BEV) deliveries. <a href="./index.html">Back to nCalculator</a></p>
+
+  <div class="toolbar">
+    <div class="segmented" id="brandFilter" role="group" aria-label="Brand"></div>
+    <span class="spacer"></span>
+    <span id="status" role="status"></span>
+    <label class="btn" for="csvInput">Import CSV</label>
+    <input type="file" id="csvInput" accept=".csv,text/csv" hidden>
+    <button class="btn" id="exportCsv" type="button">Export CSV</button>
+  </div>
+
+  <section class="kpis" id="kpis" aria-label="Key figures"></section>
+
+  <section class="grid2">
+    <div class="card">
+      <div class="card-head"><h2 id="lineTitle">Deliveries per year</h2><span class="card-note">units</span></div>
+      <div class="chart" id="lineChart"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>Electric (BEV) deliveries</h2><span class="card-note">units · share of group</span></div>
+      <div class="chart" id="bevChart"></div>
+    </div>
+  </section>
+
+  <section class="grid2">
+    <div class="card">
+      <div class="card-head"><h2 id="mixTitle">Brand mix</h2><span class="card-note">share of group deliveries</span></div>
+      <div id="mix"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <div class="card-head"><h2>Data</h2><span class="card-note">all figures in units</span></div>
+      <div class="table-wrap"><table id="dataTable"></table></div>
+    </div>
+  </section>
+
+  <p class="footnote" id="source"></p>
+  <p class="footnote">CSV import format: a header row with <code>year</code> plus any of <code>BMW</code>, <code>MINI</code>, <code>Rolls-Royce</code>, <code>BEV</code>, e.g. <code>year,BMW,MINI,Rolls-Royce,BEV</code>. Data stays in your browser.</p>
+</main>
+<script src="bmw_data.js"></script>
+<script src="BMWDashboard.js"></script>
+</body>
+</html>
