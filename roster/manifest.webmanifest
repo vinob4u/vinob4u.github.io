@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "RDA Duty Roster – AIIMS Mangalagiri",
+  "short_name": "RDA Duty",
+  "description": "Who's on duty today? Department-wise duty roster of residents and faculty at AIIMS Mangalagiri.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#0f3d5e",
+  "lang": "en-IN",
+  "categories": ["medical", "productivity"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
