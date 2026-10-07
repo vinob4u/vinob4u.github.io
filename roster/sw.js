@@ -1,7 +1,7 @@
 /* Offline helper for the RDA Duty Roster.
    Always tries the network first, so a newly uploaded roster shows up straight away;
    falls back to the last saved copy when there's no signal. */
-const CACHE = "rda-roster-v1";
+const CACHE = "rda-roster-v2";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/maskable-512.png"];
 
 self.addEventListener("install", (e) => {
